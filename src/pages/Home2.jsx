@@ -1,0 +1,712 @@
+
+import { useState } from 'react'
+
+import {
+  CheckIcon,
+  PlusIcon,
+} from '@heroicons/react/24/outline'
+
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
+
+import {
+  HOME2_HERO,
+  DESIGN_PRINCIPLES,
+  WORKSHOP_STATS,
+  PRODUCTS,
+  CATEGORIES,
+  MATERIALS,
+  PROCESS_STEPS,
+  LOOKBOOK,
+  FAQS,
+  BULK_ORDER_POINTS,
+} from '../data/store.js'
+
+import ContactForm from '../components/ContactForm.jsx'
+
+export default function Home2() {
+  const [activeCategory, setActiveCategory] = useState(
+    CATEGORIES[0]?.name || '',
+  )
+
+  // Stores selected size by product ID.
+  const [selectedSizes, setSelectedSizes] = useState({})
+
+  // Stores the currently selected shoe.
+  const [selectedProductId, setSelectedProductId] = useState(null)
+
+  const categoryProducts = PRODUCTS.filter(
+    (product) => product.category === activeCategory,
+  )
+
+  /*
+   * Before selecting a shoe:
+   * Show all products in the category.
+   *
+   * After selecting a shoe:
+   * Show only that selected shoe.
+   */
+  const visibleProducts = selectedProductId
+    ? categoryProducts.filter(
+        (product) => product.id === selectedProductId,
+      )
+    : categoryProducts
+
+  const handleSizeSelect = (productId, size) => {
+    setSelectedSizes((previous) => ({
+      ...previous,
+      [productId]: size,
+    }))
+
+    setSelectedProductId(productId)
+  }
+
+  const handleChangeShoe = () => {
+    setSelectedProductId(null)
+    setSelectedSizes({})
+  }
+
+  const handleCategoryChange = (categoryName) => {
+    setActiveCategory(categoryName)
+    setSelectedProductId(null)
+    setSelectedSizes({})
+  }
+
+  return (
+    <>
+      {/* =========================================================
+          1. EDITORIAL HERO
+      ========================================================= */}
+
+      <section className="relative overflow-hidden bg-cream dark:bg-white/[0.02]">
+        <div className="section-container grid min-h-[720px] grid-cols-1 items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
+          <div className="relative z-10">
+            <span className="eyebrow">
+              {HOME2_HERO.eyebrow}
+            </span>
+
+            <h1 className="heading-xl mt-4 max-w-2xl">
+              {HOME2_HERO.title}
+            </h1>
+
+            <p className="body-text mt-6 max-w-xl">
+              {HOME2_HERO.description}
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#lineup" className="btn-primary">
+                {HOME2_HERO.primaryCta}
+              </a>
+
+              <a href="#craft" className="btn-secondary">
+                {HOME2_HERO.secondaryCta}
+              </a>
+            </div>
+
+            <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-gray-300 pt-6 dark:border-border-dark">
+              {HOME2_HERO.stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="font-heading text-2xl font-bold text-navy dark:text-white">
+                    {stat.value}
+                  </p>
+
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="overflow-hidden rounded-[2rem]">
+              <img
+                src={HOME2_HERO.image}
+                alt={HOME2_HERO.imageAlt}
+                className="h-[560px] w-full object-cover"
+              />
+            </div>
+
+            <div className="absolute -bottom-6 start-6 max-w-xs rounded-2xl bg-navy p-6 text-white shadow-xl dark:bg-amber dark:text-navy-dark md:start-0">
+              <p className="text-xs uppercase tracking-[0.2em] text-amber-dark dark:text-navy-dark/60">
+                {HOME2_HERO.cardLabel}
+              </p>
+
+              <p className="mt-2 font-heading text-xl font-semibold">
+                {HOME2_HERO.cardText}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          2. DESIGN PHILOSOPHY
+      ========================================================= */}
+
+      <section
+        id="philosophy"
+        className="section-container py-20 md:py-24"
+      >
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <span className="eyebrow">
+              The STRYDE edit
+            </span>
+
+            <h2 className="heading-lg mt-2">
+              A different way to think about footwear.
+            </h2>
+
+            <p className="body-text mt-5">
+              We do not start with trends. We start with how a shoe will be
+              worn, where it will go, and how it should feel after a full day.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+            {DESIGN_PRINCIPLES.map((principle, index) => (
+              <article
+                key={principle.title}
+                className="rounded-2xl border border-gray-200 p-6 dark:border-border-dark"
+              >
+                <span className="font-heading text-3xl font-bold text-amber">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <h3 className="heading-sm mt-6 !text-base">
+                  {principle.title}
+                </h3>
+
+                <p className="body-text mt-3 text-sm">
+                  {principle.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          3. WORKSHOP NUMBERS
+      ========================================================= */}
+
+      <section className="bg-navy py-16 text-white dark:bg-black/40">
+        <div className="section-container">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <span className="eyebrow !text-amber-dark">
+                Behind the collection
+              </span>
+
+              <h2 className="heading-lg mt-2 max-w-xl !text-white">
+                Experience is built into every release.
+              </h2>
+            </div>
+
+            <p className="max-w-md text-sm leading-6 text-white/60">
+              From sourcing to final inspection, every stage is considered
+              before a style becomes part of the STRYDE collection.
+            </p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 gap-y-10 md:grid-cols-4">
+            {WORKSHOP_STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className="border-s-2 border-amber ps-5"
+              >
+                <p className="font-heading text-4xl font-bold">
+                  {stat.value}
+                </p>
+
+                <p className="mt-2 text-sm text-white/55">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          4. PRODUCT LINEUP
+      ========================================================= */}
+
+      <section
+        id="lineup"
+        className="bg-cream py-20 dark:bg-white/[0.02] md:py-24"
+      >
+        <div className="section-container">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="eyebrow">
+                Current collection
+              </span>
+
+              <h2 className="heading-lg mt-2">
+                Selected styles, not endless scrolling.
+              </h2>
+            </div>
+
+            <p className="body-text max-w-md text-sm">
+              A focused collection of everyday, formal, and performance
+              footwear selected around versatility and long-term wear.
+            </p>
+          </div>
+
+          {/* =====================================================
+              CATEGORY BUTTONS
+          ===================================================== */}
+
+          <div className="mt-10 flex flex-wrap gap-2">
+            {CATEGORIES.map((category) => {
+              const isActive =
+                activeCategory === category.name
+
+              return (
+                <button
+                  key={category.name}
+                  type="button"
+                  onClick={() =>
+                    handleCategoryChange(category.name)
+                  }
+                  className={
+                    isActive
+                      ? 'rounded-full bg-navy px-5 py-2.5 text-sm font-medium text-white transition dark:bg-amber dark:text-navy-dark'
+                      : 'rounded-full bg-white px-5 py-2.5 text-sm font-medium text-navy transition hover:bg-navy/10 dark:bg-white/5 dark:text-gray-200 dark:hover:bg-white/10'
+                  }
+                >
+                  {category.name}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* =====================================================
+              SELECTED SHOE MESSAGE
+          ===================================================== */}
+
+          {selectedProductId && (
+            <div className="mt-8 flex flex-col gap-3 rounded-xl border border-amber/30 bg-amber/10 p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-navy dark:text-white">
+                  Shoe selected
+                </p>
+
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Other shoes are hidden while you choose your size.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleChangeShoe}
+                className="rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy/90 dark:bg-amber dark:text-navy-dark dark:hover:bg-amber/90"
+              >
+                Change shoe
+              </button>
+            </div>
+          )}
+
+          {/* =====================================================
+              PRODUCTS
+          ===================================================== */}
+
+          <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleProducts.length > 0 ? (
+              visibleProducts.map((product) => {
+                /*
+                 * Only read the stored size when this product
+                 * is currently selected.
+                 *
+                 * This prevents a previous size from being
+                 * highlighted before selecting the shoe.
+                 */
+                const selectedSize =
+                  selectedProductId === product.id
+                    ? selectedSizes[product.id]
+                    : null
+
+                return (
+                  <article
+                    key={product.id}
+                    className="group"
+                  >
+                    {/* PRODUCT IMAGE */}
+
+                    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        className="h-80 w-full object-cover transition duration-700 group-hover:scale-105"
+                      />
+
+                      {product.tag && (
+                        <span className="absolute start-4 top-4 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-navy dark:bg-navy-dark dark:text-white">
+                          {product.tag}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* PRODUCT DETAILS */}
+
+                    <div className="mt-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs uppercase tracking-wider text-gray-400">
+                            {product.brand}
+                          </p>
+
+                          <h3 className="heading-sm mt-1 !text-lg">
+                            {product.name}
+                          </h3>
+                        </div>
+
+                        <span className="font-heading font-semibold text-navy dark:text-white">
+                          {product.price}
+                        </span>
+                      </div>
+
+                      {/* =================================================
+                          SIZE SELECTOR
+                      ================================================= */}
+
+                      <div className="mt-5">
+                        <div className="mb-3 flex items-center justify-between">
+                          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400">
+                            Select a size
+                          </p>
+
+                          {selectedSize && (
+                            <span className="text-xs font-medium text-amber">
+                              Size {selectedSize} selected
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                          {product.sizes.map((size) => {
+                            const isSelected =
+                              selectedProductId === product.id &&
+                              selectedSizes[product.id] === size
+
+                            return (
+                              <button
+                                key={size}
+                                type="button"
+                                onClick={() =>
+                                  handleSizeSelect(
+                                    product.id,
+                                    size,
+                                  )
+                                }
+                                aria-label={`Select size ${size}`}
+                                aria-pressed={isSelected}
+                                className={
+                                  isSelected
+                                    ? 'flex h-10 min-w-10 items-center justify-center rounded-lg border border-navy bg-navy px-3 text-sm font-medium text-white shadow-sm transition-all duration-200 dark:border-amber dark:bg-amber dark:text-navy-dark'
+                                    : 'flex h-10 min-w-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-3 text-sm font-medium text-gray-600 transition-all duration-200 hover:border-navy hover:text-navy dark:border-border-dark dark:bg-white/5 dark:text-gray-300 dark:hover:border-amber dark:hover:text-amber'
+                                }
+                              >
+                                {size}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                )
+              })
+            ) : (
+              <p className="text-sm text-gray-500">
+                No products available in this category.
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          5. MATERIAL LIBRARY
+      ========================================================= */}
+
+      <section className="section-container py-20 md:py-24">
+        <div className="max-w-2xl">
+          <span className="eyebrow">
+            Material library
+          </span>
+
+          <h2 className="heading-lg mt-2">
+            The feel starts with the material.
+          </h2>
+
+          <p className="body-text mt-5">
+            Different materials change the character of a shoe. We select
+            finishes according to the purpose, expected wear, and look of each
+            style.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {MATERIALS.map((material) => (
+            <article
+              key={material.name}
+              className="group overflow-hidden rounded-2xl bg-cream dark:bg-white/[0.03]"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={material.image}
+                  alt={material.name}
+                  className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div className="p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="heading-sm !text-lg">
+                    {material.name}
+                  </h3>
+
+                  <span className="text-xs font-semibold uppercase tracking-wider text-amber">
+                    {material.type}
+                  </span>
+                </div>
+
+                <p className="body-text mt-3 text-sm">
+                  {material.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* =========================================================
+          6. CRAFT PROCESS
+      ========================================================= */}
+
+      <section
+        id="craft"
+        className="border-y border-gray-200 py-20 dark:border-border-dark md:py-24"
+      >
+        <div className="section-container">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <span className="eyebrow">
+                Our craft
+              </span>
+
+              <h2 className="heading-lg mt-2">
+                From first sketch to final check.
+              </h2>
+
+              <p className="body-text mt-5">
+                A considered process keeps the finished shoe practical,
+                consistent, and ready for everyday use.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
+              {PROCESS_STEPS.map((step, index) => (
+                <article
+                  key={step.step}
+                  className={`border-gray-200 py-7 dark:border-border-dark ${
+                    index % 2 === 0
+                      ? 'sm:border-e sm:pe-8'
+                      : 'sm:ps-8'
+                  } ${
+                    index < 2
+                      ? 'border-b'
+                      : index < PROCESS_STEPS.length
+                        ? 'sm:border-b-0'
+                        : ''
+                  }`}
+                >
+                  <span className="font-heading text-sm font-bold text-amber">
+                    {step.step}
+                  </span>
+
+                  <h3 className="heading-sm mt-3 !text-lg">
+                    {step.title}
+                  </h3>
+
+                  <p className="body-text mt-2 text-sm">
+                    {step.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          7. LOOKBOOK
+      ========================================================= */}
+
+      <section className="section-container py-20 md:py-24">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="eyebrow">
+              The lookbook
+            </span>
+
+            <h2 className="heading-lg mt-2">
+              One collection. Different rhythms.
+            </h2>
+          </div>
+
+          <p className="body-text max-w-md text-sm">
+            Explore how the same design philosophy translates from the
+            weekday commute to formal occasions and weekend miles.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12">
+          {LOOKBOOK.map((item, index) => (
+            <article
+              key={item.title}
+              className={`group relative overflow-hidden rounded-2xl ${
+                index === 0
+                  ? 'md:col-span-7 md:row-span-2'
+                  : 'md:col-span-5'
+              }`}
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className={`w-full object-cover transition duration-700 group-hover:scale-105 ${
+                  index === 0
+                    ? 'h-[560px]'
+                    : 'h-[270px]'
+                }`}
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="text-xs uppercase tracking-[0.2em] text-amber-dark">
+                  {item.label}
+                </p>
+
+                <h3 className="mt-2 font-heading text-2xl font-semibold">
+                  {item.title}
+                </h3>
+
+                <p className="mt-2 max-w-md text-sm leading-6 text-white/70">
+                  {item.desc}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* =========================================================
+          8. FAQ + BULK ENQUIRY
+      ========================================================= */}
+
+      <section
+        id="contact"
+        className="bg-navy py-20 text-white dark:bg-black/40 md:py-24"
+      >
+        <div className="section-container">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <div>
+              <span className="eyebrow !text-amber-dark">
+                Questions & enquiries
+              </span>
+
+              <h2 className="heading-lg mt-2 !text-white">
+                Need a little more detail?
+              </h2>
+
+              <p className="mt-5 max-w-lg text-sm leading-6 text-white/60">
+                Whether you're choosing your first pair or planning a larger
+                order, our team can help you work through the details.
+              </p>
+
+              <div className="mt-8 space-y-3">
+                {BULK_ORDER_POINTS.map((point) => (
+                  <div
+                    key={point}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber text-navy-dark">
+                      <CheckIcon className="h-4 w-4" />
+                    </span>
+
+                    <span className="text-sm text-white/75">
+                      {point}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <h3 className="font-heading text-lg font-semibold">
+                  Frequently asked
+                </h3>
+
+                <div className="mt-4 divide-y divide-white/10">
+                  {FAQS.map((faq) => (
+                    <Disclosure
+                      key={faq.q}
+                      as="div"
+                      className="py-4"
+                    >
+                      {({ open }) => (
+                        <>
+                          <DisclosureButton className="flex w-full items-center justify-between gap-4 text-start">
+                            <span className="text-sm font-medium">
+                              {faq.q}
+                            </span>
+
+                            <PlusIcon
+                              className={`h-5 w-5 shrink-0 text-amber transition-transform ${
+                                open ? 'rotate-45' : ''
+                              }`}
+                            />
+                          </DisclosureButton>
+
+                          <DisclosurePanel className="mt-3 text-sm leading-6 text-white/55">
+                            {faq.a}
+                          </DisclosurePanel>
+                        </>
+                      )}
+                    </Disclosure>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-white p-6 text-navy sm:p-8">
+              <div className="mb-6">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                  Bulk & custom orders
+                </span>
+
+                <h3 className="mt-2 font-heading text-2xl font-semibold">
+                  Tell us what you're outfitting.
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-gray-500">
+                  Share your quantities, sizes, preferred styles, and any
+                  custom requirements.
+                </p>
+              </div>
+
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
