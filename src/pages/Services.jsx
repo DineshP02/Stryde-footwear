@@ -83,7 +83,7 @@ export default function Services() {
   <div className="absolute inset-0 bg-navy-dark/20" />
 
   <div className="section-container relative">
-    <span className="eyebrow !text-amber-dark">What we offer</span>
+    <span className="eyebrow !text-amber-dark">What we offe</span>
 
     <h1 className="heading-xl mt-4 max-w-2xl !text-white">
       Services built around how you actually order footwear.
