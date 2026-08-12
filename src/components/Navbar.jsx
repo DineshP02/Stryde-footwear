@@ -320,7 +320,7 @@ export default function Navbar() {
                   onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
-                  About Us
+                  About Uss
                 </a>
 
                 {/* BLOG */}
