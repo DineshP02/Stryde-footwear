@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 
 import {
@@ -11,7 +10,7 @@ import {
   MenuItems,
 } from '@headlessui/react'
 
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import {
   Bars3Icon,
@@ -48,19 +47,16 @@ export default function Navbar() {
   const [isNewUser, setIsNewUser] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
 
-  // Password visibility
   const [showPassword, setShowPassword] = useState(false)
 
-  // Forgot password modal
   const [showForgotPassword, setShowForgotPassword] = useState(false)
   const [forgotEmail, setForgotEmail] = useState('')
   const [resetSent, setResetSent] = useState(false)
 
-  /*
-   * =========================================================
-   * SCROLL TO TOP WHEN ROUTE CHANGES
-   * =========================================================
-   */
+  // =========================================================
+  // SCROLL TO TOP WHEN PAGE CHANGES
+  // =========================================================
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -72,7 +68,8 @@ export default function Navbar() {
   const isAboutPage = location.pathname === '/about'
 
   const isHomePage =
-    location.pathname === '/' || location.pathname === '/home-2'
+    location.pathname === '/' ||
+    location.pathname === '/home-2'
 
   // =========================================================
   // LOGIN / SIGNUP
@@ -141,7 +138,7 @@ export default function Navbar() {
 
             <div className="section-container flex min-h-16 items-center justify-between gap-2 py-3 sm:min-h-[72px] sm:py-4">
 
-              {/* Logo */}
+              {/* LOGO */}
               <div className="min-w-0 shrink-0">
                 <Logo />
               </div>
@@ -171,28 +168,28 @@ export default function Navbar() {
                     className="absolute start-0 z-50 mt-2 w-44 origin-top rounded-xl border border-gray-200 bg-white p-1 shadow-lg transition duration-150 ease-out data-closed:-translate-y-1 data-closed:opacity-0 dark:border-border-dark dark:bg-surface-dark"
                   >
                     <MenuItem>
-                      <Link
-                        to="/"
+                      <a
+                        href="/"
                         className="block rounded-lg px-3 py-2 text-sm font-normal text-navy data-focus:bg-cream dark:text-gray-200 dark:data-focus:bg-white/5"
                       >
                         Home 1
-                      </Link>
+                      </a>
                     </MenuItem>
 
                     <MenuItem>
-                      <Link
-                        to="/home-2"
+                      <a
+                        href="/home-2"
                         className="block rounded-lg px-3 py-2 text-sm font-normal text-navy data-focus:bg-cream dark:text-gray-200 dark:data-focus:bg-white/5"
                       >
                         Home 2
-                      </Link>
+                      </a>
                     </MenuItem>
                   </MenuItems>
                 </Menu>
 
                 {/* ABOUT US */}
-                <Link
-                  to="/about"
+                <a
+                  href="/about"
                   className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
                     isAboutPage
                       ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
@@ -200,22 +197,26 @@ export default function Navbar() {
                   }`}
                 >
                   About Us
-                </Link>
+                </a>
 
-                {/* OTHER NAVIGATION */}
+                {/* BLOG + SERVICES */}
                 {NAV_LINKS.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5 xl:px-4"
+                    className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
+                      location.pathname === link.href
+                        ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
+                        : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
+                    }`}
                   >
                     {link.name}
                   </a>
                 ))}
 
                 {/* CONTACT */}
-                <Link
-                  to="/contact"
+                <a
+                  href="/contact"
                   className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
                     location.pathname === '/contact'
                       ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
@@ -223,7 +224,7 @@ export default function Navbar() {
                   }`}
                 >
                   Contact
-                </Link>
+                </a>
               </nav>
 
               {/* =================================================
@@ -271,7 +272,7 @@ export default function Navbar() {
                   <span>Login</span>
                 </button>
 
-                {/* MOBILE / TABLET MENU */}
+                {/* MOBILE MENU BUTTON */}
                 <DisclosureButton
                   className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5 lg:hidden"
                   aria-label={open ? 'Close menu' : 'Open menu'}
@@ -296,54 +297,60 @@ export default function Navbar() {
               <div className="section-container flex flex-col gap-1 px-4 py-4 sm:px-6">
 
                 {/* HOME 1 */}
-                <Link
-                  to="/"
+                <a
+                  href="/"
                   onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Home 1
-                </Link>
+                </a>
 
                 {/* HOME 2 */}
-                <Link
-                  to="/home-2"
+                <a
+                  href="/home-2"
                   onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Home 2
-                </Link>
+                </a>
 
                 {/* ABOUT US */}
-                <Link
-                  to="/about"
+                <a
+                  href="/about"
                   onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   About Us
-                </Link>
+                </a>
 
-                {/* OTHER NAVIGATION */}
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={close}
-                    className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {/* BLOG */}
+                <a
+                  href="/blog"
+                  onClick={close}
+                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                >
+                  Blog
+                </a>
+
+                {/* SERVICES */}
+                <a
+                  href="/services"
+                  onClick={close}
+                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                >
+                  Services
+                </a>
 
                 {/* CONTACT */}
-                <Link
-                  to="/contact"
+                <a
+                  href="/contact"
                   onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Contact
-                </Link>
+                </a>
 
-                {/* MOBILE / TABLET LOGIN */}
+                {/* MOBILE LOGIN */}
                 <button
                   type="button"
                   onClick={() => {
@@ -406,7 +413,7 @@ export default function Navbar() {
             {/* SOCIAL LOGIN */}
             <div className="mt-5 grid grid-cols-3 gap-2 sm:mt-6">
 
-              {/* Google */}
+              {/* GOOGLE */}
               <button
                 type="button"
                 className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-border-dark dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
@@ -417,7 +424,7 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* Facebook */}
+              {/* FACEBOOK */}
               <button
                 type="button"
                 className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-border-dark dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
@@ -428,7 +435,7 @@ export default function Navbar() {
                 </span>
               </button>
 
-              {/* Apple */}
+              {/* APPLE */}
               <button
                 type="button"
                 className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-border-dark dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
@@ -444,7 +451,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Divider */}
+            {/* DIVIDER */}
             <div className="my-5 flex items-center gap-3 sm:my-6">
               <div className="h-px flex-1 bg-gray-200 dark:bg-border-dark" />
 
@@ -464,7 +471,7 @@ export default function Navbar() {
               }}
             >
 
-              {/* Name */}
+              {/* NAME */}
               {isNewUser && (
                 <div>
                   <label
@@ -484,7 +491,7 @@ export default function Navbar() {
                 </div>
               )}
 
-              {/* Email */}
+              {/* EMAIL */}
               <div>
                 <label
                   htmlFor="login-email"
@@ -502,7 +509,7 @@ export default function Navbar() {
                 />
               </div>
 
-              {/* Password */}
+              {/* PASSWORD */}
               <div>
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <label
@@ -554,7 +561,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Remember Me */}
+              {/* REMEMBER ME */}
               {!isNewUser && (
                 <label className="flex cursor-pointer items-center gap-3 py-1">
                   <input
@@ -582,7 +589,7 @@ export default function Navbar() {
                 </label>
               )}
 
-              {/* Submit */}
+              {/* SUBMIT */}
               <button
                 type="submit"
                 className="mt-2 flex min-h-11 w-full items-center justify-center rounded-xl bg-yellow-400 px-5 py-3 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)] active:translate-y-0"
@@ -591,7 +598,7 @@ export default function Navbar() {
               </button>
             </form>
 
-            {/* Switch Login / Signup */}
+            {/* SWITCH LOGIN / SIGNUP */}
             <div className="mt-5 text-center text-sm text-gray-500 sm:mt-6 dark:text-gray-400">
               {isNewUser
                 ? 'Already have an account?'
@@ -643,12 +650,12 @@ export default function Navbar() {
 
             {!resetSent ? (
               <>
-                {/* Icon */}
+                {/* ICON */}
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-400 text-navy">
                   <LockClosedIcon className="h-6 w-6" />
                 </div>
 
-                {/* Header */}
+                {/* HEADER */}
                 <div className="pe-8">
                   <h2 className="font-heading text-xl font-bold text-navy sm:text-2xl dark:text-white">
                     Forgot your password?
@@ -660,7 +667,7 @@ export default function Navbar() {
                   </p>
                 </div>
 
-                {/* Reset form */}
+                {/* RESET FORM */}
                 <form
                   onSubmit={handleResetPassword}
                   className="mt-6 space-y-4"
@@ -691,7 +698,7 @@ export default function Navbar() {
                     </div>
                   </div>
 
-                  {/* Send button */}
+                  {/* SEND BUTTON */}
                   <button
                     type="submit"
                     className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)] active:translate-y-0"
@@ -701,7 +708,7 @@ export default function Navbar() {
                   </button>
                 </form>
 
-                {/* Back to login */}
+                {/* BACK TO LOGIN */}
                 <button
                   type="button"
                   onClick={openLogin}
@@ -711,10 +718,9 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              /* RESET SUCCESS STATE */
+              /* RESET SUCCESS */
               <div className="py-3 text-center sm:py-5">
 
-                {/* Success icon */}
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-500/10 dark:text-green-400">
                   <CheckIcon className="h-8 w-8" />
                 </div>
@@ -737,7 +743,7 @@ export default function Navbar() {
                   or junk folder.
                 </p>
 
-                {/* Close */}
+                {/* CLOSE */}
                 <button
                   type="button"
                   onClick={closeForgotPassword}
@@ -746,6 +752,7 @@ export default function Navbar() {
                   <ArrowPathIcon className="h-4 w-4" />
                   Back to website
                 </button>
+
               </div>
             )}
           </div>
@@ -754,6 +761,3 @@ export default function Navbar() {
     </>
   )
 }
-
-
-
