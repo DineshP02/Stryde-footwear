@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 
 import {
@@ -34,10 +35,8 @@ import { useTheme } from '../context/ThemeContext.jsx'
 import { useDirection } from '../context/DirectionContext.jsx'
 
 const NAV_LINKS = [
-  
   { name: 'Blog', href: '/blog' },
   { name: 'Services', href: '/services' },
-  
 ]
 
 export default function Navbar() {
@@ -61,12 +60,6 @@ export default function Navbar() {
    * =========================================================
    * SCROLL TO TOP WHEN ROUTE CHANGES
    * =========================================================
-   *
-   * React Router does not automatically reset the scroll
-   * position when navigating between pages.
-   *
-   * This makes /contact, /about, /home-2, etc. start at
-   * the top of the page.
    */
   useEffect(() => {
     window.scrollTo({
@@ -80,6 +73,10 @@ export default function Navbar() {
 
   const isHomePage =
     location.pathname === '/' || location.pathname === '/home-2'
+
+  // =========================================================
+  // LOGIN / SIGNUP
+  // =========================================================
 
   const openLogin = () => {
     setIsNewUser(false)
@@ -101,6 +98,10 @@ export default function Navbar() {
     setShowLogin(false)
     setShowPassword(false)
   }
+
+  // =========================================================
+  // FORGOT PASSWORD
+  // =========================================================
 
   const openForgotPassword = () => {
     setShowLogin(false)
@@ -132,7 +133,7 @@ export default function Navbar() {
         as="header"
         className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur dark:border-border-dark dark:bg-navy-dark/95"
       >
-        {({ open }) => (
+        {({ open, close }) => (
           <>
             {/* =================================================
                 MAIN NAVBAR
@@ -294,39 +295,49 @@ export default function Navbar() {
             >
               <div className="section-container flex flex-col gap-1 px-4 py-4 sm:px-6">
 
+                {/* HOME 1 */}
                 <Link
                   to="/"
+                  onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Home 1
                 </Link>
 
+                {/* HOME 2 */}
                 <Link
                   to="/home-2"
+                  onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Home 2
                 </Link>
 
+                {/* ABOUT US */}
                 <Link
                   to="/about"
+                  onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   About Us
                 </Link>
 
+                {/* OTHER NAVIGATION */}
                 {NAV_LINKS.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
+                    onClick={close}
                     className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                   >
                     {link.name}
                   </a>
                 ))}
 
+                {/* CONTACT */}
                 <Link
                   to="/contact"
+                  onClick={close}
                   className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
                 >
                   Contact
@@ -335,7 +346,10 @@ export default function Navbar() {
                 {/* MOBILE / TABLET LOGIN */}
                 <button
                   type="button"
-                  onClick={openLogin}
+                  onClick={() => {
+                    close()
+                    openLogin()
+                  }}
                   className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-navy px-4 py-3 text-sm font-semibold text-white transition hover:bg-navy/90 dark:bg-yellow-400 dark:text-navy dark:hover:bg-yellow-300"
                 >
                   <UserIcon className="h-4 w-4" />
@@ -740,3 +754,6 @@ export default function Navbar() {
     </>
   )
 }
+
+
+
