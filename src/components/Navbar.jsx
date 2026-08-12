@@ -10,7 +10,7 @@ import {
   MenuItems,
 } from '@headlessui/react'
 
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import {
   Bars3Icon,
@@ -70,6 +70,19 @@ export default function Navbar() {
   const isHomePage =
     location.pathname === '/' ||
     location.pathname === '/home-2'
+
+  const isContactPage = location.pathname === '/contact'
+
+  // Small helper so active classes stay consistent everywhere
+  const activeClasses = (isActive) =>
+    isActive
+      ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
+      : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
+
+  const mobileActiveClasses = (isActive) =>
+    isActive
+      ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
+      : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
 
   // =========================================================
   // LOGIN / SIGNUP
@@ -152,11 +165,9 @@ export default function Navbar() {
                 {/* HOME DROPDOWN */}
                 <Menu as="div" className="relative">
                   <MenuButton
-                    className={`flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
+                    className={`flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
                       isHomePage
-                        ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
-                        : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
-                    }`}
+                    )}`}
                   >
                     Home
 
@@ -168,63 +179,65 @@ export default function Navbar() {
                     className="absolute start-0 z-50 mt-2 w-44 origin-top rounded-xl border border-gray-200 bg-white p-1 shadow-lg transition duration-150 ease-out data-closed:-translate-y-1 data-closed:opacity-0 dark:border-border-dark dark:bg-surface-dark"
                   >
                     <MenuItem>
-                      <a
-                        href="/"
-                        className="block rounded-lg px-3 py-2 text-sm font-normal text-navy data-focus:bg-cream dark:text-gray-200 dark:data-focus:bg-white/5"
+                      <Link
+                        to="/"
+                        className={`block rounded-lg px-3 py-2 text-sm font-normal data-focus:bg-cream dark:data-focus:bg-white/5 ${
+                          location.pathname === '/'
+                            ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
+                            : 'text-navy dark:text-gray-200'
+                        }`}
                       >
                         Home 1
-                      </a>
+                      </Link>
                     </MenuItem>
 
                     <MenuItem>
-                      <a
-                        href="/home-2"
-                        className="block rounded-lg px-3 py-2 text-sm font-normal text-navy data-focus:bg-cream dark:text-gray-200 dark:data-focus:bg-white/5"
+                      <Link
+                        to="/home-2"
+                        className={`block rounded-lg px-3 py-2 text-sm font-normal data-focus:bg-cream dark:data-focus:bg-white/5 ${
+                          location.pathname === '/home-2'
+                            ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
+                            : 'text-navy dark:text-gray-200'
+                        }`}
                       >
                         Home 2
-                      </a>
+                      </Link>
                     </MenuItem>
                   </MenuItems>
                 </Menu>
 
                 {/* ABOUT US */}
-                <a
-                  href="/about"
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
+                <Link
+                  to="/about"
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
                     isAboutPage
-                      ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
-                      : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
-                  }`}
+                  )}`}
                 >
                   About Us
-                </a>
+                </Link>
 
                 {/* BLOG + SERVICES */}
                 {NAV_LINKS.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
-                    href={link.href}
-                    className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
+                    to={link.href}
+                    className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
                       location.pathname === link.href
-                        ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
-                        : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
-                    }`}
+                    )}`}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
 
                 {/* CONTACT */}
-                <a
-                  href="/contact"
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${
-                    location.pathname === '/contact'
-                      ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
-                      : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
-                  }`}
+                <Link
+                  to="/contact"
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
+                    isContactPage
+                  )}`}
                 >
                   Contact
-                </a>
+                </Link>
               </nav>
 
               {/* =================================================
@@ -297,58 +310,70 @@ export default function Navbar() {
               <div className="section-container flex flex-col gap-1 px-4 py-4 sm:px-6">
 
                 {/* HOME 1 */}
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    location.pathname === '/'
+                  )}`}
                 >
                   Home 1
-                </a>
+                </Link>
 
                 {/* HOME 2 */}
-                <a
-                  href="/home-2"
+                <Link
+                  to="/home-2"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    location.pathname === '/home-2'
+                  )}`}
                 >
                   Home 2
-                </a>
+                </Link>
 
                 {/* ABOUT US */}
-                <a
-                  href="/about"
+                <Link
+                  to="/about"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    isAboutPage
+                  )}`}
                 >
-                  About Uss
-                </a>
+                  About Us
+                </Link>
 
                 {/* BLOG */}
-                <a
-                  href="/blog"
+                <Link
+                  to="/blog"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    location.pathname === '/blog'
+                  )}`}
                 >
                   Blog
-                </a>
+                </Link>
 
                 {/* SERVICES */}
-                <a
-                  href="/services"
+                <Link
+                  to="/services"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    location.pathname === '/services'
+                  )}`}
                 >
                   Services
-                </a>
+                </Link>
 
                 {/* CONTACT */}
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   onClick={close}
-                  className="rounded-xl px-4 py-3 text-sm font-medium text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
+                    isContactPage
+                  )}`}
                 >
                   Contact
-                </a>
+                </Link>
 
                 {/* MOBILE LOGIN */}
                 <button

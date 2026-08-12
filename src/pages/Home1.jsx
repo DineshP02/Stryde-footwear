@@ -16,6 +16,7 @@ import {
   CATEGORIES,
   BRANDS,
   TESTIMONIALS,
+  FEATURE_HIGHLIGHTS,
 } from '../data/store.js'
 
 const VALUE_PROPS = [
@@ -41,15 +42,29 @@ const VALUE_PROPS = [
   },
 ]
 
+// Turns "Priya Menon" into "PM"
+function getInitials(name = '') {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join('')
+}
+
 export default function Home1() {
   const [quoteIndex, setQuoteIndex] = useState(0)
+  const [featureIndex, setFeatureIndex] = useState(0)
 
   const quote = TESTIMONIALS[quoteIndex]
+  const feature = FEATURE_HIGHLIGHTS[featureIndex]
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden">
+      {/* =========================
+          HERO
+      ========================== */}
+      <section className="relative isolate flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=2000&q=80"
           alt="Premium footwear collection"
@@ -58,100 +73,121 @@ export default function Home1() {
 
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/70 to-navy/30" />
 
-        <div className="section-container py-24 text-white">
-          <span className="eyebrow !text-amber-dark">
-            New season · Fall collection
-          </span>
+        <div className="section-container flex w-full justify-center py-24 text-center text-white">
+          <div className="flex max-w-3xl flex-col items-center">
+            <span className="eyebrow !text-amber-dark">
+              New season · Fall collection
+            </span>
 
-          <h1 className="heading-xl mt-4 max-w-2xl !text-white">
-            Footwear for every step of your day.
-          </h1>
+            <h1 className="heading-xl mt-4 !text-white">
+              Footwear for every step of your day.
+            </h1>
 
-          <p className="body-text mt-5 max-w-md !text-white/75">
-            Discover everyday footwear designed around comfort, quality, and
-            timeless style. From casual essentials to formal and performance
-            styles, find your next favourite pair.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#categories"
-              className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
-            >
-              Explore categories
-            </a>
-
-            <Link
-              to="/home-2"
-              className="btn-secondary !border-white/40 !text-white hover:!border-white hover:!bg-white/10"
-            >
-              Discover our story
-            </Link>
-          </div>
-
-          <div className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-white/20 pt-6">
-            <div>
-              <p className="font-heading text-2xl font-semibold">12k+</p>
-              <p className="text-xs text-white/60">Pairs shipped</p>
-            </div>
-
-            <div>
-              <p className="font-heading text-2xl font-semibold">4.8/5</p>
-              <p className="text-xs text-white/60">Customer rating</p>
-            </div>
-
-            <div>
-              <p className="font-heading text-2xl font-semibold">30 days</p>
-              <p className="text-xs text-white/60">Free exchanges</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* INTRODUCTION */}
-      <section className="section-container py-20">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
-          <div>
-            <span className="eyebrow">Welcome to STRYDE</span>
-
-            <h2 className="heading-lg mt-2">
-              Shoes made for real life.
-            </h2>
-          </div>
-
-          <div>
-            <p className="body-text max-w-2xl">
-              We believe good footwear should look right, feel right, and keep
-              up with the way you live. STRYDE brings together dependable
-              everyday styles, refined formal footwear, and performance-ready
-              designs under one roof.
+            <p className="body-text mt-5 max-w-2xl !text-white/75">
+              Discover everyday footwear designed around comfort, quality, and
+              timeless style. From casual essentials to formal and performance
+              styles, find your next favourite pair.
             </p>
 
-            <Link
-              to="/about"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy dark:text-white"
-            >
-              Learn more about us
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a
+                href="#categories"
+                className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
+              >
+                Explore categories
+              </a>
+
+              <Link
+                to="/home-2"
+                className="btn-secondary !border-white/40 !text-white hover:!border-white hover:!bg-white/10"
+              >
+                Discover our story
+              </Link>
+            </div>
+
+            <div className="mt-14 flex flex-wrap justify-center gap-x-10 gap-y-4 border-t border-white/20 pt-6">
+              <div>
+                <p className="font-heading text-2xl font-semibold">
+                  12k+
+                </p>
+
+                <p className="text-xs text-white/60">
+                  Pairs shipped
+                </p>
+              </div>
+
+              <div>
+                <p className="font-heading text-2xl font-semibold">
+                  4.8/5
+                </p>
+
+                <p className="text-xs text-white/60">
+                  Customer rating
+                </p>
+              </div>
+
+              <div>
+                <p className="font-heading text-2xl font-semibold">
+                  30 days
+                </p>
+
+                <p className="text-xs text-white/60">
+                  Free exchanges
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CATEGORIES */}
+      {/* =========================
+          INTRODUCTION
+      ========================== */}
+      <section className="section-container py-20">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="eyebrow">
+            Welcome to STRYDE
+          </span>
+
+          <h2 className="heading-lg mt-2">
+            Shoes made for real life.
+          </h2>
+
+          <p className="body-text mt-5 max-w-2xl leading-relaxed">
+            We believe good footwear should look right, feel right, and keep
+            up with the way you live. STRYDE brings together dependable
+            everyday styles, refined formal footwear, and performance-ready
+            designs under one roof.
+          </p>
+
+          <Link
+            to="/about"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber"
+          >
+            Learn more about us
+            <ArrowRightIcon className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* =========================
+          CATEGORIES
+      ========================== */}
       <section
         id="categories"
         className="bg-cream py-20 dark:bg-white/[0.02]"
       >
         <div className="section-container">
-          <div className="mb-12">
-            <span className="eyebrow">Shop by category</span>
+          <div className="mx-auto mb-12 max-w-3xl text-center">
+            <span className="eyebrow">
+              Shop by category
+            </span>
 
             <h2 className="heading-lg mt-2">
               Find the pair that fits your day.
             </h2>
 
-            <p className="body-text mt-4 max-w-xl">
+            <p className="body-text mx-auto mt-4 max-w-xl">
               From relaxed weekends to important meetings, explore footwear
               designed for different moments and different ways of moving.
             </p>
@@ -187,6 +223,7 @@ export default function Home1() {
 
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
                     Explore collection
+
                     <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
@@ -196,10 +233,92 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* WHY STRYDE */}
+      {/* =========================
+          FEATURE HIGHLIGHT
+      ========================== */}
+      <section className="relative overflow-hidden bg-cream py-20 dark:bg-white/[0.02]">
+        <div className="section-container">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[1fr_auto_1fr]">
+            <div>
+              <h2 className="font-heading text-4xl font-bold uppercase leading-[1.05] text-navy dark:text-white sm:text-5xl">
+                {feature?.title || 'Featured footwear'}
+              </h2>
+            </div>
+
+            <div className="relative flex justify-center py-6 md:py-0">
+              {feature?.img && (
+                <img
+                  src={feature.img}
+                  alt={feature.title || 'Featured footwear'}
+                  className="h-56 w-56 rotate-3 object-contain drop-shadow-2xl transition-transform duration-500 sm:h-72 sm:w-72"
+                />
+              )}
+            </div>
+
+            <div className="md:pl-4">
+              <p className="body-text max-w-xs text-sm">
+                {feature?.desc ||
+                  'Discover our latest footwear collection.'}
+              </p>
+            </div>
+          </div>
+
+          {FEATURE_HIGHLIGHTS.length > 0 && (
+            <div className="mt-12 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                aria-label="Previous highlight"
+                onClick={() =>
+                  setFeatureIndex(
+                    (index) =>
+                      (index - 1 + FEATURE_HIGHLIGHTS.length) %
+                      FEATURE_HIGHLIGHTS.length,
+                  )
+                }
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
+              >
+                <ChevronLeftIcon className="h-4 w-4 rtl:rotate-180" />
+              </button>
+
+              <div className="flex gap-1.5">
+                {FEATURE_HIGHLIGHTS.map((_, index) => (
+                  <span
+                    key={index}
+                    className={`h-1.5 w-1.5 rounded-full transition ${
+                      index === featureIndex
+                        ? 'bg-amber'
+                        : 'bg-gray-300 dark:bg-border-dark'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                aria-label="Next highlight"
+                onClick={() =>
+                  setFeatureIndex(
+                    (index) =>
+                      (index + 1) % FEATURE_HIGHLIGHTS.length,
+                  )
+                }
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
+              >
+                <ChevronRightIcon className="h-4 w-4 rtl:rotate-180" />
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* =========================
+          WHY STRYDE
+      ========================== */}
       <section className="section-container py-20">
-        <div className="mb-12">
-          <span className="eyebrow">Why STRYDE</span>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <span className="eyebrow">
+            Why STRYDE
+          </span>
 
           <h2 className="heading-lg mt-2">
             Built around a better experience.
@@ -210,25 +329,33 @@ export default function Home1() {
           {VALUE_PROPS.map(({ icon: Icon, title, desc }, index) => (
             <div
               key={title}
-              className={`flex flex-col gap-3 py-6 sm:px-6 sm:py-0 ${
+              className={`flex flex-col items-center gap-3 py-6 text-center sm:px-6 sm:py-0 ${
                 index === 0 ? 'sm:ps-0' : ''
               }`}
             >
               <Icon className="h-7 w-7 text-amber dark:text-amber-dark" />
 
-              <h3 className="heading-sm !text-base">{title}</h3>
+              <h3 className="heading-sm !text-base">
+                {title}
+              </h3>
 
-              <p className="body-text text-sm">{desc}</p>
+              <p className="body-text text-sm">
+                {desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* BRAND STRIP */}
+      {/* =========================
+          BRAND STRIP
+      ========================== */}
       <section className="border-y border-gray-200 py-12 dark:border-border-dark">
         <div className="section-container">
           <div className="text-center">
-            <span className="eyebrow">Our selection</span>
+            <span className="eyebrow">
+              Our selection
+            </span>
 
             <h2 className="heading-lg mt-2">
               Brands you can count on.
@@ -236,23 +363,29 @@ export default function Home1() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {BRANDS.filter((brand) => brand !== 'All').map((brand) => (
-              <span
-                key={brand}
-                className="font-heading text-xl font-semibold text-navy/40 transition hover:text-navy/70 dark:text-white/30 dark:hover:text-white/60"
-              >
-                {brand}
-              </span>
-            ))}
+            {BRANDS
+              .filter((brand) => brand !== 'All')
+              .map((brand) => (
+                <span
+                  key={brand}
+                  className="cursor-pointer font-heading text-xl font-semibold text-navy/40 transition-all duration-300 hover:scale-105 hover:text-amber dark:text-white/30 dark:hover:text-amber"
+                >
+                  {brand}
+                </span>
+              ))}
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
+      {/* =========================
+          TESTIMONIAL
+      ========================== */}
       <section className="section-container py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.5fr_1.5fr] md:items-center">
           <div>
-            <span className="eyebrow">Customer stories</span>
+            <span className="eyebrow">
+              Customer stories
+            </span>
 
             <h2 className="heading-lg mt-2">
               Loved by people on the move.
@@ -263,64 +396,92 @@ export default function Home1() {
             </p>
           </div>
 
-          <div className="border-s-2 border-amber ps-8">
-            <p className="font-heading text-2xl leading-snug text-navy dark:text-white sm:text-3xl">
-              “{quote.quote}”
-            </p>
-
-            <div className="mt-6">
-              <p className="text-sm font-semibold text-navy dark:text-white">
-                {quote.name}
+          {quote && (
+            <div className="border-s-2 border-amber ps-8">
+              <p className="font-heading text-2xl leading-snug text-navy dark:text-white sm:text-3xl">
+                “{quote.quote}”
               </p>
 
-              <p className="text-xs text-gray-400">{quote.role}</p>
-            </div>
-
-            <div className="mt-8 flex items-center gap-4">
-              <button
-                aria-label="Previous testimonial"
-                onClick={() =>
-                  setQuoteIndex(
-                    (index) =>
-                      (index - 1 + TESTIMONIALS.length) %
-                      TESTIMONIALS.length,
-                  )
-                }
-                className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
-              >
-                <ChevronLeftIcon className="h-4 w-4 rtl:rotate-180" />
-              </button>
-
-              <div className="flex gap-1.5">
-                {TESTIMONIALS.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`h-1.5 w-1.5 rounded-full transition ${
-                      index === quoteIndex
-                        ? 'bg-amber'
-                        : 'bg-gray-300 dark:bg-border-dark'
-                    }`}
+              <div className="mt-6 flex items-center gap-3">
+                {quote.avatar ? (
+                  <img
+                    src={quote.avatar}
+                    alt={quote.name}
+                    className="h-11 w-11 rounded-full object-cover"
                   />
-                ))}
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber/15 text-sm font-semibold text-amber-dark dark:bg-amber/20 dark:text-amber"
+                  >
+                    {getInitials(quote.name)}
+                  </span>
+                )}
+
+                <div>
+                  <p className="text-sm font-semibold text-navy dark:text-white">
+                    {quote.name}
+                  </p>
+
+                  <p className="text-xs text-gray-400">
+                    {quote.role}
+                  </p>
+                </div>
               </div>
 
-              <button
-                aria-label="Next testimonial"
-                onClick={() =>
-                  setQuoteIndex(
-                    (index) => (index + 1) % TESTIMONIALS.length,
-                  )
-                }
-                className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
-              >
-                <ChevronRightIcon className="h-4 w-4 rtl:rotate-180" />
-              </button>
+              {TESTIMONIALS.length > 0 && (
+                <div className="mt-8 flex items-center gap-4">
+                  <button
+                    type="button"
+                    aria-label="Previous testimonial"
+                    onClick={() =>
+                      setQuoteIndex(
+                        (index) =>
+                          (index - 1 + TESTIMONIALS.length) %
+                          TESTIMONIALS.length,
+                      )
+                    }
+                    className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
+                  >
+                    <ChevronLeftIcon className="h-4 w-4 rtl:rotate-180" />
+                  </button>
+
+                  <div className="flex gap-1.5">
+                    {TESTIMONIALS.map((_, index) => (
+                      <span
+                        key={index}
+                        className={`h-1.5 w-1.5 rounded-full transition ${
+                          index === quoteIndex
+                            ? 'bg-amber'
+                            : 'bg-gray-300 dark:bg-border-dark'
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    aria-label="Next testimonial"
+                    onClick={() =>
+                      setQuoteIndex(
+                        (index) =>
+                          (index + 1) % TESTIMONIALS.length,
+                      )
+                    }
+                    className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
+                  >
+                    <ChevronRightIcon className="h-4 w-4 rtl:rotate-180" />
+                  </button>
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* =========================
+          FINAL CTA
+      ========================== */}
       <section className="bg-navy py-20 text-white dark:bg-black/40">
         <div className="section-container">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center">

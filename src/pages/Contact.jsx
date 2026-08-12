@@ -43,30 +43,6 @@ const CONTACT_FEATURES = [
   'Order and delivery support',
 ]
 
-const CONTACT_IMAGES = [
-  {
-    image:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Premium footwear',
-    label: 'The collection',
-    title: 'Designed to be worn often.',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Sneakers in an everyday setting',
-    label: 'Everyday movement',
-    title: 'Made for your everyday rhythm.',
-  },
-  {
-    image:
-      'https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=1000&q=85',
-    alt: 'Formal leather footwear',
-    label: 'Made with purpose',
-    title: 'Details that make the difference.',
-  },
-]
-
 export default function Contact() {
   return (
     <>
@@ -74,92 +50,242 @@ export default function Contact() {
           1. HERO
       ========================================================= */}
 
-      <section className="relative overflow-hidden bg-cream dark:bg-white/[0.02]">
-        <div className="section-container grid min-h-[620px] grid-cols-1 items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
-          <div className="relative z-10">
-            <span className="eyebrow">Get in touch</span>
-
-            <h1 className="heading-xl mt-4 max-w-2xl">
-              Let&apos;s talk about your next pair.
-            </h1>
-
-            <p className="body-text mt-6 max-w-xl">
-              Have a question about sizing, products, bulk orders, or
-              custom requirements? Our team is here to help you find the
-              right footwear and make every step straightforward.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#contact-form" className="btn-primary">
-                Send an enquiry
-                <ArrowRightIcon className="ms-2 inline-block h-4 w-4" />
-              </a>
-
-              <a href="#location" className="btn-secondary">
-                Find us
-              </a>
-            </div>
-
-            <div className="mt-10 grid max-w-md grid-cols-2 gap-5 border-t border-gray-300 pt-6 dark:border-border-dark sm:grid-cols-4">
+      <section className="bg-cream py-16 dark:bg-white/[0.02] md:py-24">
+        <div className="section-container">
+          <div className="rounded-[2.5rem] bg-amber/25 p-3 dark:bg-amber/10 sm:p-4">
+            <div className="grid grid-cols-1 items-center gap-10 rounded-[2rem] bg-white p-8 dark:bg-surface-dark sm:p-10 md:grid-cols-[1fr_1fr] md:gap-12 md:p-14">
+              {/* HERO CONTENT */}
               <div>
-                <p className="font-heading text-xl font-bold text-navy dark:text-white">
-                  1 day
+                <span className="eyebrow">
+                  Get in touch
+                </span>
+
+                <h1 className="heading-xl mt-4 max-w-md">
+                  Let&apos;s talk about your next pair.
+                </h1>
+
+                <p className="body-text mt-5 max-w-md text-sm leading-6">
+                  Have a question about sizing, products, bulk orders, or
+                  custom requirements? Our team is here to help you find the
+                  right footwear and make every step straightforward.
                 </p>
 
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Typical reply
-                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="#contact-form"
+                    className="btn-primary inline-flex items-center"
+                  >
+                    Send an enquiry
+                    <ArrowRightIcon className="ms-2 h-4 w-4" />
+                  </a>
+
+                  <a
+                    href="#location"
+                    className="btn-secondary"
+                  >
+                    Find us
+                  </a>
+                </div>
+
+                {/* Pagination dots */}
+                <div className="mt-8 flex gap-1.5">
+                  <span className="h-1.5 w-4 rounded-full bg-amber" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-navy/15 dark:bg-white/15" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-navy/15 dark:bg-white/15" />
+                </div>
+
+                {/* STATS */}
+                <div className="mt-10 grid max-w-md grid-cols-2 gap-5 border-t border-gray-200 pt-6 dark:border-border-dark sm:grid-cols-4">
+                  <div>
+                    <p className="font-heading text-xl font-bold text-navy dark:text-white">
+                      1 day
+                    </p>
+
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Typical reply
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-heading text-xl font-bold text-navy dark:text-white">
+                      20+
+                    </p>
+
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Bulk pairs
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-heading text-xl font-bold text-navy dark:text-white">
+                      3
+                    </p>
+
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Collections
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-heading text-xl font-bold text-navy dark:text-white">
+                      6 days
+                    </p>
+
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Open weekly
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <p className="font-heading text-xl font-bold text-navy dark:text-white">
-                  20+
-                </p>
+              {/* HERO ILLUSTRATION */}
+              <div className="relative flex items-center justify-center">
+                <svg
+                  viewBox="0 0 400 300"
+                  className="h-auto w-full max-w-sm"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-label="Contact support illustration"
+                  role="img"
+                >
+                  {/* Soft background circle */}
+                  <circle
+                    cx="200"
+                    cy="150"
+                    r="130"
+                    className="fill-cream dark:fill-white/5"
+                  />
 
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Bulk pairs
-                </p>
+                  {/* Envelope */}
+                  <g transform="translate(48 150) rotate(-6)">
+                    <rect
+                      x="0"
+                      y="0"
+                      width="120"
+                      height="82"
+                      rx="10"
+                      className="fill-navy dark:fill-white/10"
+                    />
+
+                    <path
+                      d="M4 8 L60 52 L116 8"
+                      fill="none"
+                      className="stroke-amber"
+                      strokeWidth="5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </g>
+
+                  {/* Magnifying glass */}
+                  <g transform="translate(150 50)">
+                    <circle
+                      cx="30"
+                      cy="30"
+                      r="28"
+                      fill="none"
+                      className="stroke-amber"
+                      strokeWidth="7"
+                    />
+
+                    <line
+                      x1="50"
+                      y1="50"
+                      x2="72"
+                      y2="72"
+                      className="stroke-amber"
+                      strokeWidth="7"
+                      strokeLinecap="round"
+                    />
+
+                    <circle
+                      cx="30"
+                      cy="30"
+                      r="12"
+                      className="fill-navy dark:fill-white/20"
+                    />
+                  </g>
+
+                  {/* Phone mockup */}
+                  <g transform="translate(230 65)">
+                    <rect
+                      x="0"
+                      y="0"
+                      width="100"
+                      height="180"
+                      rx="18"
+                      className="fill-white stroke-navy dark:fill-surface-dark dark:stroke-white/20"
+                      strokeWidth="4"
+                    />
+
+                    <rect
+                      x="14"
+                      y="26"
+                      width="55"
+                      height="14"
+                      rx="7"
+                      className="fill-amber/70"
+                    />
+
+                    <rect
+                      x="14"
+                      y="50"
+                      width="72"
+                      height="14"
+                      rx="7"
+                      className="fill-navy/15 dark:fill-white/15"
+                    />
+
+                    <rect
+                      x="30"
+                      y="74"
+                      width="56"
+                      height="14"
+                      rx="7"
+                      className="fill-amber"
+                    />
+
+                    <circle
+                      cx="50"
+                      cy="160"
+                      r="6"
+                      className="fill-navy/20 dark:fill-white/20"
+                    />
+                  </g>
+
+                  {/* Decorative dots */}
+                  <circle
+                    cx="90"
+                    cy="55"
+                    r="5"
+                    className="fill-amber"
+                  />
+
+                  <circle
+                    cx="335"
+                    cy="205"
+                    r="6"
+                    className="fill-navy/20 dark:fill-white/20"
+                  />
+
+                  <circle
+                    cx="65"
+                    cy="235"
+                    r="4"
+                    className="fill-amber/60"
+                  />
+                </svg>
+
+                {/* Floating support card */}
+                <div className="absolute -bottom-4 end-0 max-w-[13rem] rounded-2xl bg-navy p-5 text-white shadow-xl dark:bg-amber dark:text-navy-dark sm:-bottom-6 sm:end-2">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-amber dark:text-navy-dark/60">
+                    STRYDE support
+                  </p>
+
+                  <p className="mt-2 font-heading text-sm font-semibold leading-snug">
+                    From one pair to an entire team, we&apos;re here to help.
+                  </p>
+                </div>
               </div>
-
-              <div>
-                <p className="font-heading text-xl font-bold text-navy dark:text-white">
-                  3
-                </p>
-
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Collections
-                </p>
-              </div>
-
-              <div>
-                <p className="font-heading text-xl font-bold text-navy dark:text-white">
-                  6 days
-                </p>
-
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Open weekly
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="overflow-hidden rounded-[2rem]">
-              <img
-                src="https://img.magnific.com/free-photo/pair-brown-shoes-with-black-leather-sole-word-bottom_123827-23446.jpg"
-                alt="Shoemaker working with footwear"
-                className="h-[500px] w-full object-cover md:h-[560px]"
-              />
-            </div>
-
-            <div className="absolute -bottom-6 start-5 max-w-xs rounded-2xl bg-navy p-6 text-white shadow-xl dark:bg-amber dark:text-navy-dark md:start-0">
-              <p className="text-xs uppercase tracking-[0.2em] text-amber dark:text-navy-dark/60">
-                STRYDE support
-              </p>
-
-              <p className="mt-2 font-heading text-xl font-semibold">
-                From one pair to an entire team, we&apos;re here to help.
-              </p>
             </div>
           </div>
         </div>
@@ -171,7 +297,9 @@ export default function Contact() {
 
       <section className="section-container py-20 md:py-24">
         <div className="max-w-2xl">
-          <span className="eyebrow">Reach out</span>
+          <span className="eyebrow">
+            Reach out
+          </span>
 
           <h2 className="heading-lg mt-2">
             However you prefer to connect.
@@ -200,9 +328,25 @@ export default function Contact() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm font-semibold text-navy dark:text-white">
-                  {item.text}
-                </p>
+                {item.title === 'Email us' ? (
+                  <a
+                    href="mailto:hello@stryde.com"
+                    className="mt-3 block text-sm font-semibold text-navy hover:text-amber dark:text-white dark:hover:text-amber"
+                  >
+                    {item.text}
+                  </a>
+                ) : item.title === 'Call us' ? (
+                  <a
+                    href="tel:+919876543210"
+                    className="mt-3 block text-sm font-semibold text-navy hover:text-amber dark:text-white dark:hover:text-amber"
+                  >
+                    {item.text}
+                  </a>
+                ) : (
+                  <p className="mt-3 text-sm font-semibold text-navy dark:text-white">
+                    {item.text}
+                  </p>
+                )}
 
                 <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                   {item.detail}
@@ -223,6 +367,7 @@ export default function Contact() {
       >
         <div className="section-container">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            {/* LEFT CONTENT */}
             <div>
               <span className="eyebrow !text-amber">
                 Send an enquiry
@@ -255,6 +400,7 @@ export default function Contact() {
                 ))}
               </div>
 
+              {/* BULK ORDERS */}
               <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
                   Bulk orders
@@ -272,6 +418,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* CONTACT FORM */}
             <div className="rounded-2xl bg-white p-6 text-navy shadow-2xl sm:p-8 md:p-10">
               <div className="mb-7">
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
@@ -293,9 +440,8 @@ export default function Contact() {
         </div>
       </section>
 
-
       {/* =========================================================
-          5. MAP
+          4. MAP / LOCATION
       ========================================================= */}
 
       <section
@@ -304,8 +450,11 @@ export default function Contact() {
       >
         <div className="section-container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+            {/* LOCATION CONTENT */}
             <div>
-              <span className="eyebrow">Find us</span>
+              <span className="eyebrow">
+                Find us
+              </span>
 
               <h2 className="heading-lg mt-2">
                 Come and see STRYDE in person.
@@ -337,6 +486,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* GOOGLE MAPS BUTTON */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Chennai%2C%20Tamil%20Nadu%2C%20India"
                 target="_blank"
@@ -348,6 +498,7 @@ export default function Contact() {
               </a>
             </div>
 
+            {/* MAP */}
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-border-dark dark:bg-surface-dark">
               <iframe
                 title="STRYDE location map"
@@ -362,11 +513,12 @@ export default function Contact() {
       </section>
 
       {/* =========================================================
-          6. FINAL CTA
+          5. FINAL CTA
       ========================================================= */}
 
       <section className="section-container py-20 md:py-24">
         <div className="relative overflow-hidden rounded-[2rem] bg-navy px-6 py-14 text-center text-white sm:px-10 md:py-20">
+          {/* Decorative blobs */}
           <div className="absolute -end-20 -top-20 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />
 
           <div className="absolute -bottom-20 -start-20 h-64 w-64 rounded-full bg-amber/10 blur-3xl" />

@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 import {
@@ -14,7 +13,6 @@ import {
 
 import {
   HOME2_HERO,
-  DESIGN_PRINCIPLES,
   WORKSHOP_STATS,
   PRODUCTS,
   CATEGORIES,
@@ -83,6 +81,7 @@ export default function Home2() {
 
       <section className="relative overflow-hidden bg-cream dark:bg-white/[0.02]">
         <div className="section-container grid min-h-[720px] grid-cols-1 items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
+
           <div className="relative z-10">
             <span className="eyebrow">
               {HOME2_HERO.eyebrow}
@@ -97,11 +96,17 @@ export default function Home2() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#lineup" className="btn-primary">
+              <a
+                href="#lineup"
+                className="btn-primary"
+              >
                 {HOME2_HERO.primaryCta}
               </a>
 
-              <a href="#craft" className="btn-secondary">
+              <a
+                href="#craft"
+                className="btn-secondary"
+              >
                 {HOME2_HERO.secondaryCta}
               </a>
             </div>
@@ -140,6 +145,7 @@ export default function Home2() {
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -149,44 +155,80 @@ export default function Home2() {
 
       <section
         id="philosophy"
-        className="section-container py-20 md:py-24"
+        className="section-container py-20 md:py-28 lg:py-32"
       >
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <span className="eyebrow">
-              The STRYDE edit
+        {/* TOP CONTENT */}
+
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow">
+            The STRYDE edit
+          </span>
+
+          <h2 className="heading-lg mt-3">
+            A different way to think about footwear.
+          </h2>
+
+          <p className="body-text mx-auto mt-5 max-w-2xl">
+            We do not start with trends. We start with how a shoe will be
+            worn, where it will go, and how it should feel after a full day.
+          </p>
+        </div>
+
+        {/* 3 CARDS IN ONE LINE */}
+
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3">
+
+          {/* CARD 01 */}
+
+          <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
+            <span className="font-heading text-3xl font-bold text-amber">
+              01
             </span>
 
-            <h2 className="heading-lg mt-2">
-              A different way to think about footwear.
-            </h2>
+            <h3 className="heading-sm mt-6 !text-base">
+              Purpose first
+            </h3>
 
-            <p className="body-text mt-5">
-              We do not start with trends. We start with how a shoe will be
-              worn, where it will go, and how it should feel after a full day.
+            <p className="body-text mt-3 text-sm leading-6">
+              Every silhouette begins with a real use case, from long
+              workdays to relaxed weekends.
             </p>
-          </div>
+          </article>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {DESIGN_PRINCIPLES.map((principle, index) => (
-              <article
-                key={principle.title}
-                className="rounded-2xl border border-gray-200 p-6 dark:border-border-dark"
-              >
-                <span className="font-heading text-3xl font-bold text-amber">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+          {/* CARD 02 */}
 
-                <h3 className="heading-sm mt-6 !text-base">
-                  {principle.title}
-                </h3>
+          <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
+            <span className="font-heading text-3xl font-bold text-amber">
+              02
+            </span>
 
-                <p className="body-text mt-3 text-sm">
-                  {principle.description}
-                </p>
-              </article>
-            ))}
-          </div>
+            <h3 className="heading-sm mt-6 !text-base">
+              Quiet details
+            </h3>
+
+            <p className="body-text mt-3 text-sm leading-6">
+              We focus on proportions, finishes, textures, and construction
+              instead of unnecessary decoration.
+            </p>
+          </article>
+
+          {/* CARD 03 */}
+
+          <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
+            <span className="font-heading text-3xl font-bold text-amber">
+              03
+            </span>
+
+            <h3 className="heading-sm mt-6 !text-base">
+              Wear it often
+            </h3>
+
+            <p className="body-text mt-3 text-sm leading-6">
+              The best pair is the one you keep reaching for, which is why
+              versatility matters from day one.
+            </p>
+          </article>
+
         </div>
       </section>
 
@@ -196,6 +238,7 @@ export default function Home2() {
 
       <section className="bg-navy py-16 text-white dark:bg-black/40">
         <div className="section-container">
+
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <span className="eyebrow !text-amber-dark">
@@ -229,6 +272,7 @@ export default function Home2() {
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -241,6 +285,7 @@ export default function Home2() {
         className="bg-cream py-20 dark:bg-white/[0.02] md:py-24"
       >
         <div className="section-container">
+
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="eyebrow">
@@ -258,9 +303,7 @@ export default function Home2() {
             </p>
           </div>
 
-          {/* =====================================================
-              CATEGORY BUTTONS
-          ===================================================== */}
+          {/* CATEGORY BUTTONS */}
 
           <div className="mt-10 flex flex-wrap gap-2">
             {CATEGORIES.map((category) => {
@@ -286,9 +329,7 @@ export default function Home2() {
             })}
           </div>
 
-          {/* =====================================================
-              SELECTED SHOE MESSAGE
-          ===================================================== */}
+          {/* SELECTED SHOE MESSAGE */}
 
           {selectedProductId && (
             <div className="mt-8 flex flex-col gap-3 rounded-xl border border-amber/30 bg-amber/10 p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -312,20 +353,11 @@ export default function Home2() {
             </div>
           )}
 
-          {/* =====================================================
-              PRODUCTS
-          ===================================================== */}
+          {/* PRODUCTS */}
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {visibleProducts.length > 0 ? (
               visibleProducts.map((product) => {
-                /*
-                 * Only read the stored size when this product
-                 * is currently selected.
-                 *
-                 * This prevents a previous size from being
-                 * highlighted before selecting the shoe.
-                 */
                 const selectedSize =
                   selectedProductId === product.id
                     ? selectedSizes[product.id]
@@ -356,6 +388,7 @@ export default function Home2() {
 
                     <div className="mt-5">
                       <div className="flex items-start justify-between gap-4">
+
                         <div>
                           <p className="text-xs uppercase tracking-wider text-gray-400">
                             {product.brand}
@@ -369,13 +402,13 @@ export default function Home2() {
                         <span className="font-heading font-semibold text-navy dark:text-white">
                           {product.price}
                         </span>
+
                       </div>
 
-                      {/* =================================================
-                          SIZE SELECTOR
-                      ================================================= */}
+                      {/* SIZE SELECTOR */}
 
                       <div className="mt-5">
+
                         <div className="mb-3 flex items-center justify-between">
                           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400">
                             Select a size
@@ -417,8 +450,10 @@ export default function Home2() {
                             )
                           })}
                         </div>
+
                       </div>
                     </div>
+
                   </article>
                 )
               })
@@ -428,6 +463,7 @@ export default function Home2() {
               </p>
             )}
           </div>
+
         </div>
       </section>
 
@@ -436,7 +472,10 @@ export default function Home2() {
       ========================================================= */}
 
       <section className="section-container py-20 md:py-24">
-        <div className="max-w-2xl">
+
+        {/* CENTERED HEADING + CONTENT */}
+
+        <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">
             Material library
           </span>
@@ -445,12 +484,14 @@ export default function Home2() {
             The feel starts with the material.
           </h2>
 
-          <p className="body-text mt-5">
+          <p className="body-text mx-auto mt-5 max-w-2xl">
             Different materials change the character of a shoe. We select
-            finishes according to the purpose, expected wear, and look of each
-            style.
+            finishes according to the purpose, expected wear, and look of
+            each style.
           </p>
         </div>
+
+        {/* MATERIAL CARDS */}
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {MATERIALS.map((material) => (
@@ -458,6 +499,7 @@ export default function Home2() {
               key={material.name}
               className="group overflow-hidden rounded-2xl bg-cream dark:bg-white/[0.03]"
             >
+
               <div className="overflow-hidden">
                 <img
                   src={material.image}
@@ -467,6 +509,7 @@ export default function Home2() {
               </div>
 
               <div className="p-6">
+
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="heading-sm !text-lg">
                     {material.name}
@@ -480,10 +523,12 @@ export default function Home2() {
                 <p className="body-text mt-3 text-sm">
                   {material.description}
                 </p>
+
               </div>
             </article>
           ))}
         </div>
+
       </section>
 
       {/* =========================================================
@@ -495,7 +540,9 @@ export default function Home2() {
         className="border-y border-gray-200 py-20 dark:border-border-dark md:py-24"
       >
         <div className="section-container">
+
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+
             <div>
               <span className="eyebrow">
                 Our craft
@@ -541,7 +588,9 @@ export default function Home2() {
                 </article>
               ))}
             </div>
+
           </div>
+
         </div>
       </section>
 
@@ -550,7 +599,9 @@ export default function Home2() {
       ========================================================= */}
 
       <section className="section-container py-20 md:py-24">
+
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+
           <div>
             <span className="eyebrow">
               The lookbook
@@ -565,6 +616,7 @@ export default function Home2() {
             Explore how the same design philosophy translates from the
             weekday commute to formal occasions and weekend miles.
           </p>
+
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12">
@@ -577,6 +629,7 @@ export default function Home2() {
                   : 'md:col-span-5'
               }`}
             >
+
               <img
                 src={item.img}
                 alt={item.title}
@@ -590,6 +643,7 @@ export default function Home2() {
               <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent" />
 
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+
                 <p className="text-xs uppercase tracking-[0.2em] text-amber-dark">
                   {item.label}
                 </p>
@@ -601,10 +655,13 @@ export default function Home2() {
                 <p className="mt-2 max-w-md text-sm leading-6 text-white/70">
                   {item.desc}
                 </p>
+
               </div>
+
             </article>
           ))}
         </div>
+
       </section>
 
       {/* =========================================================
@@ -616,7 +673,11 @@ export default function Home2() {
         className="bg-navy py-20 text-white dark:bg-black/40 md:py-24"
       >
         <div className="section-container">
+
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+
+            {/* FAQ */}
+
             <div>
               <span className="eyebrow !text-amber-dark">
                 Questions & enquiries
@@ -630,6 +691,8 @@ export default function Home2() {
                 Whether you're choosing your first pair or planning a larger
                 order, our team can help you work through the details.
               </p>
+
+              {/* BULK ORDER POINTS */}
 
               <div className="mt-8 space-y-3">
                 {BULK_ORDER_POINTS.map((point) => (
@@ -647,6 +710,8 @@ export default function Home2() {
                   </div>
                 ))}
               </div>
+
+              {/* FREQUENTLY ASKED */}
 
               <div className="mt-10">
                 <h3 className="font-heading text-lg font-semibold">
@@ -683,10 +748,15 @@ export default function Home2() {
                   ))}
                 </div>
               </div>
+
             </div>
 
+            {/* CONTACT FORM */}
+
             <div className="rounded-2xl bg-white p-6 text-navy sm:p-8">
+
               <div className="mb-6">
+
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
                   Bulk & custom orders
                 </span>
@@ -697,16 +767,19 @@ export default function Home2() {
 
                 <p className="mt-2 text-sm leading-6 text-gray-500">
                   Share your quantities, sizes, preferred styles, and any
-                  custom requirements.
+                  custom requirement.
                 </p>
+
               </div>
 
               <ContactForm />
+
             </div>
+
           </div>
+
         </div>
       </section>
     </>
   )
 }
-

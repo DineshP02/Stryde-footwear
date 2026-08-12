@@ -16,25 +16,47 @@ export default function Logo({ className = '' }) {
         aria-hidden="true"
         className="shrink-0"
       >
-        <rect x="0.5" y="0.5" width="39" height="39" rx="10" className="fill-navy dark:fill-white" />
-        {/* Stitched shoelace monogram forming an "S" */}
-        <path
-          d="M27 12C24 9.5 17 9.5 14 12.5C11.5 15 13 17.5 17 18C22 18.7 24.5 19.5 25 22C25.5 24.5 22.5 27 18 27C14 27 11.5 26 10 24"
-          stroke="var(--color-amber)"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          fill="none"
+        {/* Badge background */}
+        <rect
+          x="0.5"
+          y="0.5"
+          width="39"
+          height="39"
+          rx="10"
+          className="fill-navy transition-colors duration-300 group-hover:fill-navy/90 dark:fill-white dark:group-hover:fill-white/90"
         />
-        <path
-          d="M27 12C24 9.5 17 9.5 14 12.5C11.5 15 13 17.5 17 18C22 18.7 24.5 19.5 25 22C25.5 24.5 22.5 27 18 27C14 27 11.5 26 10 24"
-          stroke="currentColor"
-          className="text-white dark:text-navy"
-          strokeWidth="0.6"
-          strokeDasharray="1.5 3"
-          strokeLinecap="round"
-          fill="none"
+
+        {/* "Stride" mark — three forward-leaning bars of increasing height,
+            suggesting motion / a footstep cadence */}
+        <rect
+          x="10"
+          y="21"
+          width="5"
+          height="9"
+          rx="1.5"
+          transform="rotate(-18 10 21)"
+          className="fill-amber dark:fill-amber-dark"
+        />
+        <rect
+          x="16.5"
+          y="15"
+          width="5"
+          height="15"
+          rx="1.5"
+          transform="rotate(-18 16.5 15)"
+          className="fill-amber dark:fill-amber-dark"
+        />
+        <rect
+          x="23"
+          y="9"
+          width="5"
+          height="21"
+          rx="1.5"
+          transform="rotate(-18 23 9)"
+          className="fill-white dark:fill-navy"
         />
       </svg>
+
       <span className="flex flex-col leading-none">
         <span className="font-heading text-xl font-bold tracking-tight text-navy dark:text-white">
           STRYDE

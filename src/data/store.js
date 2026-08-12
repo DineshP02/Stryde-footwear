@@ -22,6 +22,23 @@ export const CATEGORIES = [
     img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
   },
 ];
+export const FEATURE_HIGHLIGHTS = [
+  {
+    title: 'Comfort you can feel',
+    desc: 'Designed to support your feet with lasting comfort, all day and every day.',
+    img: 'https://m.media-amazon.com/images/I/51KyjQy8UsL._AC_UY1000_.jpg',
+  },
+  {
+    title: 'Built to move with you',
+    desc: 'Flexible construction and breathable materials made for wherever your day takes you.',
+    img: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Style that lasts',
+    desc: 'Timeless silhouettes and durable finishes, made to stay in rotation season after season.',
+    img: 'https://rukminim2.flixcart.com/image/480/640/xif0q/shoe/u/s/c/-original-imahg2ftufgnnjbz.jpeg?q=90',
+  },
+];
 
 export const BRANDS = [
   'All',
@@ -131,18 +148,24 @@ export const TESTIMONIALS = [
       'Ordered 40 pairs for our restaurant staff — sizing was spot-on and delivery was ahead of schedule.',
     name: 'Priya Menon',
     role: 'Ops Manager, Tablework Hospitality',
+    avatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
   },
   {
     quote:
       'The fit guide saved me a return. First pair of formal shoes that actually felt broken-in on day one.',
     name: 'Daniel Cho',
     role: 'Verified Customer',
+    avatar:
+      'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=200&q=80',
   },
   {
     quote:
       'Bulk enquiry team was responsive and flexible with our custom colourway request.',
     name: 'Amara Okafor',
     role: 'Founder, Lane Studio',
+    avatar:
+      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80',
   },
 ];
 

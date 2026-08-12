@@ -20,9 +20,12 @@ import {
 export default function About() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-navy py-24 text-white dark:bg-black/40">
-        <div className="absolute inset-0 opacity-20">
+      {/* =====================================================
+          HERO / FIRST SLIDE
+      ====================================================== */}
+      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-navy text-white dark:bg-black/40">
+        {/* Background image */}
+        <div className="absolute inset-0">
           <img
             src={ABOUT_HERO.image}
             alt=""
@@ -30,35 +33,64 @@ export default function About() {
           />
         </div>
 
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-navy/80" />
 
-        <div className="section-container relative">
-          <span className="eyebrow !text-amber-dark">
-            {ABOUT_HERO.eyebrow}
-          </span>
+        {/* Hero content - CENTERED */}
+        <div className="section-container relative z-10 flex w-full justify-center py-24 text-center">
+          <div className="mx-auto flex max-w-4xl flex-col items-center">
+            <span className="eyebrow !text-amber-dark">
+              {ABOUT_HERO.eyebrow}
+            </span>
 
-          <h1 className="heading-xl mt-4 max-w-3xl !text-white">
-            {ABOUT_HERO.title}
-          </h1>
+            <h1 className="heading-xl mt-4 max-w-4xl !text-white">
+              {ABOUT_HERO.title}
+            </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-            {ABOUT_HERO.description}
-          </p>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+              {ABOUT_HERO.description}
+            </p>
+
+            {/* Optional Hero button */}
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/home-2#lineup"
+                className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
+              >
+                Explore collection
+                <ArrowRightIcon className="ms-2 h-4 w-4" />
+              </Link>
+
+              <Link
+                to="/home-2#contact"
+                className="btn-secondary !border-white/40 !text-white hover:!border-white hover:!bg-white/10"
+              >
+                Contact us
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* INTRODUCTION */}
+      {/* =====================================================
+          INTRODUCTION
+      ====================================================== */}
       <section className="section-container py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
           <div>
-            <span className="eyebrow">{ABOUT_INTRO.eyebrow}</span>
+            <span className="eyebrow">
+              {ABOUT_INTRO.eyebrow}
+            </span>
 
             <h2 className="heading-lg mt-2">
               {ABOUT_INTRO.title}
             </h2>
 
             {ABOUT_INTRO.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="body-text mt-5">
+              <p
+                key={paragraph}
+                className="body-text mt-5"
+              >
                 {paragraph}
               </p>
             ))}
@@ -74,11 +106,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* STORY */}
+      {/* =====================================================
+          STORY
+      ====================================================== */}
       <section className="bg-cream py-20 dark:bg-white/[0.02]">
         <div className="section-container">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="eyebrow">{ABOUT_STORY.eyebrow}</span>
+            <span className="eyebrow">
+              {ABOUT_STORY.eyebrow}
+            </span>
 
             <h2 className="heading-lg mt-2">
               {ABOUT_STORY.title}
@@ -112,10 +148,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* =====================================================
+          VALUES
+      ====================================================== */}
       <section className="section-container py-20">
         <div className="mb-12">
-          <span className="eyebrow">What matters to us</span>
+          <span className="eyebrow">
+            What matters to us
+          </span>
 
           <h2 className="heading-lg mt-2">
             The STRYDE standard.
@@ -151,7 +191,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* WHAT WE OFFER */}
+      {/* =====================================================
+          WHAT WE OFFER
+      ====================================================== */}
       <section className="bg-navy py-20 text-white dark:bg-black/40">
         <div className="section-container">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
@@ -199,10 +241,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* MISSION */}
+      {/* =====================================================
+          MISSION
+      ====================================================== */}
       <section className="section-container py-20">
         <div className="mx-auto max-w-4xl text-center">
-          <span className="eyebrow">{ABOUT_MISSION.eyebrow}</span>
+          <span className="eyebrow">
+            {ABOUT_MISSION.eyebrow}
+          </span>
 
           <h2 className="heading-lg mt-2">
             {ABOUT_MISSION.title}
@@ -214,10 +260,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* =====================================================
+          CTA
+      ====================================================== */}
       <section className="border-t border-gray-200 py-20 dark:border-border-dark">
         <div className="section-container text-center">
-          <span className="eyebrow">Ready to explore?</span>
+          <span className="eyebrow">
+            Ready to explore?
+          </span>
 
           <h2 className="heading-lg mt-2">
             Find your next pair with STRYDE.
@@ -229,13 +279,19 @@ export default function About() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link to="/home-2#lineup" className="btn-primary">
+            <Link
+              to="/home-2#lineup"
+              className="btn-primary"
+            >
               Shop the collection
             </Link>
 
-            <a href="/home-2#contact" className="btn-secondary">
+            <Link
+              to="/home-2#contact"
+              className="btn-secondary"
+            >
               Bulk enquiry
-            </a>
+            </Link>
           </div>
         </div>
       </section>
