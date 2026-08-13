@@ -676,7 +676,7 @@ export default function Home2() {
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
 
-            {/* FAQ */}
+            {/* QUESTIONS & ENQUIRIES */}
 
             <div>
               <span className="eyebrow !text-amber-dark">
@@ -711,42 +711,83 @@ export default function Home2() {
                 ))}
               </div>
 
-              {/* FREQUENTLY ASKED */}
+              {/* =================================================
+                  FAQ ACCORDION
+              ================================================= */}
 
               <div className="mt-10">
+
                 <h3 className="font-heading text-lg font-semibold">
                   Frequently asked
                 </h3>
 
-                <div className="mt-4 divide-y divide-white/10">
+                <div className="mt-5 space-y-3">
+
                   {FAQS.map((faq) => (
                     <Disclosure
                       key={faq.q}
                       as="div"
-                      className="py-4"
                     >
                       {({ open }) => (
-                        <>
-                          <DisclosureButton className="flex w-full items-center justify-between gap-4 text-start">
-                            <span className="text-sm font-medium">
+                        <div
+                          className={`overflow-hidden rounded-xl border transition-all duration-300 ${
+                            open
+                              ? 'border-amber/50 bg-white/[0.06]'
+                              : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+                          }`}
+                        >
+
+                          {/* QUESTION */}
+
+                          <DisclosureButton
+                            className="flex w-full items-center justify-between gap-5 px-5 py-5 text-start"
+                          >
+
+                            <span
+                              className={`text-sm font-medium leading-6 transition-colors ${
+                                open
+                                  ? 'text-amber'
+                                  : 'text-white'
+                              }`}
+                            >
                               {faq.q}
                             </span>
 
-                            <PlusIcon
-                              className={`h-5 w-5 shrink-0 text-amber transition-transform ${
-                                open ? 'rotate-45' : ''
+                            <span
+                              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                                open
+                                  ? 'border-amber bg-amber text-navy-dark'
+                                  : 'border-white/20 text-amber'
                               }`}
-                            />
+                            >
+                              <PlusIcon
+                                className={`h-4 w-4 transition-transform duration-300 ${
+                                  open
+                                    ? 'rotate-45'
+                                    : ''
+                                }`}
+                              />
+                            </span>
+
                           </DisclosureButton>
 
-                          <DisclosurePanel className="mt-3 text-sm leading-6 text-white/55">
-                            {faq.a}
+                          {/* ANSWER */}
+
+                          <DisclosurePanel
+                            className="px-5 pb-5 text-sm leading-7 text-white/60"
+                          >
+                            <div className="border-t border-white/10 pt-4">
+                              {faq.a}
+                            </div>
                           </DisclosurePanel>
-                        </>
+
+                        </div>
                       )}
                     </Disclosure>
                   ))}
+
                 </div>
+
               </div>
 
             </div>

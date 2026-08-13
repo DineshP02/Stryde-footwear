@@ -67,6 +67,8 @@ export default function Navbar() {
 
   const isAboutPage = location.pathname === '/about'
 
+  const isBrandsPage = location.pathname === '/brands'
+
   const isHomePage =
     location.pathname === '/' ||
     location.pathname === '/home-2'
@@ -216,6 +218,8 @@ export default function Navbar() {
                   About Us
                 </Link>
 
+               
+
                 {/* BLOG + SERVICES */}
                 {NAV_LINKS.map((link) => (
                   <Link
@@ -341,6 +345,8 @@ export default function Navbar() {
                 >
                   About Us
                 </Link>
+
+              
 
                 {/* BLOG */}
                 <Link

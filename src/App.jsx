@@ -11,6 +11,7 @@ import Contact from './pages/Contact.jsx'
 import Services from './pages/Services.jsx'
 import Blog from './pages/Blog.jsx'
 
+
 export default function App() {
   return (
     <div className="flex min-h-screen flex-col bg-white dark:bg-navy-dark">
@@ -28,7 +29,7 @@ export default function App() {
 
           {/* Other pages */}
           <Route path="/about" element={<About />} />
-
+          
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/services" element={<Services />} />
