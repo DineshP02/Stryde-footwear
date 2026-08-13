@@ -42,7 +42,32 @@ const VALUE_PROPS = [
   },
 ]
 
-// Turns "Priya Menon" into "PM"
+// =========================================================
+// SHOP FOR
+// =========================================================
+
+const SHOP_FOR = [
+  {
+    label: 'Men',
+    img: 'https://cdn.asianlive.in/digital-website/Mens-DEsktop%20(1)_63108146987774068295.png?tr=w-400',
+    to: '/home-2#lineup',
+  },
+  {
+    label: 'Women',
+    img: 'https://cdn.asianlive.in/digital-website/Women-Desktop%20(1)_48705733039165876847.png?tr=w-400',
+    to: '/home-2#lineup',
+  },
+  {
+    label: 'Kids',
+    img: 'https://cdn.asianlive.in/digital-website/KidsDesktop%20(1)_66819036114439138921.png?tr=w-400',
+    to: '/home-2#lineup',
+  },
+]
+
+// =========================================================
+// INITIALS
+// =========================================================
+
 function getInitials(name = '') {
   return name
     .split(' ')
@@ -51,6 +76,10 @@ function getInitials(name = '') {
     .map((word) => word[0].toUpperCase())
     .join('')
 }
+
+// =========================================================
+// HOME 1
+// =========================================================
 
 export default function Home1() {
   const [quoteIndex, setQuoteIndex] = useState(0)
@@ -61,9 +90,10 @@ export default function Home1() {
 
   return (
     <>
-      {/* =========================
+      {/* =========================================================
           HERO
-      ========================== */}
+      ========================================================= */}
+
       <section className="relative isolate flex min-h-[88vh] items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=2000&q=80"
@@ -89,6 +119,8 @@ export default function Home1() {
               styles, find your next favourite pair.
             </p>
 
+            {/* HERO BUTTONS */}
+
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href="#categories"
@@ -104,6 +136,8 @@ export default function Home1() {
                 Discover our story
               </Link>
             </div>
+
+            {/* HERO STATS */}
 
             <div className="mt-14 flex flex-wrap justify-center gap-x-10 gap-y-4 border-t border-white/20 pt-6">
               <div>
@@ -140,9 +174,75 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
+          SHOP FOR
+      ========================================================= */}
+
+      <section className="section-container py-20">
+        <h2 className="text-center font-heading text-2xl font-bold uppercase tracking-wide text-navy dark:text-white sm:text-3xl">
+          Shop for
+        </h2>
+
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {SHOP_FOR.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              className="group flex flex-col items-center"
+            >
+              <div className="aspect-square w-full overflow-hidden rounded-2xl bg-cream dark:bg-white/[0.03]">
+                <img
+                  src={item.img}
+                  alt={item.label}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+
+              <span className="mt-4 font-heading text-lg font-semibold text-navy dark:text-white">
+                {item.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* =========================================================
+          SPOTLIGHT
+      ========================================================= */}
+
+      <section className="section-container py-20">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <span className="eyebrow">
+            In the spotlight
+          </span>
+
+          <h2 className="heading-lg mt-2">
+            The Ronnie, in grey.
+          </h2>
+        </div>
+
+        <div className="mx-auto w-full overflow-hidden rounded-2xl sm:w-[90%] lg:w-[75%]">
+          <img
+            src="https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=3840"
+            srcSet="
+              https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=640 640w,
+              https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=1024 1024w,
+              https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=1600 1600w,
+              https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=2400 2400w
+            "
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 90vw, 75vw"
+            alt="Ronnie sneaker in grey"
+            className="h-auto w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* =========================================================
           INTRODUCTION
-      ========================== */}
+      ========================================================= */}
+
       <section className="section-container py-20">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <span className="eyebrow">
@@ -165,14 +265,16 @@ export default function Home1() {
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber"
           >
             Learn more about us
+
             <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           CATEGORIES
-      ========================== */}
+      ========================================================= */}
+
       <section
         id="categories"
         className="bg-cream py-20 dark:bg-white/[0.02]"
@@ -204,6 +306,7 @@ export default function Home1() {
                   src={category.img}
                   alt={category.name}
                   className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent" />
@@ -233,9 +336,10 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           FEATURE HIGHLIGHT
-      ========================== */}
+      ========================================================= */}
+
       <section className="relative overflow-hidden bg-cream py-20 dark:bg-white/[0.02]">
         <div className="section-container">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[1fr_auto_1fr]">
@@ -311,9 +415,10 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           WHY STRYDE
-      ========================== */}
+      ========================================================= */}
+
       <section className="section-container py-20">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <span className="eyebrow">
@@ -347,9 +452,10 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           BRAND STRIP
-      ========================== */}
+      ========================================================= */}
+
       <section className="border-y border-gray-200 py-12 dark:border-border-dark">
         <div className="section-container">
           <div className="text-center">
@@ -377,9 +483,10 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           TESTIMONIAL
-      ========================== */}
+      ========================================================= */}
+
       <section className="section-container py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.5fr_1.5fr] md:items-center">
           <div>
@@ -479,9 +586,10 @@ export default function Home1() {
         </div>
       </section>
 
-      {/* =========================
+      {/* =========================================================
           FINAL CTA
-      ========================== */}
+      ========================================================= */}
+
       <section className="bg-navy py-20 text-white dark:bg-black/40">
         <div className="section-container">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center">

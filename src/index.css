@@ -2,18 +2,41 @@
 @config "../tailwind.config.js";
 @custom-variant dark (&:where(.dark, .dark *));
 
+
+/* =========================================================
+   STRYDE COLORS
+========================================================= */
+
 :root {
   --color-amber: #c2833f;
   --color-amber-dark: #e0a659;
 }
 
+
+/* =========================================================
+   HTML / BODY
+========================================================= */
+
 html {
   scroll-behavior: smooth;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+}
+
+html[dir="rtl"] {
+  direction: rtl;
 }
 
 body {
   @apply font-body text-navy dark:text-white;
 }
+
+
+/* =========================================================
+   BASE
+========================================================= */
 
 @layer base {
   h1,
@@ -24,50 +47,244 @@ body {
   }
 }
 
+
+/* =========================================================
+   COMPONENTS
+========================================================= */
+
 @layer components {
+
   .section-container {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
   }
+
 
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber dark:text-amber-dark;
   }
 
+
   .heading-xl {
     @apply text-4xl font-semibold leading-[1.05] tracking-tight text-navy dark:text-white sm:text-5xl lg:text-6xl;
   }
+
 
   .heading-lg {
     @apply text-3xl font-semibold leading-tight tracking-tight text-navy dark:text-white sm:text-4xl;
   }
 
+
   .heading-sm {
     @apply text-xl font-semibold leading-snug tracking-tight text-navy dark:text-white;
   }
+
 
   .body-text {
     @apply text-base leading-relaxed text-navy/70 dark:text-gray-300;
   }
 
+
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-navy/90 dark:bg-amber dark:text-navy-dark dark:hover:bg-amber-dark;
   }
 
+
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-full border border-navy/20 px-6 py-3 text-sm font-semibold text-navy transition hover:border-navy hover:bg-navy/5 dark:border-white/20 dark:text-white dark:hover:border-white dark:hover:bg-white/5;
   }
+
 
   .card-surface {
     @apply rounded-2xl border border-gray-200 bg-white transition dark:border-border-dark dark:bg-surface-dark;
   }
 }
 
-/* Menu open/close transition (Disclosure panel) */
+
+/* =========================================================
+   DISCLOSURE / MENU
+========================================================= */
+
 .menu-panel-enter {
-  transition: max-height 300ms ease, opacity 250ms ease;
+  transition:
+    max-height 300ms ease,
+    opacity 250ms ease;
 }
+
+
+/* =========================================================
+   RTL / LTR HELPERS
+========================================================= */
+
+/*
+  IMPORTANT:
+  The page itself follows RTL/LTR.
+  We only force specific content that should NOT reverse.
+*/
+
+
+/* Numbers should always read normally */
+
+.stat-number,
+.stat-value,
+.ltr-number,
+.number-value {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: center;
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+/*
+  Keep:
+  12k+ | 4.8/5 | 30 days
+
+  in exactly the same visual order in both directions.
+*/
+
+.hero-stats,
+.stats-row,
+.statistics {
+  direction: ltr;
+}
+
+
+/*
+  Individual statistic text remains normal.
+*/
+
+.hero-stats > div,
+.stats-row > div,
+.statistics > div {
+  direction: ltr;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+/*
+  Keep button order stable.
+*/
+
+.hero-buttons {
+  direction: ltr;
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+/*
+  Images should not be horizontally mirrored
+  when switching to RTL.
+*/
+
+img {
+  direction: ltr;
+}
+
+
+/* =========================================================
+   CONTENT THAT MUST REMAIN LTR
+========================================================= */
+
+.keep-ltr {
+  direction: ltr;
+}
+
+
+/* =========================================================
+   CONTENT THAT MUST REMAIN RTL
+========================================================= */
+
+.keep-rtl {
+  direction: rtl;
+}
+
+
+/* =========================================================
+   PHONE / EMAIL / URL / NUMBERS
+========================================================= */
+
+.phone-number,
+.email-address,
+.url-text,
+.numeric-content {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+/*
+  Tailwind's rtl:rotate-180 can still be used where
+  you specifically want an arrow to change direction.
+
+  Do NOT globally rotate all SVGs.
+*/
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+/*
+  Navbar itself should follow the document direction.
+*/
+
+html[dir="ltr"] nav {
+  direction: ltr;
+}
+
+html[dir="rtl"] nav {
+  direction: rtl;
+}
+
+
+/* =========================================================
+   TEXT ALIGNMENT
+========================================================= */
+
+/*
+  Centered sections remain centered in both directions.
+*/
+
+.text-center {
+  text-align: center;
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
 
 ::selection {
   background-color: var(--color-amber);
   color: white;
+}
+/* =========================================================
+   DIRECTION SUPPORT
+========================================================= */
+
+html[dir='rtl'] {
+  direction: rtl;
+}
+
+html[dir='ltr'] {
+  direction: ltr;
+}
+
+/* English content that must preserve normal word order */
+[dir='ltr'] {
+  direction: ltr;
+  unicode-bidi: isolate;
 }

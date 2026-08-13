@@ -170,6 +170,48 @@ export const TESTIMONIALS = [
 ];
 
 /* =========================================================
+   STYLE SHOWCASE (Home 1 — collage carousel + shop strip)
+========================================================= */
+
+export const SHOWCASE_SLIDES = [
+  {
+    eyebrow: 'Always in STRYDE',
+    tag: 'New drop',
+    title: 'Everyday classics, elevated.',
+    desc: 'Smooth leather finishes and versatile silhouettes built for work, weekends, and everything between.',
+    cta: 'Shop the edit',
+    backImg:
+      'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=700&q=80',
+    frontImg:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80',
+  },
+  {
+    eyebrow: 'Weekend ready',
+    tag: 'Best seller',
+    title: 'Grip, rebound, breathability.',
+    desc: 'Trainers engineered to keep pace with long walks, quick errands, and everything on your feet.',
+    cta: 'Shop trainers',
+    backImg:
+      'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=700&q=80',
+    frontImg:
+      'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=700&q=80',
+  },
+  {
+    eyebrow: 'Boardroom ready',
+    tag: 'Just landed',
+    title: 'Formal wear that holds up.',
+    desc: 'Full-grain oxfords and loafers finished for long days on your feet without losing their shape.',
+    cta: 'Shop formal',
+    backImg:
+      'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=700&q=80',
+    frontImg:
+      'https://images.pexels.com/photos/9992898/pexels-photo-9992898.jpeg?cs=tinysrgb&dpr=1&w=700',
+  },
+];
+
+export const SIZE_OPTIONS = [6, 7, 8, 9, 10, 11, 12];
+
+/* =========================================================
    HOME 2
 ========================================================= */
 
