@@ -14,6 +14,10 @@ import {
 
 import { Link } from 'react-router-dom'
 
+/* =========================================================
+   SERVICES
+========================================================= */
+
 const SERVICES = [
   {
     icon: UserGroupIcon,
@@ -41,6 +45,10 @@ const SERVICES = [
   },
 ]
 
+/* =========================================================
+   PROCESS
+========================================================= */
+
 const PROCESS = [
   {
     step: '01',
@@ -64,6 +72,10 @@ const PROCESS = [
   },
 ]
 
+/* =========================================================
+   INCLUDED
+========================================================= */
+
 const INCLUDED = [
   'Dedicated account contact',
   'Flexible sizing & re-order support',
@@ -72,6 +84,10 @@ const INCLUDED = [
   'Production timeline visibility',
   'Tracked delivery support',
 ]
+
+/* =========================================================
+   AUDIENCES
+========================================================= */
 
 const AUDIENCES = [
   {
@@ -90,6 +106,10 @@ const AUDIENCES = [
     desc: 'Need footwear for a campaign, activation, collaboration, or launch? We can help coordinate the order from start to finish.',
   },
 ]
+
+/* =========================================================
+   FAQS
+========================================================= */
 
 const FAQS = [
   {
@@ -114,12 +134,17 @@ const FAQS = [
   },
 ]
 
+/* =========================================================
+   SERVICES COMPONENT
+========================================================= */
+
 export default function Services() {
   return (
     <>
       {/* =====================================================
           HERO
       ====================================================== */}
+
       <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-navy py-24 text-white md:py-32">
         <img
           src="https://images.unsplash.com/photo-1614253429340-98120bd6d753?w=2000&q=80"
@@ -128,6 +153,7 @@ export default function Services() {
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/95 via-navy-dark/80 to-navy-dark/40" />
+
         <div className="absolute inset-0 bg-navy-dark/20" />
 
         <div className="section-container relative z-10 flex w-full justify-center">
@@ -168,12 +194,11 @@ export default function Services() {
       {/* =====================================================
           OUR SERVICES
       ====================================================== */}
+
       <section className="section-container pb-20 pt-20 md:pb-24 md:pt-24">
         <div className="mb-12 flex flex-col items-center border-b border-dashed border-gray-300 pb-6 text-center dark:border-border-dark">
           <div className="max-w-3xl">
-            <span className="eyebrow">
-              Our services
-            </span>
+            <span className="eyebrow">Our services</span>
 
             <h2 className="heading-lg mt-2">
               Support at every stage of ownership.
@@ -186,52 +211,49 @@ export default function Services() {
         </div>
 
         <div>
-          {SERVICES.map(
-            ({ icon: Icon, tag, title, desc }, i) => (
-              <article
-                key={title}
-                className="group relative grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-4 border-b border-dashed border-gray-300 py-8 transition-colors first:pt-0 last:border-b-0 dark:border-border-dark sm:grid-cols-[3rem_auto_1fr] sm:items-center sm:gap-x-8"
-              >
-                <span className="hidden font-mono text-xs text-gray-400 dark:text-gray-500 sm:block">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+          {SERVICES.map(({ icon: Icon, tag, title, desc }, i) => (
+            <article
+              key={title}
+              className="group relative grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-4 border-b border-dashed border-gray-300 py-8 transition-colors first:pt-0 last:border-b-0 dark:border-border-dark sm:grid-cols-[3rem_auto_1fr] sm:items-center sm:gap-x-8"
+            >
+              <span className="hidden font-mono text-xs text-gray-400 dark:text-gray-500 sm:block">
+                {String(i + 1).padStart(2, '0')}
+              </span>
 
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber/40 text-amber transition-colors group-hover:border-amber group-hover:bg-amber group-hover:text-navy-dark dark:text-amber-dark dark:group-hover:text-navy-dark">
-                  <Icon className="h-5 w-5" />
-                </span>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber/40 text-amber transition-colors group-hover:border-amber group-hover:bg-amber group-hover:text-navy-dark dark:text-amber-dark dark:group-hover:text-navy-dark">
+                <Icon className="h-5 w-5" />
+              </span>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="max-w-md">
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-amber dark:text-amber-dark">
-                      {tag}
-                    </span>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="max-w-md">
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-amber dark:text-amber-dark">
+                    {tag}
+                  </span>
 
-                    <h3 className="heading-sm mt-1 !text-lg">
-                      {title}
-                    </h3>
+                  <h3 className="heading-sm mt-1 !text-lg">
+                    {title}
+                  </h3>
 
-                    <p className="body-text mt-2 text-sm">
-                      {desc}
-                    </p>
-                  </div>
-
-                  <ArrowUpRightIcon className="hidden h-5 w-5 shrink-0 text-gray-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-amber dark:text-gray-600 dark:group-hover:text-amber-dark sm:block" />
+                  <p className="body-text mt-2 text-sm">
+                    {desc}
+                  </p>
                 </div>
-              </article>
-            ),
-          )}
+
+                <ArrowUpRightIcon className="hidden h-5 w-5 shrink-0 text-gray-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-amber dark:text-gray-600 dark:group-hover:text-amber-dark sm:block" />
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       {/* =====================================================
           WHY STRYDE
       ====================================================== */}
+
       <section className="border-y border-gray-200 bg-cream py-20 dark:border-border-dark dark:bg-white/[0.03] md:py-24">
         <div className="section-container">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="eyebrow">
-              Why STRYDE
-            </span>
+            <span className="eyebrow">Why STRYDE</span>
 
             <h2 className="heading-lg mt-2">
               Simple service. Thoughtful footwear.
@@ -292,6 +314,7 @@ export default function Services() {
       {/* =====================================================
           WHO WE HELP
       ====================================================== */}
+
       <section className="section-container py-20 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">
@@ -336,6 +359,7 @@ export default function Services() {
       {/* =====================================================
           HOW IT WORKS
       ====================================================== */}
+
       <section className="bg-navy py-20 text-white dark:bg-black/40 md:py-24">
         <div className="section-container">
           <div className="mx-auto max-w-3xl text-center">
@@ -374,6 +398,7 @@ export default function Services() {
       {/* =====================================================
           SERVICE DETAILS
       ====================================================== */}
+
       <section className="section-container py-20 md:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <div>
@@ -402,6 +427,7 @@ export default function Services() {
               className="mt-7 inline-flex items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber hover:text-navy-dark dark:bg-white dark:text-navy-dark dark:hover:bg-amber"
             >
               Discuss your requirements
+
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </div>
@@ -431,6 +457,7 @@ export default function Services() {
       {/* =====================================================
           WHAT'S INCLUDED
       ====================================================== */}
+
       <section
         id="enquiry"
         className="border-y border-gray-200 bg-cream py-20 dark:border-border-dark dark:bg-white/[0.03] md:py-24"
@@ -497,6 +524,7 @@ export default function Services() {
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark"
               >
                 Contact our services team
+
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>
@@ -505,8 +533,9 @@ export default function Services() {
       </section>
 
       {/* =====================================================
-          QUESTIONS & ENQUIRIES — ACCORDION
+          QUESTIONS & ENQUIRIES
       ====================================================== */}
+
       <section className="section-container py-20 md:py-24">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
@@ -525,23 +554,19 @@ export default function Services() {
             </p>
           </div>
 
-          {/* Accordion */}
           <div className="mt-12 overflow-hidden border-y border-gray-200 dark:border-border-dark">
             {FAQS.map((faq, index) => (
               <details
                 key={faq.question}
                 className="group border-b border-gray-200 last:border-b-0 dark:border-border-dark"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-2 py-6 text-left font-heading text-base font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark sm:px-4"
-                >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-2 py-6 text-left font-heading text-base font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark">
                   <span className="flex items-center gap-4">
                     <span className="font-mono text-xs font-normal text-amber dark:text-amber-dark">
                       {String(index + 1).padStart(2, '0')}
                     </span>
 
-                    <span>
-                      {faq.question}
-                    </span>
+                    <span>{faq.question}</span>
                   </span>
 
                   <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-all duration-300 group-open:border-amber group-open:bg-amber group-open:text-navy-dark dark:border-border-dark dark:text-gray-400 dark:group-open:border-amber-dark dark:group-open:bg-amber-dark dark:group-open:text-navy-dark">
@@ -566,6 +591,7 @@ export default function Services() {
               className="inline-flex items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber hover:text-navy-dark dark:bg-white dark:text-navy-dark dark:hover:bg-amber"
             >
               Ask our team
+
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </div>
@@ -575,6 +601,7 @@ export default function Services() {
       {/* =====================================================
           FINAL CTA
       ====================================================== */}
+
       <section className="bg-navy py-20 text-white md:py-24">
         <div className="section-container">
           <div className="mx-auto max-w-3xl text-center">
@@ -597,6 +624,7 @@ export default function Services() {
                 className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
               >
                 Start an enquiry
+
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
 

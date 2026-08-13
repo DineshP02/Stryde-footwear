@@ -23,8 +23,6 @@ import {
   BULK_ORDER_POINTS,
 } from '../data/store.js'
 
-import ContactForm from '../components/ContactForm.jsx'
-
 export default function Home2() {
   const [activeCategory, setActiveCategory] = useState(
     CATEGORIES[0]?.name || '',
@@ -154,6 +152,7 @@ export default function Home2() {
         </div>
       </section>
 
+
       {/* =========================================================
           2. DESIGN PHILOSOPHY
       ========================================================= */}
@@ -237,6 +236,7 @@ export default function Home2() {
 
       </section>
 
+
       {/* =========================================================
           3. WORKSHOP NUMBERS
       ========================================================= */}
@@ -290,7 +290,9 @@ export default function Home2() {
           </div>
 
         </div>
+
       </section>
+
 
       {/* =========================================================
           4. PRODUCT LINEUP
@@ -324,12 +326,8 @@ export default function Home2() {
 
           </div>
 
-          {/* =====================================================
-              CATEGORY BUTTONS
 
-              SMALL BUTTONS
-              SAME STYLE AS YOUR ORIGINAL CODE
-          ===================================================== */}
+          {/* CATEGORY BUTTONS */}
 
           <div className="mt-10 flex flex-wrap gap-2">
 
@@ -359,9 +357,8 @@ export default function Home2() {
 
           </div>
 
-          {/* =====================================================
-              SELECTED SHOE MESSAGE
-          ===================================================== */}
+
+          {/* SELECTED SHOE MESSAGE */}
 
           {selectedProductId && (
 
@@ -391,14 +388,8 @@ export default function Home2() {
 
           )}
 
-          {/* =====================================================
-              PRODUCTS
 
-              320px  = 1
-              640px  = 2
-              768px  = 3
-              1024px = 3
-          ===================================================== */}
+          {/* PRODUCTS */}
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
@@ -418,8 +409,6 @@ export default function Home2() {
                     className="group min-w-0"
                   >
 
-                    {/* PRODUCT IMAGE */}
-
                     <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
 
                       <img
@@ -438,7 +427,6 @@ export default function Home2() {
 
                     </div>
 
-                    {/* PRODUCT DETAILS */}
 
                     <div className="mt-5">
 
@@ -461,6 +449,7 @@ export default function Home2() {
                         </span>
 
                       </div>
+
 
                       {/* SIZE SELECTOR */}
 
@@ -541,6 +530,7 @@ export default function Home2() {
         </div>
       </section>
 
+
       {/* =========================================================
           5. MATERIAL LIBRARY
       ========================================================= */}
@@ -611,6 +601,7 @@ export default function Home2() {
         </div>
 
       </section>
+
 
       {/* =========================================================
           6. CRAFT PROCESS
@@ -683,6 +674,7 @@ export default function Home2() {
 
         </div>
       </section>
+
 
       {/* =========================================================
           7. LOOKBOOK
@@ -760,8 +752,10 @@ export default function Home2() {
 
       </section>
 
+
       {/* =========================================================
-          8. FAQ + BULK ENQUIRY
+          8. QUESTIONS & ENQUIRIES + FAQ
+          CONTACT FORM REMOVED
       ========================================================= */}
 
       <section
@@ -771,7 +765,7 @@ export default function Home2() {
 
         <div className="section-container">
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          <div className="mx-auto max-w-4xl">
 
             {/* QUESTIONS & ENQUIRIES */}
 
@@ -789,6 +783,9 @@ export default function Home2() {
                 Whether you're choosing your first pair or planning a larger
                 order, our team can help you work through the details.
               </p>
+
+
+              {/* BULK ORDER POINTS */}
 
               <div className="mt-8 space-y-3">
 
@@ -814,6 +811,7 @@ export default function Home2() {
                 ))}
 
               </div>
+
 
               {/* FAQ */}
 
@@ -876,6 +874,7 @@ export default function Home2() {
 
                           </DisclosureButton>
 
+
                           <DisclosurePanel
                             className="px-5 pb-5 text-sm leading-7 text-white/60"
                           >
@@ -897,31 +896,6 @@ export default function Home2() {
                 </div>
 
               </div>
-
-            </div>
-
-            {/* CONTACT FORM */}
-
-            <div className="rounded-2xl bg-white p-6 text-navy sm:p-8">
-
-              <div className="mb-6">
-
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
-                  Bulk & custom orders
-                </span>
-
-                <h3 className="mt-2 font-heading text-2xl font-semibold">
-                  Tell us what you're outfitting.
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-gray-500">
-                  Share your quantities, sizes, preferred styles, and any
-                  custom requirement.
-                </p>
-
-              </div>
-
-              <ContactForm />
 
             </div>
 
