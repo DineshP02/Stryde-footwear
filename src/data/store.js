@@ -97,7 +97,7 @@ export const PRODUCTS = [
     category: 'Casual',
     price: '$58',
     tag: 'Best seller',
-    sizes: [6, 7, 8, 9, 10],
+    sizes: [6, 7, 8, 9],
     img: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80',
   },
   {
@@ -112,12 +112,12 @@ export const PRODUCTS = [
   },
   {
     id: '007',
-    name: 'Strider Weekend Slip-On',
+    name: 'Strider  Slip-On',
     brand: 'Strider',
     category: 'Casual',
     price: '$68',
     tag: 'New',
-    sizes: [6, 7, 8, 9, 10],
+    sizes: [6, 7, 8, 9],
     img: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80',
   },
   {
