@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 /* ---------- Kids images ---------- */
 import kidsCasual1 from '../images/kids causal 1.jpg'
@@ -324,6 +325,8 @@ const PRODUCTS_BY_TYPE = {
 ========================================================= */
 
 export default function Category() {
+  const navigate = useNavigate()
+
   const [type, setType] = useState('casual')
   const [selected, setSelected] = useState(null)
   const [showOrderPopup, setShowOrderPopup] = useState(false)
@@ -374,6 +377,17 @@ export default function Category() {
 
   const closeOrderPopup = () => {
     setShowOrderPopup(false)
+  }
+
+  /* =========================================================
+     DONE → GO TO HOME PAGE
+  ========================================================= */
+
+  const handleDone = () => {
+    setShowOrderPopup(false)
+    setSelected(null)
+
+    navigate('/')
   }
 
   return (
@@ -546,11 +560,13 @@ export default function Category() {
 
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               {selectedProduct.audience} • {selectedProduct.brand}{' '}
-              {selectedProduct.name} • Size {selected.size}
+              {selectedProduct.name} • Size {selectedProduct.size}
             </p>
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row">
+
+            {/* CHANGE SHOE */}
 
             <button
               type="button"
@@ -580,6 +596,8 @@ export default function Category() {
             >
               Change Shoe
             </button>
+
+            {/* ORDER NOW */}
 
             <button
               type="button"
@@ -659,8 +677,6 @@ export default function Category() {
                 "
               >
 
-                {/* Full-area shoe image */}
-
                 <img
                   src={product.img}
                   alt={`${product.audience} ${product.brand} ${product.name}`}
@@ -675,8 +691,6 @@ export default function Category() {
                     hover:scale-105
                   "
                 />
-
-                {/* Dark overlay for readability */}
 
                 <div
                   className="
@@ -709,7 +723,7 @@ export default function Category() {
                   {product.audience}
                 </span>
 
-                {/* Golden product tag */}
+                {/* Product tag */}
 
                 {product.tag && (
                   <span
@@ -940,6 +954,7 @@ export default function Category() {
             }
           }}
         >
+
           <div
             className="
               relative
@@ -970,6 +985,7 @@ export default function Category() {
                 text-[#C49A3A]
               "
             >
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -982,6 +998,7 @@ export default function Category() {
               >
                 <path d="M20 6 9 17l-5-5" />
               </svg>
+
             </div>
 
             <h3 className="text-lg font-bold text-black dark:text-white">
@@ -998,6 +1015,11 @@ export default function Category() {
             </p>
 
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+
+              {/* =================================================
+                  KEEP BROWSING
+                  STAYS ON CATEGORY PAGE
+              ================================================= */}
 
               <button
                 type="button"
@@ -1028,9 +1050,14 @@ export default function Category() {
                 Keep Browsing
               </button>
 
+              {/* =================================================
+                  DONE
+                  GOES TO HOME PAGE
+              ================================================= */}
+
               <button
                 type="button"
-                onClick={closeOrderPopup}
+                onClick={handleDone}
                 className="
                   w-full
                   rounded-full
@@ -1052,6 +1079,7 @@ export default function Category() {
             </div>
 
           </div>
+
         </div>
       )}
 

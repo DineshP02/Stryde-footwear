@@ -57,7 +57,7 @@ export const PRODUCTS = [
     category: 'Sports',
     price: '$118',
     tag: 'New',
-    sizes: [7, 8, 9, 10, 11],
+    sizes: [7, 8, 9, 10],
     img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80',
   },
   {
@@ -77,7 +77,7 @@ export const PRODUCTS = [
     category: 'Formal',
     price: '$142',
     tag: 'New',
-    sizes: [8, 9, 10, 11, 12],
+    sizes: [8, 9, 10, 11],
     img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80',
   },
   {
@@ -107,7 +107,7 @@ export const PRODUCTS = [
     category: 'Formal',
     price: '$156',
     tag: 'New',
-    sizes: [9, 10, 11],
+    sizes: [8,9,10,11],
     img: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=600&q=80',
   },
   {
@@ -137,7 +137,7 @@ export const PRODUCTS = [
     category: 'Sports',
     price: '$104',
     tag: 'Best seller',
-    sizes: [7, 8, 9, 10, 11],
+    sizes: [ 8, 9, 10, 11],
     img: 'https://assets.ajio.com/medias/sys_master/root/20250303/nSlj/67c5db2859f83539801519d4/-473Wx593H-701292116-beige-MODEL.jpg',
   },
 ];
