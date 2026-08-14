@@ -51,7 +51,7 @@ export default function About() {
               {ABOUT_HERO.description}
             </p>
 
-            {/* Optional Hero button */}
+            {/* Hero buttons */}
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 to="/home-2#lineup"
@@ -61,8 +61,9 @@ export default function About() {
                 <ArrowRightIcon className="ms-2 h-4 w-4" />
               </Link>
 
+              {/* CONTACT BUTTON → CONTACT PAGE */}
               <Link
-                to="/home-2#contact"
+                to="/contact"
                 className="btn-secondary !border-white/40 !text-white hover:!border-white hover:!bg-white/10"
               >
                 Contact us
@@ -287,7 +288,7 @@ export default function About() {
             </Link>
 
             <Link
-              to="/home-2#contact"
+              to="/contact"
               className="btn-secondary"
             >
               Bulk enquiry

@@ -55,16 +55,22 @@ const VALUE_PROPS = [
 const SHOP_FOR = [
   {
     label: 'Men',
+    subtitle: 'Everyday essentials',
+    number: '01',
     img: 'https://cdn.asianlive.in/digital-website/Mens-DEsktop%20(1)_63108146987774068295.png?tr=w-400',
     to: '/home-2#lineup',
   },
   {
     label: 'Women',
+    subtitle: 'Modern everyday style',
+    number: '02',
     img: 'https://cdn.asianlive.in/digital-website/Women-Desktop%20(1)_48705733039165876847.png?tr=w-400',
     to: '/home-2#lineup',
   },
   {
     label: 'Kids',
+    subtitle: 'Made for little steps',
+    number: '03',
     img: 'https://cdn.asianlive.in/digital-website/KidsDesktop%20(1)_66819036114439138921.png?tr=w-400',
     to: '/home-2#lineup',
   },
@@ -96,22 +102,9 @@ export default function Home1() {
   const quote = TESTIMONIALS[quoteIndex]
   const feature = FEATURE_HIGHLIGHTS[featureIndex]
 
-  /*
-   * IMPORTANT
-   *
-   * LTR:
-   * normal array order
-   *
-   * RTL:
-   * reverse array order
-   *
-   * We use a new array with [...array] so the original
-   * imported data is never mutated.
-   */
-
-  const displayedShopFor = isRTL
-    ? [...SHOP_FOR].reverse()
-    : SHOP_FOR
+  // =======================================================
+  // RTL DISPLAY ORDER
+  // =======================================================
 
   const displayedCategories = isRTL
     ? [...CATEGORIES].reverse()
@@ -156,8 +149,6 @@ export default function Home1() {
               styles, find your next favourite pair.
             </p>
 
-            {/* HERO BUTTONS */}
-
             <div
               className={`mt-8 flex flex-wrap justify-center gap-3 ${
                 isRTL ? 'flex-row-reverse' : 'flex-row'
@@ -177,8 +168,6 @@ export default function Home1() {
                 Discover our story
               </Link>
             </div>
-
-            {/* HERO STATS */}
 
             <div
               className={`mt-14 grid w-full max-w-lg grid-cols-3 gap-6 border-t border-white/20 pt-6 ${
@@ -220,37 +209,86 @@ export default function Home1() {
       </section>
 
       {/* =========================================================
-          SHOP FOR
+          SHOP FOR — STATIC THREE CARDS
       ========================================================= */}
 
-      <section className="section-container py-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wide text-navy dark:text-white sm:text-3xl">
-            Shop for
-          </h2>
-        </div>
+      <section className="overflow-hidden bg-[#f7f3ec] py-20 dark:bg-[#111827]">
+        <div className="section-container">
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
-          {displayedShopFor.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              className="group flex flex-col items-center"
-            >
-              <div className="aspect-square w-full overflow-hidden rounded-2xl bg-cream dark:bg-white/[0.03]">
-                <img
-                  src={item.img}
-                  alt={item.label}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
+          {/* CENTERED HEADER */}
 
-              <span className="mt-4 font-heading text-lg font-semibold text-navy dark:text-white">
-                {item.label}
+          <div className="mx-auto mb-10 max-w-3xl text-center">
+            <span className="inline-flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-amber-dark">
+              <span className="h-px w-8 bg-amber" />
+
+              Shop by collection
+
+              <span className="h-px w-8 bg-amber" />
+            </span>
+
+            <h2 className="mt-3 font-heading text-3xl font-black uppercase leading-none tracking-tight text-navy dark:text-white sm:text-4xl lg:text-5xl">
+              Find your
+              <span className="ml-2 italic text-amber-dark">
+                pair.
               </span>
-            </Link>
-          ))}
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-400">
+              Explore thoughtfully selected footwear for every member of
+              the family, designed to move naturally with your everyday life.
+            </p>
+          </div>
+
+          {/* THREE STATIC CARDS */}
+
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {SHOP_FOR.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className="group relative block overflow-hidden rounded-[1.5rem] bg-white dark:bg-white/[0.04]"
+              >
+                {/* IMAGE */}
+
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+
+                  {/* IMAGE OVERLAY */}
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
+
+                  {/* NUMBER */}
+
+                  <span className="absolute left-5 top-5 font-heading text-5xl font-black italic leading-none text-white/80">
+                    {item.number}
+                  </span>
+
+                  {/* COLLECTION LABEL */}
+
+                  <span className="absolute right-5 top-5 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    Collection
+                  </span>
+
+                  {/* TEXT */}
+
+                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-amber">
+                      {item.subtitle}
+                    </p>
+
+                    <h3 className="font-heading text-3xl font-black uppercase italic tracking-tight text-white sm:text-4xl">
+                      {item.label}
+                    </h3>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -319,7 +357,9 @@ export default function Home1() {
               isRTL ? 'flex-row-reverse' : 'flex-row'
             }`}
           >
-            <span>Learn more about us</span>
+            <span>
+              Learn more about us
+            </span>
 
             <ArrowRightIcon
               className={`h-4 w-4 ${
@@ -357,30 +397,6 @@ export default function Home1() {
               designed for different moments and different ways of moving.
             </p>
           </div>
-
-          {/* =====================================================
-              CATEGORY CARDS
-
-              LTR:
-              Casual | Formal | Performance
-
-              RTL:
-              Performance | Formal | Casual
-
-              AND inside each card:
-
-              LTR:
-              01
-              Casual
-              Description
-              Explore collection →
-
-              RTL:
-                                   01
-                               Casual
-                       Description
-                         ← Explore collection
-          ===================================================== */}
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {displayedCategories.map((category, index) => (
@@ -469,8 +485,6 @@ export default function Home1() {
               isRTL ? 'md:[direction:rtl]' : ''
             }`}
           >
-            {/* TITLE */}
-
             <div
               className={
                 isRTL
@@ -483,8 +497,6 @@ export default function Home1() {
               </h2>
             </div>
 
-            {/* IMAGE */}
-
             <div className="relative flex justify-center py-6 md:py-0">
               {feature?.img && (
                 <img
@@ -496,8 +508,6 @@ export default function Home1() {
                 />
               )}
             </div>
-
-            {/* DESCRIPTION */}
 
             <div
               className={`${
@@ -512,8 +522,6 @@ export default function Home1() {
               </p>
             </div>
           </div>
-
-          {/* FEATURE CONTROLS */}
 
           {FEATURE_HIGHLIGHTS.length > 0 && (
             <div
@@ -533,9 +541,7 @@ export default function Home1() {
                 }
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
               >
-                <ChevronLeftIcon
-                  className="h-4 w-4"
-                />
+                <ChevronLeftIcon className="h-4 w-4" />
               </button>
 
               <div
@@ -561,15 +567,12 @@ export default function Home1() {
                 onClick={() =>
                   setFeatureIndex(
                     (index) =>
-                      (index + 1) %
-                      FEATURE_HIGHLIGHTS.length,
+                      (index + 1) % FEATURE_HIGHLIGHTS.length,
                   )
                 }
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
               >
-                <ChevronRightIcon
-                  className="h-4 w-4"
-                />
+                <ChevronRightIcon className="h-4 w-4" />
               </button>
             </div>
           )}
@@ -633,9 +636,7 @@ export default function Home1() {
 
       <section className="border-y border-gray-200 py-12 dark:border-border-dark">
         <div className="section-container">
-          <div
-            className={`text-center`}
-          >
+          <div className="text-center">
             <span className="eyebrow">
               Our selection
             </span>
@@ -672,8 +673,6 @@ export default function Home1() {
             isRTL ? 'md:[direction:rtl]' : ''
           }`}
         >
-          {/* LEFT / RIGHT INTRO */}
-
           <div
             className={
               isRTL
@@ -682,7 +681,7 @@ export default function Home1() {
             }
           >
             <span className="eyebrow">
-              Customer stories
+              Customer Top stories
             </span>
 
             <h2 className="heading-lg mt-2">
@@ -693,8 +692,6 @@ export default function Home1() {
               Real experiences from customers who rely on STRYDE every day.
             </p>
           </div>
-
-          {/* QUOTE */}
 
           {quote && (
             <div
@@ -772,9 +769,7 @@ export default function Home1() {
 
                   <div
                     className={`flex gap-1.5 ${
-                      isRTL
-                        ? 'flex-row-reverse'
-                        : ''
+                      isRTL ? 'flex-row-reverse' : ''
                     }`}
                   >
                     {TESTIMONIALS.map((_, index) => (
@@ -795,8 +790,7 @@ export default function Home1() {
                     onClick={() =>
                       setQuoteIndex(
                         (index) =>
-                          (index + 1) %
-                          TESTIMONIALS.length,
+                          (index + 1) % TESTIMONIALS.length,
                       )
                     }
                     className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
