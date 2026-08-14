@@ -58,21 +58,21 @@ const SHOP_FOR = [
     subtitle: 'Everyday essentials',
     number: '01',
     img: 'https://cdn.asianlive.in/digital-website/Mens-DEsktop%20(1)_63108146987774068295.png?tr=w-400',
-    to: '/home-2#lineup',
+    to: '/category',
   },
   {
     label: 'Women',
     subtitle: 'Modern everyday style',
     number: '02',
     img: 'https://cdn.asianlive.in/digital-website/Women-Desktop%20(1)_48705733039165876847.png?tr=w-400',
-    to: '/home-2#lineup',
+    to: '/category',
   },
   {
     label: 'Kids',
     subtitle: 'Made for little steps',
     number: '03',
     img: 'https://cdn.asianlive.in/digital-website/KidsDesktop%20(1)_66819036114439138921.png?tr=w-400',
-    to: '/home-2#lineup',
+    to: '/category',
   },
 ]
 
@@ -120,11 +120,13 @@ export default function Home1() {
 
   return (
     <div dir={isRTL ? 'rtl' : 'ltr'}>
+
       {/* =========================================================
           HERO
       ========================================================= */}
 
       <section className="relative isolate flex min-h-[88vh] items-center justify-center overflow-hidden">
+
         <img
           src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=2000&q=80"
           alt="Premium footwear collection"
@@ -134,7 +136,9 @@ export default function Home1() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/70 to-navy/30" />
 
         <div className="section-container flex w-full justify-center py-24 text-center text-white">
+
           <div className="flex max-w-3xl flex-col items-center">
+
             <span className="eyebrow !text-amber-dark">
               New season · Fall collection
             </span>
@@ -144,9 +148,9 @@ export default function Home1() {
             </h1>
 
             <p className="body-text mt-5 max-w-2xl !text-white/75">
-              Discover everyday footwear designed around comfort, quality, and
-              timeless style. From casual essentials to formal and performance
-              styles, find your next favourite pair.
+              Discover everyday footwear designed around comfort, quality,
+              and timeless style. From casual essentials to formal and
+              performance styles, find your next favourite pair.
             </p>
 
             <div
@@ -154,6 +158,7 @@ export default function Home1() {
                 isRTL ? 'flex-row-reverse' : 'flex-row'
               }`}
             >
+
               <a
                 href="#categories"
                 className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
@@ -167,6 +172,7 @@ export default function Home1() {
               >
                 Discover our story
               </Link>
+
             </div>
 
             <div
@@ -174,6 +180,7 @@ export default function Home1() {
                 isRTL ? 'text-right' : 'text-left'
               }`}
             >
+
               <div>
                 <p className="font-heading text-2xl font-semibold">
                   12k+
@@ -203,54 +210,72 @@ export default function Home1() {
                   Free exchanges
                 </p>
               </div>
+
             </div>
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           SHOP FOR — STATIC THREE CARDS
       ========================================================= */}
 
       <section className="overflow-hidden bg-[#f7f3ec] py-20 dark:bg-[#111827]">
+
         <div className="section-container">
 
           {/* CENTERED HEADER */}
 
           <div className="mx-auto mb-10 max-w-3xl text-center">
+
             <span className="inline-flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-amber-dark">
+
               <span className="h-px w-8 bg-amber" />
 
               Shop by collection
 
               <span className="h-px w-8 bg-amber" />
+
             </span>
 
             <h2 className="mt-3 font-heading text-3xl font-black uppercase leading-none tracking-tight text-navy dark:text-white sm:text-4xl lg:text-5xl">
+
               Find your
+
               <span className="ml-2 italic text-amber-dark">
                 pair.
               </span>
+
             </h2>
 
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-400">
               Explore thoughtfully selected footwear for every member of
               the family, designed to move naturally with your everyday life.
             </p>
+
           </div>
+
 
           {/* THREE STATIC CARDS */}
 
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+
             {SHOP_FOR.map((item) => (
+
               <Link
                 key={item.label}
                 to={item.to}
                 className="group relative block overflow-hidden rounded-[1.5rem] bg-white dark:bg-white/[0.04]"
               >
+
                 {/* IMAGE */}
 
                 <div className="relative aspect-[4/5] overflow-hidden">
+
                   <img
                     src={item.img}
                     alt={item.label}
@@ -277,6 +302,7 @@ export default function Home1() {
                   {/* TEXT */}
 
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+
                     <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-amber">
                       {item.subtitle}
                     </p>
@@ -284,20 +310,30 @@ export default function Home1() {
                     <h3 className="font-heading text-3xl font-black uppercase italic tracking-tight text-white sm:text-4xl">
                       {item.label}
                     </h3>
+
                   </div>
+
                 </div>
+
               </Link>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           SPOTLIGHT
       ========================================================= */}
 
       <section className="section-container py-20">
+
         <div className="mx-auto mb-10 max-w-3xl text-center">
+
           <span className="eyebrow">
             In the spotlight
           </span>
@@ -305,9 +341,11 @@ export default function Home1() {
           <h2 className="heading-lg mt-2">
             The Ronnie, in grey.
           </h2>
+
         </div>
 
         <div className="mx-auto w-full overflow-hidden rounded-2xl sm:w-[90%] lg:w-[75%]">
+
           <img
             src="https://www.shoetree.io/cdn/shop/files/Ronnie_Grey_3_850X850_93e046db-dde7-4301-9a3e-bba6261e5094.jpg?v=1738222289&width=3840"
             srcSet="
@@ -321,14 +359,18 @@ export default function Home1() {
             className="h-auto w-full object-cover"
             loading="lazy"
           />
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           INTRODUCTION
       ========================================================= */}
 
       <section className="section-container py-20">
+
         <div
           className={`mx-auto flex max-w-3xl flex-col ${
             isRTL
@@ -336,6 +378,7 @@ export default function Home1() {
               : 'items-start text-left'
           }`}
         >
+
           <span className="eyebrow">
             Welcome to STRYDE
           </span>
@@ -357,6 +400,7 @@ export default function Home1() {
               isRTL ? 'flex-row-reverse' : 'flex-row'
             }`}
           >
+
             <span>
               Learn more about us
             </span>
@@ -366,9 +410,13 @@ export default function Home1() {
                 isRTL ? 'rotate-180' : ''
               }`}
             />
+
           </Link>
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           CATEGORIES
@@ -378,12 +426,15 @@ export default function Home1() {
         id="categories"
         className="bg-cream py-20 dark:bg-white/[0.02]"
       >
+
         <div className="section-container">
+
           <div
             className={`mx-auto mb-12 max-w-3xl ${
               isRTL ? 'text-right' : 'text-left'
             }`}
           >
+
             <span className="eyebrow">
               Shop by category
             </span>
@@ -396,13 +447,22 @@ export default function Home1() {
               From relaxed weekends to important meetings, explore footwear
               designed for different moments and different ways of moving.
             </p>
+
           </div>
 
+
+          {/* =====================================================
+              CATEGORY CARDS
+              Explore collection -> /category
+          ===================================================== */}
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+
             {displayedCategories.map((category, index) => (
+
               <Link
                 key={category.name}
-                to="/home-2#lineup"
+                to="/category"
                 dir={isRTL ? 'rtl' : 'ltr'}
                 className={`group relative overflow-hidden rounded-2xl ${
                   isRTL
@@ -410,6 +470,7 @@ export default function Home1() {
                     : 'text-left'
                 }`}
               >
+
                 <img
                   src={category.img}
                   alt={category.name}
@@ -426,6 +487,7 @@ export default function Home1() {
                       : 'flex flex-col items-start text-left'
                   }`}
                 >
+
                   <span
                     className={`font-heading text-5xl font-bold text-white/20 ${
                       isRTL
@@ -450,6 +512,9 @@ export default function Home1() {
                     {category.desc}
                   </p>
 
+
+                  {/* EXPLORE COLLECTION */}
+
                   <span
                     className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${
                       isRTL
@@ -457,6 +522,7 @@ export default function Home1() {
                         : 'flex-row'
                     }`}
                   >
+
                     <span>
                       Explore collection
                     </span>
@@ -466,25 +532,36 @@ export default function Home1() {
                         isRTL ? 'rotate-180' : ''
                       }`}
                     />
+
                   </span>
+
                 </div>
+
               </Link>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           FEATURE HIGHLIGHT
       ========================================================= */}
 
       <section className="relative overflow-hidden bg-cream py-20 dark:bg-white/[0.02]">
+
         <div className="section-container">
+
           <div
             className={`grid grid-cols-1 items-center gap-10 md:grid-cols-[1fr_auto_1fr] ${
               isRTL ? 'md:[direction:rtl]' : ''
             }`}
           >
+
             <div
               className={
                 isRTL
@@ -492,13 +569,18 @@ export default function Home1() {
                   : 'text-left'
               }
             >
+
               <h2 className="font-heading text-4xl font-bold uppercase leading-[1.05] text-navy dark:text-white sm:text-5xl">
                 {feature?.title || 'Featured footwear'}
               </h2>
+
             </div>
 
+
             <div className="relative flex justify-center py-6 md:py-0">
+
               {feature?.img && (
+
                 <img
                   src={feature.img}
                   alt={feature.title || 'Featured footwear'}
@@ -506,8 +588,11 @@ export default function Home1() {
                     isRTL ? '-rotate-3' : 'rotate-3'
                   }`}
                 />
+
               )}
+
             </div>
+
 
             <div
               className={`${
@@ -516,19 +601,25 @@ export default function Home1() {
                   : 'text-left md:pl-4'
               }`}
             >
+
               <p className="body-text max-w-xs text-sm">
                 {feature?.desc ||
                   'Discover our latest footwear collection.'}
               </p>
+
             </div>
+
           </div>
 
+
           {FEATURE_HIGHLIGHTS.length > 0 && (
+
             <div
               className={`mt-12 flex items-center justify-center gap-4 ${
                 isRTL ? 'flex-row-reverse' : 'flex-row'
               }`}
             >
+
               <button
                 type="button"
                 aria-label="Previous highlight"
@@ -541,15 +632,20 @@ export default function Home1() {
                 }
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
               >
+
                 <ChevronLeftIcon className="h-4 w-4" />
+
               </button>
+
 
               <div
                 className={`flex gap-1.5 ${
                   isRTL ? 'flex-row-reverse' : ''
                 }`}
               >
+
                 {FEATURE_HIGHLIGHTS.map((_, index) => (
+
                   <span
                     key={index}
                     className={`h-1.5 w-1.5 rounded-full transition ${
@@ -558,8 +654,11 @@ export default function Home1() {
                         : 'bg-gray-300 dark:bg-border-dark'
                     }`}
                   />
+
                 ))}
+
               </div>
+
 
               <button
                 type="button"
@@ -572,23 +671,32 @@ export default function Home1() {
                 }
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-navy transition hover:bg-white dark:border-border-dark dark:text-white dark:hover:bg-white/5"
               >
+
                 <ChevronRightIcon className="h-4 w-4" />
+
               </button>
+
             </div>
+
           )}
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           WHY STRYDE
       ========================================================= */}
 
       <section className="section-container py-20">
+
         <div
           className={`mx-auto mb-12 max-w-3xl ${
             isRTL ? 'text-right' : 'text-left'
           }`}
         >
+
           <span className="eyebrow">
             Why STRYDE
           </span>
@@ -596,11 +704,15 @@ export default function Home1() {
           <h2 className="heading-lg mt-2">
             Built around a better experience.
           </h2>
+
         </div>
 
+
         <div className="grid grid-cols-1 divide-y divide-gray-200 dark:divide-border-dark sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+
           {displayedValueProps.map(
             ({ icon: Icon, title, desc }, index) => (
+
               <div
                 key={title}
                 className={`flex flex-col gap-3 py-6 sm:px-6 sm:py-0 ${
@@ -615,6 +727,7 @@ export default function Home1() {
                     : ''
                 }`}
               >
+
                 <Icon className="h-7 w-7 text-amber dark:text-amber-dark" />
 
                 <h3 className="heading-sm !text-base">
@@ -624,19 +737,27 @@ export default function Home1() {
                 <p className="body-text text-sm">
                   {desc}
                 </p>
+
               </div>
+
             ),
           )}
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           BRAND STRIP
       ========================================================= */}
 
       <section className="border-y border-gray-200 py-12 dark:border-border-dark">
+
         <div className="section-container">
+
           <div className="text-center">
+
             <span className="eyebrow">
               Our selection
             </span>
@@ -644,35 +765,46 @@ export default function Home1() {
             <h2 className="heading-lg mt-2">
               Brands you can count on.
             </h2>
+
           </div>
+
 
           <div
             className={`mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 ${
               isRTL ? 'flex-row-reverse' : 'flex-row'
             }`}
           >
+
             {displayedBrands.map((brand) => (
+
               <span
                 key={brand}
                 className="cursor-pointer font-heading text-xl font-semibold text-navy/40 transition-all duration-300 hover:scale-105 hover:text-amber dark:text-white/30 dark:hover:text-amber"
               >
                 {brand}
               </span>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           TESTIMONIAL
       ========================================================= */}
 
       <section className="section-container py-20">
+
         <div
           className={`grid grid-cols-1 gap-12 md:grid-cols-[0.5fr_1.5fr] md:items-center ${
             isRTL ? 'md:[direction:rtl]' : ''
           }`}
         >
+
           <div
             className={
               isRTL
@@ -680,6 +812,7 @@ export default function Home1() {
                 : 'text-left'
             }
           >
+
             <span className="eyebrow">
               Customer Top stories
             </span>
@@ -691,9 +824,12 @@ export default function Home1() {
             <p className="body-text mt-4">
               Real experiences from customers who rely on STRYDE every day.
             </p>
+
           </div>
 
+
           {quote && (
+
             <div
               className={`border-amber ${
                 isRTL
@@ -701,9 +837,11 @@ export default function Home1() {
                   : 'border-s-2 ps-8 text-left'
               }`}
             >
+
               <p className="font-heading text-2xl leading-snug text-navy dark:text-white sm:text-3xl">
                 “{quote.quote}”
               </p>
+
 
               <div
                 className={`mt-6 flex items-center gap-3 ${
@@ -712,20 +850,26 @@ export default function Home1() {
                     : 'flex-row justify-start'
                 }`}
               >
+
                 {quote.avatar ? (
+
                   <img
                     src={quote.avatar}
                     alt={quote.name}
                     className="h-11 w-11 rounded-full object-cover"
                   />
+
                 ) : (
+
                   <span
                     aria-hidden="true"
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber/15 text-sm font-semibold text-amber-dark dark:bg-amber/20 dark:text-amber"
                   >
                     {getInitials(quote.name)}
                   </span>
+
                 )}
+
 
                 <div
                   className={
@@ -734,6 +878,7 @@ export default function Home1() {
                       : 'text-left'
                   }
                 >
+
                   <p className="text-sm font-semibold text-navy dark:text-white">
                     {quote.name}
                   </p>
@@ -741,10 +886,14 @@ export default function Home1() {
                   <p className="text-xs text-gray-400">
                     {quote.role}
                   </p>
+
                 </div>
+
               </div>
 
+
               {TESTIMONIALS.length > 0 && (
+
                 <div
                   className={`mt-8 flex items-center gap-4 ${
                     isRTL
@@ -752,6 +901,7 @@ export default function Home1() {
                       : 'flex-row justify-start'
                   }`}
                 >
+
                   <button
                     type="button"
                     aria-label="Previous testimonial"
@@ -764,15 +914,20 @@ export default function Home1() {
                     }
                     className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
                   >
+
                     <ChevronLeftIcon className="h-4 w-4" />
+
                   </button>
+
 
                   <div
                     className={`flex gap-1.5 ${
                       isRTL ? 'flex-row-reverse' : ''
                     }`}
                   >
+
                     {TESTIMONIALS.map((_, index) => (
+
                       <span
                         key={index}
                         className={`h-1.5 w-1.5 rounded-full transition ${
@@ -781,8 +936,11 @@ export default function Home1() {
                             : 'bg-gray-300 dark:bg-border-dark'
                         }`}
                       />
+
                     ))}
+
                   </div>
+
 
                   <button
                     type="button"
@@ -795,21 +953,32 @@ export default function Home1() {
                     }
                     className="rounded-full border border-gray-200 p-2 transition hover:bg-cream dark:border-border-dark dark:hover:bg-white/5"
                   >
+
                     <ChevronRightIcon className="h-4 w-4" />
+
                   </button>
+
                 </div>
+
               )}
+
             </div>
+
           )}
+
         </div>
+
       </section>
+
 
       {/* =========================================================
           FINAL CTA
       ========================================================= */}
 
       <section className="bg-navy py-20 text-white dark:bg-black/40">
+
         <div className="section-container">
+
           <div
             className={`grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center ${
               isRTL
@@ -817,6 +986,7 @@ export default function Home1() {
                 : ''
             }`}
           >
+
             <div
               className={
                 isRTL
@@ -824,6 +994,7 @@ export default function Home1() {
                   : 'text-left'
               }
             >
+
               <span className="eyebrow !text-amber-dark">
                 Looking for something special?
               </span>
@@ -836,7 +1007,9 @@ export default function Home1() {
                 Discover how our footwear is developed, finished, and prepared
                 for customers and bulk orders.
               </p>
+
             </div>
+
 
             <Link
               to="/home-2"
@@ -844,9 +1017,13 @@ export default function Home1() {
             >
               Explore Home 2
             </Link>
+
           </div>
+
         </div>
+
       </section>
+
     </div>
   )
 }

@@ -10,7 +10,7 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Services from './pages/Services.jsx'
 import Blog from './pages/Blog.jsx'
-
+import Category from './pages/Category.jsx'
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
 
           {/* Other pages */}
           <Route path="/about" element={<About />} />
-          
+          <Route path="/category" element={<Category />} />
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/services" element={<Services />} />

@@ -24,6 +24,7 @@ export default function About() {
           HERO / FIRST SLIDE
       ====================================================== */}
       <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-navy text-white dark:bg-black/40">
+
         {/* Background image */}
         <div className="absolute inset-0">
           <img
@@ -38,7 +39,9 @@ export default function About() {
 
         {/* Hero content - CENTERED */}
         <div className="section-container relative z-10 flex w-full justify-center py-24 text-center">
+
           <div className="mx-auto flex max-w-4xl flex-col items-center">
+
             <span className="eyebrow !text-amber-dark">
               {ABOUT_HERO.eyebrow}
             </span>
@@ -53,8 +56,10 @@ export default function About() {
 
             {/* Hero buttons */}
             <div className="mt-8 flex flex-wrap justify-center gap-3">
+
+              {/* EXPLORE COLLECTION → CATEGORY PAGE */}
               <Link
-                to="/home-2#lineup"
+                to="/category"
                 className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
               >
                 Explore collection
@@ -68,17 +73,25 @@ export default function About() {
               >
                 Contact us
               </Link>
+
             </div>
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           INTRODUCTION
       ====================================================== */}
       <section className="section-container py-20">
+
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+
           <div>
+
             <span className="eyebrow">
               {ABOUT_INTRO.eyebrow}
             </span>
@@ -95,24 +108,33 @@ export default function About() {
                 {paragraph}
               </p>
             ))}
+
           </div>
 
           <div className="overflow-hidden rounded-2xl">
+
             <img
               src={ABOUT_INTRO.image}
               alt={ABOUT_INTRO.imageAlt}
               className="h-[480px] w-full object-cover transition duration-700 hover:scale-105"
             />
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           STORY
       ====================================================== */}
       <section className="bg-cream py-20 dark:bg-white/[0.02]">
+
         <div className="section-container">
+
           <div className="mx-auto max-w-3xl text-center">
+
             <span className="eyebrow">
               {ABOUT_STORY.eyebrow}
             </span>
@@ -124,14 +146,19 @@ export default function About() {
             <p className="body-text mt-5">
               {ABOUT_STORY.description}
             </p>
+
           </div>
 
+
           <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+
             {ABOUT_STORY.steps.map((step, index) => (
+
               <div
                 key={step.title}
                 className="rounded-2xl bg-white p-7 dark:bg-surface-dark"
               >
+
                 <p className="font-heading text-4xl font-bold text-amber">
                   {String(index + 1).padStart(2, '0')}
                 </p>
@@ -143,17 +170,25 @@ export default function About() {
                 <p className="body-text mt-3 text-sm">
                   {step.description}
                 </p>
+
               </div>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           VALUES
       ====================================================== */}
       <section className="section-container py-20">
+
         <div className="mb-12">
+
           <span className="eyebrow">
             What matters to us
           </span>
@@ -161,10 +196,14 @@ export default function About() {
           <h2 className="heading-lg mt-2">
             The STRYDE standard.
           </h2>
+
         </div>
 
+
         <div className="grid grid-cols-1 divide-y divide-gray-200 dark:divide-border-dark sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+
           {VALUES.map(({ icon, title, description }) => {
+
             const Icon =
               icon === 'sparkles'
                 ? SparklesIcon
@@ -173,10 +212,12 @@ export default function About() {
                   : HeartIcon
 
             return (
+
               <div
                 key={title}
                 className="px-0 py-6 sm:px-8 sm:first:ps-0 sm:last:pe-0"
               >
+
                 <Icon className="h-8 w-8 text-amber dark:text-amber-dark" />
 
                 <h3 className="heading-sm mt-5">
@@ -186,19 +227,29 @@ export default function About() {
                 <p className="body-text mt-3 text-sm">
                   {description}
                 </p>
+
               </div>
+
             )
+
           })}
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           WHAT WE OFFER
       ====================================================== */}
       <section className="bg-navy py-20 text-white dark:bg-black/40">
+
         <div className="section-container">
+
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+
             <div>
+
               <span className="eyebrow !text-amber-dark">
                 What we offer
               </span>
@@ -213,40 +264,57 @@ export default function About() {
                 organisations.
               </p>
 
+              {/* EXPLORE THE COLLECTION → CATEGORY PAGE */}
               <Link
-                to="/home-2#lineup"
+                to="/category"
                 className="btn-primary mt-7 inline-flex !bg-amber !text-navy-dark hover:!bg-amber-dark"
               >
                 Explore the collection
                 <ArrowRightIcon className="ms-2 h-4 w-4" />
               </Link>
+
             </div>
 
+
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+
               {FEATURES.map((feature) => (
+
                 <div
                   key={feature}
                   className="flex items-center gap-3 border-b border-white/10 py-4"
                 >
+
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber text-navy-dark">
+
                     <CheckIcon className="h-4 w-4" />
+
                   </span>
 
                   <span className="text-sm text-white/80">
                     {feature}
                   </span>
+
                 </div>
+
               ))}
+
             </div>
+
           </div>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           MISSION
       ====================================================== */}
       <section className="section-container py-20">
+
         <div className="mx-auto max-w-4xl text-center">
+
           <span className="eyebrow">
             {ABOUT_MISSION.eyebrow}
           </span>
@@ -258,14 +326,19 @@ export default function About() {
           <p className="body-text mt-5">
             {ABOUT_MISSION.description}
           </p>
+
         </div>
+
       </section>
+
 
       {/* =====================================================
           CTA
       ====================================================== */}
       <section className="border-t border-gray-200 py-20 dark:border-border-dark">
+
         <div className="section-container text-center">
+
           <span className="eyebrow">
             Ready to explore?
           </span>
@@ -279,23 +352,31 @@ export default function About() {
             footwear requirements.
           </p>
 
+
           <div className="mt-8 flex flex-wrap justify-center gap-3">
+
+            {/* SHOP THE COLLECTION → CATEGORY PAGE */}
             <Link
-              to="/home-2#lineup"
+              to="/category"
               className="btn-primary"
             >
               Shop the collection
             </Link>
 
+            {/* BULK ENQUIRY → CONTACT PAGE */}
             <Link
               to="/contact"
               className="btn-secondary"
             >
               Bulk enquiry
             </Link>
+
           </div>
+
         </div>
+
       </section>
+
     </>
   )
 }

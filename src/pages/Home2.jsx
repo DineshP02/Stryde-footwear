@@ -29,7 +29,6 @@ export default function Home2() {
   )
 
   const [selectedSizes, setSelectedSizes] = useState({})
-
   const [selectedProductId, setSelectedProductId] = useState(null)
 
   const categoryProducts = PRODUCTS.filter(
@@ -123,6 +122,7 @@ export default function Home2() {
 
           </div>
 
+
           <div className="relative">
 
             <div className="overflow-hidden rounded-[2rem]">
@@ -179,6 +179,7 @@ export default function Home2() {
 
         </div>
 
+
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3">
 
           <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
@@ -198,6 +199,7 @@ export default function Home2() {
 
           </article>
 
+
           <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
 
             <span className="font-heading text-3xl font-bold text-amber">
@@ -214,6 +216,7 @@ export default function Home2() {
             </p>
 
           </article>
+
 
           <article className="flex min-h-[250px] flex-col rounded-2xl border border-gray-200 p-6 dark:border-border-dark">
 
@@ -266,6 +269,7 @@ export default function Home2() {
 
           </div>
 
+
           <div className="mt-12 grid grid-cols-2 gap-y-10 md:grid-cols-4">
 
             {WORKSHOP_STATS.map((stat) => (
@@ -304,6 +308,8 @@ export default function Home2() {
       >
 
         <div className="section-container">
+
+          {/* SECTION HEADER */}
 
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
 
@@ -389,7 +395,7 @@ export default function Home2() {
           )}
 
 
-          {/* PRODUCTS */}
+          {/* PRODUCT GRID */}
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
@@ -409,6 +415,8 @@ export default function Home2() {
                     className="group min-w-0"
                   >
 
+                    {/* PRODUCT IMAGE */}
+
                     <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
 
                       <img
@@ -427,6 +435,8 @@ export default function Home2() {
 
                     </div>
 
+
+                    {/* PRODUCT DETAILS */}
 
                     <div className="mt-5">
 
@@ -470,6 +480,7 @@ export default function Home2() {
                           )}
 
                         </div>
+
 
                         <div className="flex flex-wrap gap-2">
 
@@ -527,6 +538,23 @@ export default function Home2() {
 
           </div>
 
+
+          {/* =====================================================
+              EXPLORE LINEUP
+              RIGHT / END OF THE SECTION
+          ===================================================== */}
+
+          <div className="mt-16 flex justify-end">
+
+            <a
+              href="/category"
+              className="inline-flex items-center justify-center rounded-full bg-navy px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-lg dark:bg-amber dark:text-navy-dark dark:hover:bg-amber/90"
+            >
+              Explore the lineup
+            </a>
+
+          </div>
+
         </div>
       </section>
 
@@ -554,6 +582,7 @@ export default function Home2() {
           </p>
 
         </div>
+
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
 
@@ -633,6 +662,7 @@ export default function Home2() {
 
             </div>
 
+
             <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
 
               {PROCESS_STEPS.map((step, index) => (
@@ -673,6 +703,7 @@ export default function Home2() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -702,6 +733,7 @@ export default function Home2() {
           </p>
 
         </div>
+
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-12">
 
@@ -755,7 +787,6 @@ export default function Home2() {
 
       {/* =========================================================
           8. QUESTIONS & ENQUIRIES + FAQ
-          CONTACT FORM REMOVED
       ========================================================= */}
 
       <section
@@ -766,8 +797,6 @@ export default function Home2() {
         <div className="section-container">
 
           <div className="mx-auto max-w-4xl">
-
-            {/* QUESTIONS & ENQUIRIES */}
 
             <div>
 
@@ -902,6 +931,7 @@ export default function Home2() {
           </div>
 
         </div>
+
       </section>
     </>
   )
