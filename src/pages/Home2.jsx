@@ -6,12 +6,6 @@ import {
 } from '@heroicons/react/24/outline'
 
 import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react'
-
-import {
   HOME2_HERO,
   WORKSHOP_STATS,
   PRODUCTS,
@@ -30,6 +24,19 @@ export default function Home2() {
 
   const [selectedSizes, setSelectedSizes] = useState({})
   const [selectedProductId, setSelectedProductId] = useState(null)
+
+  /* =========================================================
+     FAQ ACCORDION STATE
+
+     null = all FAQs closed
+     0    = first FAQ open
+     1    = second FAQ open
+     etc.
+
+     This makes the FAQ a TRUE single-open accordion.
+  ========================================================= */
+
+  const [openFaq, setOpenFaq] = useState(null)
 
   const categoryProducts = PRODUCTS.filter(
     (product) => product.category === activeCategory,
@@ -59,6 +66,26 @@ export default function Home2() {
     setActiveCategory(categoryName)
     setSelectedProductId(null)
     setSelectedSizes({})
+  }
+
+  /* =========================================================
+     FAQ CLICK HANDLER
+
+     If the clicked FAQ is already open:
+       close it.
+
+     If another FAQ is clicked:
+       close the old one and open the new one.
+  ========================================================= */
+
+  const handleFaqClick = (index) => {
+    setOpenFaq((current) => {
+      if (current === index) {
+        return null
+      }
+
+      return index
+    })
   }
 
   return (
@@ -309,8 +336,6 @@ export default function Home2() {
 
         <div className="section-container">
 
-          {/* SECTION HEADER */}
-
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
 
             <div>
@@ -332,8 +357,6 @@ export default function Home2() {
 
           </div>
 
-
-          {/* CATEGORY BUTTONS */}
 
           <div className="mt-10 flex flex-wrap gap-2">
 
@@ -364,8 +387,6 @@ export default function Home2() {
           </div>
 
 
-          {/* SELECTED SHOE MESSAGE */}
-
           {selectedProductId && (
 
             <div className="mt-8 flex flex-col gap-3 rounded-xl border border-amber/30 bg-amber/10 p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -395,8 +416,6 @@ export default function Home2() {
           )}
 
 
-          {/* PRODUCT GRID */}
-
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
             {visibleProducts.length > 0 ? (
@@ -414,8 +433,6 @@ export default function Home2() {
                     key={product.id}
                     className="group min-w-0"
                   >
-
-                    {/* PRODUCT IMAGE */}
 
                     <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
 
@@ -435,8 +452,6 @@ export default function Home2() {
 
                     </div>
 
-
-                    {/* PRODUCT DETAILS */}
 
                     <div className="mt-5">
 
@@ -460,8 +475,6 @@ export default function Home2() {
 
                       </div>
 
-
-                      {/* SIZE SELECTOR */}
 
                       <div className="mt-5">
 
@@ -538,11 +551,6 @@ export default function Home2() {
 
           </div>
 
-
-          {/* =====================================================
-              EXPLORE LINEUP
-              RIGHT / END OF THE SECTION
-          ===================================================== */}
 
           <div className="mt-16 flex justify-end">
 
@@ -787,6 +795,11 @@ export default function Home2() {
 
       {/* =========================================================
           8. QUESTIONS & ENQUIRIES + FAQ
+
+          IMPORTANT:
+          SAME DESIGN AS YOUR ORIGINAL HOME2 PAGE.
+
+          ONLY THE ACCORDION LOGIC HAS BEEN CHANGED.
       ========================================================= */}
 
       <section
@@ -842,7 +855,15 @@ export default function Home2() {
               </div>
 
 
-              {/* FAQ */}
+              {/* =====================================================
+                  FAQ
+
+                  OLD DESIGN IS KEPT.
+
+                  NO HEADLESS UI DISCLOSURE IS USED HERE.
+
+                  REACT CONTROLS WHICH FAQ IS OPEN.
+              ===================================================== */}
 
               <div className="mt-10">
 
@@ -850,77 +871,116 @@ export default function Home2() {
                   Frequently asked
                 </h3>
 
+
                 <div className="mt-5 space-y-3">
 
-                  {FAQS.map((faq) => (
+                  {FAQS.map((faq, index) => {
 
-                    <Disclosure
-                      key={faq.q}
-                      as="div"
-                    >
+                    const isOpen = openFaq === index
 
-                      {({ open }) => (
+                    return (
+
+                      <div
+                        key={faq.q}
+                        className={`overflow-hidden rounded-xl border transition-all duration-300 ${
+                          isOpen
+                            ? 'border-amber/50 bg-white/[0.06]'
+                            : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+                        }`}
+                      >
+
+                        {/* =================================================
+                            QUESTION BUTTON
+
+                            Same design as before.
+                        ================================================== */}
+
+                        <button
+                          type="button"
+                          onClick={() => handleFaqClick(index)}
+                          aria-expanded={isOpen}
+                          aria-controls={`home2-faq-${index}`}
+                          className="flex w-full items-center justify-between gap-5 px-5 py-5 text-start"
+                        >
+
+                          <span
+                            className={`text-sm font-medium leading-6 transition-colors ${
+                              isOpen
+                                ? 'text-amber'
+                                : 'text-white'
+                            }`}
+                          >
+                            {faq.q}
+                          </span>
+
+
+                          {/* =================================================
+                              SAME PLUS ICON
+
+                              Closed = +
+
+                              Open = + rotated 45deg = ×
+
+                              No visual design change.
+                          ================================================== */}
+
+                          <span
+                            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                              isOpen
+                                ? 'border-amber bg-amber text-navy-dark'
+                                : 'border-white/20 text-amber'
+                            }`}
+                          >
+
+                            <PlusIcon
+                              className={`h-4 w-4 transition-transform duration-300 ${
+                                isOpen
+                                  ? 'rotate-45'
+                                  : ''
+                              }`}
+                            />
+
+                          </span>
+
+                        </button>
+
+
+                        {/* =================================================
+                            ANSWER
+
+                            Same content styling.
+
+                            Only visibility is controlled by React.
+                        ================================================== */}
 
                         <div
-                          className={`overflow-hidden rounded-xl border transition-all duration-300 ${
-                            open
-                              ? 'border-amber/50 bg-white/[0.06]'
-                              : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+                          id={`home2-faq-${index}`}
+                          className={`grid transition-all duration-300 ease-in-out ${
+                            isOpen
+                              ? 'grid-rows-[1fr] opacity-100'
+                              : 'grid-rows-[0fr] opacity-0'
                           }`}
                         >
 
-                          <DisclosureButton
-                            className="flex w-full items-center justify-between gap-5 px-5 py-5 text-start"
-                          >
+                          <div className="overflow-hidden">
 
-                            <span
-                              className={`text-sm font-medium leading-6 transition-colors ${
-                                open
-                                  ? 'text-amber'
-                                  : 'text-white'
-                              }`}
-                            >
-                              {faq.q}
-                            </span>
+                            <div className="px-5 pb-5">
 
-                            <span
-                              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
-                                open
-                                  ? 'border-amber bg-amber text-navy-dark'
-                                  : 'border-white/20 text-amber'
-                              }`}
-                            >
+                              <div className="border-t border-white/10 pt-4 text-sm leading-7 text-white/60">
+                                {faq.a}
+                              </div>
 
-                              <PlusIcon
-                                className={`h-4 w-4 transition-transform duration-300 ${
-                                  open
-                                    ? 'rotate-45'
-                                    : ''
-                                }`}
-                              />
-
-                            </span>
-
-                          </DisclosureButton>
-
-
-                          <DisclosurePanel
-                            className="px-5 pb-5 text-sm leading-7 text-white/60"
-                          >
-
-                            <div className="border-t border-white/10 pt-4">
-                              {faq.a}
                             </div>
 
-                          </DisclosurePanel>
+                          </div>
 
                         </div>
 
-                      )}
+                      </div>
 
-                    </Disclosure>
+                    )
 
-                  ))}
+                  })}
 
                 </div>
 
@@ -933,6 +993,7 @@ export default function Home2() {
         </div>
 
       </section>
+
     </>
   )
 }

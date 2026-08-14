@@ -33,7 +33,6 @@ import Logo from './Logo.jsx'
 import { useTheme } from '../context/ThemeContext.jsx'
 import { useDirection } from '../context/DirectionContext.jsx'
 
-
 /* =========================================================
    NAVIGATION LINKS
 ========================================================= */
@@ -42,7 +41,6 @@ const NAV_LINKS = [
   { name: 'Blog', href: '/blog' },
   { name: 'Services', href: '/services' },
 ]
-
 
 /* =========================================================
    NAVBAR
@@ -63,10 +61,9 @@ export default function Navbar() {
   const [forgotEmail, setForgotEmail] = useState('')
   const [resetSent, setResetSent] = useState(false)
 
-
   /* =========================================================
      SCROLL TO TOP WHEN PAGE CHANGES
-  ========================================================= */
+========================================================= */
 
   useEffect(() => {
     window.scrollTo({
@@ -76,10 +73,9 @@ export default function Navbar() {
     })
   }, [location.pathname])
 
-
   /* =========================================================
      ACTIVE PAGES
-  ========================================================= */
+========================================================= */
 
   const isAboutPage = location.pathname === '/about'
 
@@ -91,30 +87,27 @@ export default function Navbar() {
 
   const isContactPage = location.pathname === '/contact'
 
-
   /* =========================================================
      DESKTOP ACTIVE CLASSES
-  ========================================================= */
+========================================================= */
 
   const activeClasses = (isActive) =>
     isActive
       ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
       : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
 
-
   /* =========================================================
      MOBILE ACTIVE CLASSES
-  ========================================================= */
+========================================================= */
 
   const mobileActiveClasses = (isActive) =>
     isActive
       ? 'bg-cream text-navy dark:bg-white/5 dark:text-white'
       : 'text-navy hover:bg-cream dark:text-white dark:hover:bg-white/5'
 
-
   /* =========================================================
      LOGIN
-  ========================================================= */
+========================================================= */
 
   const openLogin = () => {
     setIsNewUser(false)
@@ -124,10 +117,9 @@ export default function Navbar() {
     setResetSent(false)
   }
 
-
   /* =========================================================
      SIGNUP
-  ========================================================= */
+========================================================= */
 
   const openSignup = () => {
     setIsNewUser(true)
@@ -137,20 +129,18 @@ export default function Navbar() {
     setResetSent(false)
   }
 
-
   /* =========================================================
      CLOSE LOGIN
-  ========================================================= */
+========================================================= */
 
   const closeLogin = () => {
     setShowLogin(false)
     setShowPassword(false)
   }
 
-
   /* =========================================================
      FORGOT PASSWORD
-  ========================================================= */
+========================================================= */
 
   const openForgotPassword = () => {
     setShowLogin(false)
@@ -158,13 +148,11 @@ export default function Navbar() {
     setResetSent(false)
   }
 
-
   const closeForgotPassword = () => {
     setShowForgotPassword(false)
     setForgotEmail('')
     setResetSent(false)
   }
-
 
   const handleResetPassword = (e) => {
     e.preventDefault()
@@ -174,7 +162,6 @@ export default function Navbar() {
     setResetSent(true)
   }
 
-
   return (
     <div
       dir={isRTL ? 'rtl' : 'ltr'}
@@ -183,11 +170,26 @@ export default function Navbar() {
 
       {/* =====================================================
           MAIN NAVBAR
+
+          IMPORTANT:
+          FIXED NAVBAR — ALWAYS VISIBLE WHILE SCROLLING
       ===================================================== */}
 
       <Disclosure
         as="header"
-        className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur dark:border-border-dark dark:bg-navy-dark/95"
+        className="
+          fixed
+          inset-x-0
+          top-0
+          z-[9999]
+          w-full
+          border-b
+          border-gray-200
+          bg-white/95
+          backdrop-blur
+          dark:border-border-dark
+          dark:bg-navy-dark/95
+        "
       >
 
         {({ open, close }) => (
@@ -197,15 +199,31 @@ export default function Navbar() {
                 MAIN NAVBAR CONTAINER
             ================================================= */}
 
-            <div className="section-container flex min-h-16 items-center justify-between gap-2 py-3 sm:min-h-[72px] sm:py-4">
-
+            <div
+              className="
+                section-container
+                flex
+                min-h-16
+                items-center
+                justify-between
+                gap-2
+                py-3
+                sm:min-h-[72px]
+                sm:py-4
+              "
+            >
 
               {/* =================================================
                   LOGO
               ================================================= */}
 
               <div className="min-w-0 shrink-0">
-                <Logo />
+                <Link
+                  to="/"
+                  onClick={close}
+                >
+                  <Logo />
+                </Link>
               </div>
 
 
@@ -215,10 +233,7 @@ export default function Navbar() {
 
               <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
 
-
-                {/* =================================================
-                    HOME DROPDOWN
-                ================================================= */}
+                {/* HOME DROPDOWN */}
 
                 <Menu
                   as="div"
@@ -226,50 +241,107 @@ export default function Navbar() {
                 >
 
                   <MenuButton
-                    className={`flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
-                      isHomePage
-                    )}`}
+                    className={`
+                      flex
+                      items-center
+                      gap-1
+                      whitespace-nowrap
+                      rounded-full
+                      px-3
+                      py-2
+                      text-sm
+                      font-medium
+                      transition
+                      xl:px-4
+                      ${activeClasses(isHomePage)}
+                    `}
                   >
+
                     <span>Home</span>
 
                     <ChevronDownIcon className="h-4 w-4 shrink-0" />
+
                   </MenuButton>
 
 
                   <MenuItems
                     transition
-                    className="absolute start-0 z-50 mt-2 w-44 origin-top rounded-xl border border-gray-200 bg-white p-1 shadow-lg transition duration-150 ease-out data-closed:-translate-y-1 data-closed:opacity-0 dark:border-border-dark dark:bg-surface-dark"
+                    className="
+                      absolute
+                      start-0
+                      z-[10000]
+                      mt-2
+                      w-44
+                      origin-top
+                      rounded-xl
+                      border
+                      border-gray-200
+                      bg-white
+                      p-1
+                      shadow-lg
+                      transition
+                      duration-150
+                      ease-out
+                      data-closed:-translate-y-1
+                      data-closed:opacity-0
+                      dark:border-border-dark
+                      dark:bg-surface-dark
+                    "
                   >
 
-                    {/* Home 1 */}
+                    {/* HOME 1 */}
 
                     <MenuItem>
+
                       <Link
                         to="/"
-                        className={`block rounded-lg px-3 py-2 text-sm font-normal data-focus:bg-cream dark:data-focus:bg-white/5 ${
-                          location.pathname === '/'
-                            ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
-                            : 'text-navy dark:text-gray-200'
-                        }`}
+                        className={`
+                          block
+                          rounded-lg
+                          px-3
+                          py-2
+                          text-sm
+                          font-normal
+                          data-focus:bg-cream
+                          dark:data-focus:bg-white/5
+                          ${
+                            location.pathname === '/'
+                              ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
+                              : 'text-navy dark:text-gray-200'
+                          }
+                        `}
                       >
                         Home 1
                       </Link>
+
                     </MenuItem>
 
 
-                    {/* Home 2 */}
+                    {/* HOME 2 */}
 
                     <MenuItem>
+
                       <Link
                         to="/home-2"
-                        className={`block rounded-lg px-3 py-2 text-sm font-normal data-focus:bg-cream dark:data-focus:bg-white/5 ${
-                          location.pathname === '/home-2'
-                            ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
-                            : 'text-navy dark:text-gray-200'
-                        }`}
+                        className={`
+                          block
+                          rounded-lg
+                          px-3
+                          py-2
+                          text-sm
+                          font-normal
+                          data-focus:bg-cream
+                          dark:data-focus:bg-white/5
+                          ${
+                            location.pathname === '/home-2'
+                              ? 'bg-cream font-semibold text-navy dark:bg-white/5 dark:text-white'
+                              : 'text-navy dark:text-gray-200'
+                          }
+                        `}
                       >
                         Home 2
                       </Link>
+
                     </MenuItem>
 
                   </MenuItems>
@@ -277,60 +349,86 @@ export default function Navbar() {
                 </Menu>
 
 
-                {/* =================================================
-                    ABOUT
-                ================================================= */}
+                {/* ABOUT */}
 
                 <Link
                   to="/about"
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
-                    isAboutPage
-                  )}`}
+                  className={`
+                    whitespace-nowrap
+                    rounded-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-medium
+                    transition
+                    xl:px-4
+                    ${activeClasses(isAboutPage)}
+                  `}
                 >
                   About Us
                 </Link>
 
 
-                {/* =================================================
-                    CATEGORY
-                ================================================= */}
+                {/* CATEGORY */}
 
                 <Link
                   to="/category"
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
-                    isCategoryPage
-                  )}`}
+                  className={`
+                    whitespace-nowrap
+                    rounded-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-medium
+                    transition
+                    xl:px-4
+                    ${activeClasses(isCategoryPage)}
+                  `}
                 >
                   Category
                 </Link>
 
 
-                {/* =================================================
-                    BLOG + SERVICES
-                ================================================= */}
+                {/* BLOG + SERVICES */}
 
                 {NAV_LINKS.map((link) => (
                   <Link
                     key={link.name}
                     to={link.href}
-                    className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
-                      location.pathname === link.href
-                    )}`}
+                    className={`
+                      whitespace-nowrap
+                      rounded-full
+                      px-3
+                      py-2
+                      text-sm
+                      font-medium
+                      transition
+                      xl:px-4
+                      ${activeClasses(
+                        location.pathname === link.href
+                      )}
+                    `}
                   >
                     {link.name}
                   </Link>
                 ))}
 
 
-                {/* =================================================
-                    CONTACT
-                ================================================= */}
+                {/* CONTACT */}
 
                 <Link
                   to="/contact"
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition xl:px-4 ${activeClasses(
-                    isContactPage
-                  )}`}
+                  className={`
+                    whitespace-nowrap
+                    rounded-full
+                    px-3
+                    py-2
+                    text-sm
+                    font-medium
+                    transition
+                    xl:px-4
+                    ${activeClasses(isContactPage)}
+                  `}
                 >
                   Contact
                 </Link>
@@ -344,17 +442,27 @@ export default function Navbar() {
 
               <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
 
-
-                {/* =================================================
-                    RTL / LTR
-                ================================================= */}
+                {/* RTL / LTR */}
 
                 <button
                   type="button"
                   onClick={toggleDir}
                   aria-label="Toggle right-to-left layout"
                   title={isRTL ? 'Switch to LTR' : 'Switch to RTL'}
-                  className="flex h-10 items-center gap-1 rounded-full p-2 text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5 sm:px-2.5"
+                  className="
+                    flex
+                    h-10
+                    items-center
+                    gap-1
+                    rounded-full
+                    p-2
+                    text-navy
+                    transition
+                    hover:bg-cream
+                    dark:text-white
+                    dark:hover:bg-white/5
+                    sm:px-2.5
+                  "
                 >
 
                   <LanguageIcon className="h-5 w-5 shrink-0" />
@@ -366,15 +474,25 @@ export default function Navbar() {
                 </button>
 
 
-                {/* =================================================
-                    DARK MODE
-                ================================================= */}
+                {/* DARK MODE */}
 
                 <button
                   type="button"
                   onClick={toggleDark}
                   aria-label="Toggle dark mode"
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5"
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-full
+                    text-navy
+                    transition
+                    hover:bg-cream
+                    dark:text-white
+                    dark:hover:bg-white/5
+                  "
                 >
 
                   {dark ? (
@@ -386,14 +504,33 @@ export default function Navbar() {
                 </button>
 
 
-                {/* =================================================
-                    LOGIN
-                ================================================= */}
+                {/* LOGIN */}
 
                 <button
                   type="button"
                   onClick={openLogin}
-                  className="hidden h-10 items-center gap-2 rounded-full bg-navy px-4 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy/90 hover:shadow-lg dark:bg-yellow-400 dark:text-navy dark:hover:bg-yellow-300 lg:inline-flex xl:px-5"
+                  className="
+                    hidden
+                    h-10
+                    items-center
+                    gap-2
+                    rounded-full
+                    bg-navy
+                    px-4
+                    text-sm
+                    font-medium
+                    text-white
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
+                    hover:bg-navy/90
+                    hover:shadow-lg
+                    dark:bg-yellow-400
+                    dark:text-navy
+                    dark:hover:bg-yellow-300
+                    lg:inline-flex
+                    xl:px-5
+                  "
                 >
 
                   <UserIcon className="h-4 w-4 shrink-0" />
@@ -403,12 +540,23 @@ export default function Navbar() {
                 </button>
 
 
-                {/* =================================================
-                    MOBILE MENU BUTTON
-                ================================================= */}
+                {/* MOBILE MENU */}
 
                 <DisclosureButton
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-navy transition hover:bg-cream dark:text-white dark:hover:bg-white/5 lg:hidden"
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-full
+                    text-navy
+                    transition
+                    hover:bg-cream
+                    dark:text-white
+                    dark:hover:bg-white/5
+                    lg:hidden
+                  "
                   aria-label={
                     open ? 'Close menu' : 'Open menu'
                   }
@@ -433,120 +581,162 @@ export default function Navbar() {
 
             <DisclosurePanel
               transition
-              className="overflow-hidden border-t border-gray-200 bg-white transition duration-200 ease-out data-closed:-translate-y-2 data-closed:opacity-0 dark:border-border-dark dark:bg-navy-dark lg:hidden"
+              className="
+                overflow-hidden
+                border-t
+                border-gray-200
+                bg-white
+                transition
+                duration-200
+                ease-out
+                data-closed:-translate-y-2
+                data-closed:opacity-0
+                dark:border-border-dark
+                dark:bg-navy-dark
+                lg:hidden
+              "
             >
 
-              <div className="section-container flex flex-col gap-1 px-4 py-4 sm:px-6">
-
-
-                {/* =================================================
-                    HOME 1
-                ================================================= */}
+              <div
+                className="
+                  section-container
+                  flex
+                  flex-col
+                  gap-1
+                  px-4
+                  py-4
+                  sm:px-6
+                "
+              >
 
                 <Link
                   to="/"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    location.pathname === '/'
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(
+                      location.pathname === '/'
+                    )}
+                  `}
                 >
                   Home 1
                 </Link>
 
 
-                {/* =================================================
-                    HOME 2
-                ================================================= */}
-
                 <Link
                   to="/home-2"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    location.pathname === '/home-2'
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(
+                      location.pathname === '/home-2'
+                    )}
+                  `}
                 >
                   Home 2
                 </Link>
 
 
-                {/* =================================================
-                    ABOUT
-                ================================================= */}
-
                 <Link
                   to="/about"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    isAboutPage
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(isAboutPage)}
+                  `}
                 >
                   About Us
                 </Link>
 
 
-                {/* =================================================
-                    CATEGORY
-                ================================================= */}
-
                 <Link
                   to="/category"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    isCategoryPage
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(isCategoryPage)}
+                  `}
                 >
                   Category
                 </Link>
 
 
-                {/* =================================================
-                    BLOG
-                ================================================= */}
-
                 <Link
                   to="/blog"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    location.pathname === '/blog'
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(
+                      location.pathname === '/blog'
+                    )}
+                  `}
                 >
                   Blog
                 </Link>
 
 
-                {/* =================================================
-                    SERVICES
-                ================================================= */}
-
                 <Link
                   to="/services"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    location.pathname === '/services'
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(
+                      location.pathname === '/services'
+                    )}
+                  `}
                 >
                   Services
                 </Link>
 
 
-                {/* =================================================
-                    CONTACT
-                ================================================= */}
-
                 <Link
                   to="/contact"
                   onClick={close}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition ${mobileActiveClasses(
-                    isContactPage
-                  )}`}
+                  className={`
+                    rounded-xl
+                    px-4
+                    py-3
+                    text-sm
+                    font-medium
+                    transition
+                    ${mobileActiveClasses(isContactPage)}
+                  `}
                 >
                   Contact
                 </Link>
 
 
-                {/* =================================================
-                    MOBILE LOGIN
-                ================================================= */}
+                {/* MOBILE LOGIN */}
 
                 <button
                   type="button"
@@ -554,7 +744,27 @@ export default function Navbar() {
                     close()
                     openLogin()
                   }}
-                  className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-navy px-4 py-3 text-sm font-semibold text-white transition hover:bg-navy/90 dark:bg-yellow-400 dark:text-navy dark:hover:bg-yellow-300"
+                  className="
+                    mt-2
+                    flex
+                    min-h-11
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    bg-navy
+                    px-4
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-white
+                    transition
+                    hover:bg-navy/90
+                    dark:bg-yellow-400
+                    dark:text-navy
+                    dark:hover:bg-yellow-300
+                  "
                 >
 
                   <UserIcon className="h-4 w-4" />
@@ -574,13 +784,38 @@ export default function Navbar() {
 
 
       {/* =====================================================
+          NAVBAR SPACE
+          
+          Because navbar is fixed, reserve its height.
+      ===================================================== */}
+
+      <div className="h-[72px] w-full" />
+
+
+      {/* =====================================================
           LOGIN / SIGNUP MODAL
+          
+          ONLY THIS SECTION HAS BEEN REDUCED IN SIZE.
+          CONTENT IS KEPT.
       ===================================================== */}
 
       {showLogin && (
         <div
           dir={isRTL ? 'rtl' : 'ltr'}
-          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-navy/70 p-3 backdrop-blur-sm sm:items-center sm:p-4"
+          className="
+            fixed
+            inset-0
+            z-[10000]
+            flex
+            items-start
+            justify-center
+            overflow-y-auto
+            bg-navy/70
+            p-3
+            backdrop-blur-sm
+            sm:items-center
+            sm:p-4
+          "
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) {
               closeLogin()
@@ -589,37 +824,104 @@ export default function Navbar() {
         >
 
           <div
-            className="relative my-3 w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 text-navy shadow-2xl dark:border-white/10 dark:bg-[#111827] dark:text-white sm:my-8 sm:rounded-3xl sm:p-7 md:p-9"
+            className="
+              relative
+              my-3
+              w-full
+              max-w-sm
+              overflow-hidden
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              p-4
+              text-navy
+              shadow-2xl
+              dark:border-white/10
+              dark:bg-[#111827]
+              dark:text-white
+              sm:my-5
+              sm:rounded-2xl
+              sm:p-5
+            "
           >
+
+            {/* TOP YELLOW LINE */}
 
             <div className="absolute inset-x-0 top-0 h-1 bg-yellow-400" />
 
 
-            {/* Close */}
+            {/* CLOSE */}
 
             <button
               type="button"
               onClick={closeLogin}
               aria-label="Close login"
-              className="absolute end-3 top-3 rounded-full p-2 text-gray-500 transition hover:bg-gray-100 hover:text-navy dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white sm:end-4 sm:top-4"
+              className="
+                absolute
+                end-2.5
+                top-2.5
+                rounded-full
+                p-1.5
+                text-gray-500
+                transition
+                hover:bg-gray-100
+                hover:text-navy
+                dark:text-gray-300
+                dark:hover:bg-white/10
+                dark:hover:text-white
+              "
             >
-              <XCircleIcon className="h-6 w-6" />
+              <XCircleIcon className="h-5 w-5" />
             </button>
 
 
-            <div className="pe-8">
+            {/* HEADER */}
 
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-yellow-400 text-navy sm:mb-5 sm:h-12 sm:w-12 sm:rounded-2xl">
-                <UserIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+            <div className="pe-7">
+
+              <div
+                className="
+                  mb-3
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-yellow-400
+                  text-navy
+                "
+              >
+                <UserIcon className="h-4.5 w-4.5" />
               </div>
 
-              <h2 className="font-heading text-xl font-bold text-navy sm:text-2xl dark:text-white">
+
+              <h2
+                className="
+                  text-lg
+                  font-bold
+                  text-navy
+                  sm:text-xl
+                  dark:text-white
+                "
+              >
                 {isNewUser
                   ? 'Create your account'
                   : 'Welcome back'}
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
+
+              <p
+                className="
+                  mt-1
+                  text-xs
+                  leading-5
+                  text-gray-600
+                  sm:text-sm
+                  dark:text-gray-300
+                "
+              >
                 {isNewUser
                   ? 'Create an account to save your preferences and make shopping easier.'
                   : 'Login to your STRYDE account to continue.'}
@@ -628,47 +930,111 @@ export default function Navbar() {
             </div>
 
 
-            {/* Social Login */}
+            {/* SOCIAL LOGIN */}
 
-            <div className="mt-5 grid grid-cols-3 gap-2 sm:mt-6">
+            <div className="mt-4 grid grid-cols-3 gap-2">
 
-              {/* Google */}
+              {/* GOOGLE */}
 
               <button
                 type="button"
-                className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/10"
+                className="
+                  flex
+                  h-9
+                  items-center
+                  justify-center
+                  rounded-lg
+                  border
+                  border-gray-200
+                  bg-white
+                  text-gray-700
+                  transition
+                  hover:bg-gray-50
+                  hover:shadow-md
+                  dark:border-white/15
+                  dark:bg-white/[0.06]
+                  dark:text-white
+                  dark:hover:bg-white/10
+                "
                 aria-label="Continue with Google"
               >
-                <span className="text-lg font-bold text-[#4285F4]">
+                <span className="text-base font-bold text-[#4285F4]">
                   G
                 </span>
               </button>
 
 
-              {/* Facebook */}
+              {/* FACEBOOK */}
 
               <button
                 type="button"
-                className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/10"
+                className="
+                  flex
+                  h-9
+                  items-center
+                  justify-center
+                  rounded-lg
+                  border
+                  border-gray-200
+                  bg-white
+                  text-gray-700
+                  transition
+                  hover:bg-gray-50
+                  hover:shadow-md
+                  dark:border-white/15
+                  dark:bg-white/[0.06]
+                  dark:text-white
+                  dark:hover:bg-white/10
+                "
                 aria-label="Continue with Facebook"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1877F2] text-sm font-bold text-white">
+                <span
+                  className="
+                    flex
+                    h-5
+                    w-5
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#1877F2]
+                    text-xs
+                    font-bold
+                    text-white
+                  "
+                >
                   f
                 </span>
               </button>
 
 
-              {/* Apple */}
+              {/* APPLE */}
 
               <button
                 type="button"
-                className="flex h-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:-translate-y-0.5 hover:bg-gray-50 hover:shadow-md dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/10"
+                className="
+                  flex
+                  h-9
+                  items-center
+                  justify-center
+                  rounded-lg
+                  border
+                  border-gray-200
+                  bg-white
+                  text-gray-700
+                  transition
+                  hover:bg-gray-50
+                  hover:shadow-md
+                  dark:border-white/15
+                  dark:bg-white/[0.06]
+                  dark:text-white
+                  dark:hover:bg-white/10
+                "
                 aria-label="Continue with Apple"
               >
 
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-5 w-5 fill-current"
+                  className="h-4 w-4 fill-current"
                   aria-hidden="true"
                 >
                   <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.07-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zM12.03 7.25C11.88 5.02 13.69 3.18 15.79 3c.29 2.58-2.34 4.5-3.76 4.25z" />
@@ -679,13 +1045,23 @@ export default function Navbar() {
             </div>
 
 
-            {/* Divider */}
+            {/* DIVIDER */}
 
-            <div className="my-5 flex items-center gap-3 sm:my-6">
+            <div className="my-4 flex items-center gap-2">
 
               <div className="h-px flex-1 bg-gray-200 dark:bg-white/15" />
 
-              <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-300 sm:text-[11px]">
+              <span
+                className="
+                  whitespace-nowrap
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-gray-500
+                  dark:text-gray-300
+                "
+              >
                 Or continue with email
               </span>
 
@@ -694,24 +1070,33 @@ export default function Navbar() {
             </div>
 
 
-            {/* Login Form */}
+            {/* LOGIN FORM */}
 
             <form
-              className="space-y-4"
+              className="space-y-3"
               onSubmit={(e) => {
                 e.preventDefault()
                 closeLogin()
               }}
             >
 
-              {/* Full Name */}
+              {/* FULL NAME */}
 
               {isNewUser && (
                 <div>
 
                   <label
                     htmlFor="login-name"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-200"
+                    className="
+                      mb-1.5
+                      block
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-wider
+                      text-gray-600
+                      dark:text-gray-200
+                    "
                   >
                     Full name
                   </label>
@@ -721,20 +1106,53 @@ export default function Navbar() {
                     type="text"
                     placeholder="Your full name"
                     required
-                    className="min-h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-navy outline-none transition placeholder:text-gray-500 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-400/20 dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:placeholder:text-gray-300 dark:focus:border-yellow-400 dark:focus:bg-white/[0.08]"
+                    className="
+                      min-h-10
+                      w-full
+                      rounded-lg
+                      border
+                      border-gray-200
+                      bg-gray-50
+                      px-3
+                      py-2
+                      text-sm
+                      text-navy
+                      outline-none
+                      transition
+                      placeholder:text-gray-500
+                      focus:border-yellow-400
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-yellow-400/20
+                      dark:border-white/15
+                      dark:bg-white/[0.06]
+                      dark:text-white
+                      dark:placeholder:text-gray-300
+                      dark:focus:border-yellow-400
+                      dark:focus:bg-white/[0.08]
+                    "
                   />
 
                 </div>
               )}
 
 
-              {/* Email */}
+              {/* EMAIL */}
 
               <div>
 
                 <label
                   htmlFor="login-email"
-                  className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-200"
+                  className="
+                    mb-1.5
+                    block
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-wider
+                    text-gray-600
+                    dark:text-gray-200
+                  "
                 >
                   Email address
                 </label>
@@ -744,21 +1162,52 @@ export default function Navbar() {
                   type="email"
                   placeholder="you@example.com"
                   required
-                  className="min-h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-navy outline-none transition placeholder:text-gray-500 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-400/20 dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:placeholder:text-gray-300 dark:focus:border-yellow-400 dark:focus:bg-white/[0.08]"
+                  className="
+                    min-h-10
+                    w-full
+                    rounded-lg
+                    border
+                    border-gray-200
+                    bg-gray-50
+                    px-3
+                    py-2
+                    text-sm
+                    text-navy
+                    outline-none
+                    transition
+                    placeholder:text-gray-500
+                    focus:border-yellow-400
+                    focus:bg-white
+                    focus:ring-2
+                    focus:ring-yellow-400/20
+                    dark:border-white/15
+                    dark:bg-white/[0.06]
+                    dark:text-white
+                    dark:placeholder:text-gray-300
+                    dark:focus:border-yellow-400
+                    dark:focus:bg-white/[0.08]
+                  "
                 />
 
               </div>
 
 
-              {/* Password */}
+              {/* PASSWORD */}
 
               <div>
 
-                <div className="mb-2 flex items-center justify-between gap-2">
+                <div className="mb-1.5 flex items-center justify-between gap-2">
 
                   <label
                     htmlFor="login-password"
-                    className="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-200"
+                    className="
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-wider
+                      text-gray-600
+                      dark:text-gray-200
+                    "
                   >
                     Password
                   </label>
@@ -768,7 +1217,15 @@ export default function Navbar() {
                     <button
                       type="button"
                       onClick={openForgotPassword}
-                      className="text-xs font-semibold text-navy transition hover:text-yellow-500 dark:text-yellow-400 dark:hover:text-yellow-300"
+                      className="
+                        text-[10px]
+                        font-semibold
+                        text-navy
+                        transition
+                        hover:text-yellow-500
+                        dark:text-yellow-400
+                        dark:hover:text-yellow-300
+                      "
                     >
                       Forgot password?
                     </button>
@@ -779,14 +1236,51 @@ export default function Navbar() {
 
                 <div className="relative">
 
-                  <LockClosedIcon className="pointer-events-none absolute start-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 dark:text-gray-300" />
+                  <LockClosedIcon
+                    className="
+                      pointer-events-none
+                      absolute
+                      start-3
+                      top-1/2
+                      h-4
+                      w-4
+                      -translate-y-1/2
+                      text-gray-500
+                      dark:text-gray-300
+                    "
+                  />
 
                   <input
                     id="login-password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     required
-                    className="min-h-11 w-full rounded-xl border border-gray-200 bg-gray-50 py-3 ps-11 pe-11 text-sm text-navy outline-none transition placeholder:text-gray-500 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-400/20 dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:placeholder:text-gray-300 dark:focus:border-yellow-400 dark:focus:bg-white/[0.08]"
+                    className="
+                      min-h-10
+                      w-full
+                      rounded-lg
+                      border
+                      border-gray-200
+                      bg-gray-50
+                      py-2
+                      ps-10
+                      pe-10
+                      text-sm
+                      text-navy
+                      outline-none
+                      transition
+                      placeholder:text-gray-500
+                      focus:border-yellow-400
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-yellow-400/20
+                      dark:border-white/15
+                      dark:bg-white/[0.06]
+                      dark:text-white
+                      dark:placeholder:text-gray-300
+                      dark:focus:border-yellow-400
+                      dark:focus:bg-white/[0.08]
+                    "
                   />
 
 
@@ -805,13 +1299,31 @@ export default function Navbar() {
                         ? 'Hide password'
                         : 'Show password'
                     }
-                    className="absolute end-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-200 hover:text-navy dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white"
+                    className="
+                      absolute
+                      end-2
+                      top-1/2
+                      flex
+                      h-7
+                      w-7
+                      -translate-y-1/2
+                      items-center
+                      justify-center
+                      rounded-md
+                      text-gray-500
+                      transition
+                      hover:bg-gray-200
+                      hover:text-navy
+                      dark:text-gray-300
+                      dark:hover:bg-white/10
+                      dark:hover:text-white
+                    "
                   >
 
                     {showPassword ? (
-                      <EyeSlashIcon className="h-5 w-5" />
+                      <EyeSlashIcon className="h-4 w-4" />
                     ) : (
-                      <EyeIcon className="h-5 w-5" />
+                      <EyeIcon className="h-4 w-4" />
                     )}
 
                   </button>
@@ -821,10 +1333,10 @@ export default function Navbar() {
               </div>
 
 
-              {/* Remember Me */}
+              {/* REMEMBER ME */}
 
               {!isNewUser && (
-                <label className="flex cursor-pointer items-center gap-3 py-1">
+                <label className="flex cursor-pointer items-center gap-2 py-0.5">
 
                   <input
                     type="checkbox"
@@ -836,16 +1348,27 @@ export default function Navbar() {
                   />
 
                   <span
-                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition ${
-                      rememberMe
-                        ? 'border-yellow-400 bg-yellow-400 text-navy'
-                        : 'border-gray-300 bg-gray-50 text-transparent dark:border-gray-500 dark:bg-white/[0.06]'
-                    }`}
+                    className={`
+                      flex
+                      h-4
+                      w-4
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded
+                      border
+                      transition
+                      ${
+                        rememberMe
+                          ? 'border-yellow-400 bg-yellow-400 text-navy'
+                          : 'border-gray-300 bg-gray-50 text-transparent dark:border-gray-500 dark:bg-white/[0.06]'
+                      }
+                    `}
                   >
-                    <CheckIcon className="h-3.5 w-3.5" />
+                    <CheckIcon className="h-3 w-3" />
                   </span>
 
-                  <span className="text-sm text-gray-600 dark:text-gray-200">
+                  <span className="text-xs text-gray-600 dark:text-gray-200">
                     Remember me
                   </span>
 
@@ -853,11 +1376,31 @@ export default function Navbar() {
               )}
 
 
-              {/* Submit */}
+              {/* SUBMIT */}
 
               <button
                 type="submit"
-                className="mt-2 flex min-h-11 w-full items-center justify-center rounded-xl bg-yellow-400 px-5 py-3 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)] active:translate-y-0"
+                className="
+                  mt-1
+                  flex
+                  min-h-10
+                  w-full
+                  items-center
+                  justify-center
+                  rounded-lg
+                  bg-yellow-400
+                  px-4
+                  py-2.5
+                  text-sm
+                  font-semibold
+                  text-navy
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:bg-yellow-300
+                  hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)]
+                  active:translate-y-0
+                "
               >
                 {isNewUser ? 'Create account' : 'Login'}
               </button>
@@ -865,9 +1408,17 @@ export default function Navbar() {
             </form>
 
 
-            {/* Switch Login / Signup */}
+            {/* SWITCH LOGIN / SIGNUP */}
 
-            <div className="mt-5 text-center text-sm text-gray-600 sm:mt-6 dark:text-gray-300">
+            <div
+              className="
+                mt-4
+                text-center
+                text-xs
+                text-gray-600
+                dark:text-gray-300
+              "
+            >
 
               {isNewUser
                 ? 'Already have an account?'
@@ -882,7 +1433,19 @@ export default function Navbar() {
                     openSignup()
                   }
                 }}
-                className="ms-1 font-semibold text-navy underline decoration-yellow-400 decoration-2 underline-offset-4 transition hover:text-yellow-500 dark:text-yellow-400 dark:hover:text-yellow-300"
+                className="
+                  ms-1
+                  font-semibold
+                  text-navy
+                  underline
+                  decoration-yellow-400
+                  decoration-2
+                  underline-offset-4
+                  transition
+                  hover:text-yellow-500
+                  dark:text-yellow-400
+                  dark:hover:text-yellow-300
+                "
               >
                 {isNewUser ? 'Login' : 'Create one'}
               </button>
@@ -896,13 +1459,29 @@ export default function Navbar() {
 
 
       {/* =====================================================
-          FORGOT PASSWORD
+          FORGOT PASSWORD POPUP
+          
+          ALSO REDUCED SLIGHTLY.
+          NAVBAR IS NOT CHANGED HERE.
       ===================================================== */}
 
       {showForgotPassword && (
         <div
           dir={isRTL ? 'rtl' : 'ltr'}
-          className="fixed inset-0 z-[110] flex items-start justify-center overflow-y-auto bg-navy/70 p-3 backdrop-blur-sm sm:items-center sm:p-4"
+          className="
+            fixed
+            inset-0
+            z-[11000]
+            flex
+            items-start
+            justify-center
+            overflow-y-auto
+            bg-navy/70
+            p-3
+            backdrop-blur-sm
+            sm:items-center
+            sm:p-4
+          "
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) {
               closeForgotPassword()
@@ -910,38 +1489,104 @@ export default function Navbar() {
           }}
         >
 
-          <div className="relative my-3 w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 text-navy shadow-2xl dark:border-white/10 dark:bg-[#111827] dark:text-white sm:my-8 sm:rounded-3xl sm:p-7 md:p-9">
+          <div
+            className="
+              relative
+              my-3
+              w-full
+              max-w-sm
+              overflow-hidden
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              p-4
+              text-navy
+              shadow-2xl
+              dark:border-white/10
+              dark:bg-[#111827]
+              dark:text-white
+              sm:my-5
+              sm:p-5
+            "
+          >
+
+            {/* TOP LINE */}
 
             <div className="absolute inset-x-0 top-0 h-1 bg-yellow-400" />
 
 
-            {/* Close */}
+            {/* CLOSE */}
 
             <button
               type="button"
               onClick={closeForgotPassword}
               aria-label="Close forgot password"
-              className="absolute end-3 top-3 rounded-full p-2 text-gray-500 transition hover:bg-gray-100 hover:text-navy dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white sm:end-4 sm:top-4"
+              className="
+                absolute
+                end-2.5
+                top-2.5
+                rounded-full
+                p-1.5
+                text-gray-500
+                transition
+                hover:bg-gray-100
+                hover:text-navy
+                dark:text-gray-300
+                dark:hover:bg-white/10
+                dark:hover:text-white
+              "
             >
-              <XCircleIcon className="h-6 w-6" />
+              <XCircleIcon className="h-5 w-5" />
             </button>
 
 
             {!resetSent ? (
               <>
 
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow-400 text-navy">
-                  <LockClosedIcon className="h-6 w-6" />
+                {/* ICON */}
+
+                <div
+                  className="
+                    mb-3
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-yellow-400
+                    text-navy
+                  "
+                >
+                  <LockClosedIcon className="h-5 w-5" />
                 </div>
 
 
-                <div className="pe-8">
+                <div className="pe-7">
 
-                  <h2 className="font-heading text-xl font-bold text-navy sm:text-2xl dark:text-white">
+                  <h2
+                    className="
+                      text-lg
+                      font-bold
+                      text-navy
+                      sm:text-xl
+                      dark:text-white
+                    "
+                  >
                     Forgot your password?
                   </h2>
 
-                  <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                  <p
+                    className="
+                      mt-1
+                      text-xs
+                      leading-5
+                      text-gray-600
+                      sm:text-sm
+                      dark:text-gray-300
+                    "
+                  >
                     No worries. Enter your email address
                     and we&apos;ll send you a link to reset
                     your password.
@@ -950,16 +1595,27 @@ export default function Navbar() {
                 </div>
 
 
+                {/* RESET FORM */}
+
                 <form
                   onSubmit={handleResetPassword}
-                  className="mt-6 space-y-4"
+                  className="mt-4 space-y-3"
                 >
 
                   <div>
 
                     <label
                       htmlFor="forgot-email"
-                      className="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-200"
+                      className="
+                        mb-1.5
+                        block
+                        text-[10px]
+                        font-semibold
+                        uppercase
+                        tracking-wider
+                        text-gray-600
+                        dark:text-gray-200
+                      "
                     >
                       Email address
                     </label>
@@ -967,7 +1623,19 @@ export default function Navbar() {
 
                     <div className="relative">
 
-                      <EnvelopeIcon className="pointer-events-none absolute start-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500 dark:text-gray-300" />
+                      <EnvelopeIcon
+                        className="
+                          pointer-events-none
+                          absolute
+                          start-3
+                          top-1/2
+                          h-4
+                          w-4
+                          -translate-y-1/2
+                          text-gray-500
+                          dark:text-gray-300
+                        "
+                      />
 
                       <input
                         id="forgot-email"
@@ -979,7 +1647,32 @@ export default function Navbar() {
                         placeholder="you@example.com"
                         required
                         autoFocus
-                        className="min-h-11 w-full rounded-xl border border-gray-200 bg-gray-50 py-3 ps-11 pe-4 text-sm text-navy outline-none transition placeholder:text-gray-500 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-400/20 dark:border-white/15 dark:bg-white/[0.06] dark:text-white dark:placeholder:text-gray-300 dark:focus:border-yellow-400 dark:focus:bg-white/[0.08]"
+                        className="
+                          min-h-10
+                          w-full
+                          rounded-lg
+                          border
+                          border-gray-200
+                          bg-gray-50
+                          py-2
+                          ps-10
+                          pe-3
+                          text-sm
+                          text-navy
+                          outline-none
+                          transition
+                          placeholder:text-gray-500
+                          focus:border-yellow-400
+                          focus:bg-white
+                          focus:ring-2
+                          focus:ring-yellow-400/20
+                          dark:border-white/15
+                          dark:bg-white/[0.06]
+                          dark:text-white
+                          dark:placeholder:text-gray-300
+                          dark:focus:border-yellow-400
+                          dark:focus:bg-white/[0.08]
+                        "
                       />
 
                     </div>
@@ -987,11 +1680,31 @@ export default function Navbar() {
                   </div>
 
 
-                  {/* Send reset link */}
+                  {/* SEND RESET LINK */}
 
                   <button
                     type="submit"
-                    className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)] active:translate-y-0"
+                    className="
+                      flex
+                      min-h-10
+                      w-full
+                      items-center
+                      justify-center
+                      gap-2
+                      rounded-lg
+                      bg-yellow-400
+                      px-4
+                      py-2.5
+                      text-sm
+                      font-semibold
+                      text-navy
+                      transition-all
+                      duration-300
+                      hover:-translate-y-0.5
+                      hover:bg-yellow-300
+                      hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)]
+                      active:translate-y-0
+                    "
                   >
 
                     <EnvelopeIcon className="h-4 w-4" />
@@ -1003,12 +1716,25 @@ export default function Navbar() {
                 </form>
 
 
-                {/* Back to login */}
+                {/* BACK TO LOGIN */}
 
                 <button
                   type="button"
                   onClick={openLogin}
-                  className="mt-5 flex w-full items-center justify-center text-sm font-semibold text-navy transition hover:text-yellow-500 dark:text-yellow-400 dark:hover:text-yellow-300"
+                  className="
+                    mt-4
+                    flex
+                    w-full
+                    items-center
+                    justify-center
+                    text-xs
+                    font-semibold
+                    text-navy
+                    transition
+                    hover:text-yellow-500
+                    dark:text-yellow-400
+                    dark:hover:text-yellow-300
+                  "
                 >
                   Back to login
                 </button>
@@ -1021,20 +1747,53 @@ export default function Navbar() {
                  RESET SENT
               ================================================= */
 
-              <div className="py-3 text-center sm:py-5">
+              <div className="py-2 text-center sm:py-4">
 
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-500/10 dark:text-green-400">
-                  <CheckIcon className="h-8 w-8" />
+                <div
+                  className="
+                    mx-auto
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-green-100
+                    text-green-600
+                    dark:bg-green-500/10
+                    dark:text-green-400
+                  "
+                >
+                  <CheckIcon className="h-7 w-7" />
                 </div>
 
 
-                <h2 className="mt-5 font-heading text-xl font-bold text-navy sm:text-2xl dark:text-white">
+                <h2
+                  className="
+                    mt-4
+                    text-lg
+                    font-bold
+                    text-navy
+                    sm:text-xl
+                    dark:text-white
+                  "
+                >
                   Check your email
                 </h2>
 
 
-                <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-gray-600 dark:text-gray-300">
-
+                <p
+                  className="
+                    mx-auto
+                    mt-2
+                    max-w-sm
+                    text-xs
+                    leading-5
+                    text-gray-600
+                    sm:text-sm
+                    dark:text-gray-300
+                  "
+                >
                   We&apos;ve sent a password reset link
                   to{' '}
 
@@ -1042,11 +1801,18 @@ export default function Navbar() {
                     {forgotEmail}
                   </span>
                   .
-
                 </p>
 
 
-                <p className="mt-2 text-xs leading-5 text-gray-500 dark:text-gray-300">
+                <p
+                  className="
+                    mt-2
+                    text-[11px]
+                    leading-5
+                    text-gray-500
+                    dark:text-gray-300
+                  "
+                >
                   If you don&apos;t see the email, please
                   check your spam or junk folder.
                 </p>
@@ -1055,7 +1821,27 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={closeForgotPassword}
-                  className="mt-6 flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-yellow-400 px-5 py-3 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)]"
+                  className="
+                    mt-5
+                    flex
+                    min-h-10
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-lg
+                    bg-yellow-400
+                    px-4
+                    py-2.5
+                    text-sm
+                    font-semibold
+                    text-navy
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
+                    hover:bg-yellow-300
+                    hover:shadow-[0_8px_25px_rgba(250,204,21,0.3)]
+                  "
                 >
 
                   <ArrowPathIcon className="h-4 w-4" />

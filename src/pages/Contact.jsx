@@ -22,7 +22,7 @@ const CONTACT_INFO = [
     icon: MapPinIcon,
     title: 'Visit us',
     text: 'STRYDE Footwear Studio',
-    detail: 'Your Street Address, Chennai, Tamil Nadu, India',
+    detail: 'Your Street Address, Chennai, Tamil Nadu',
   },
   {
     icon: PhoneIcon,
@@ -840,7 +840,7 @@ export default function Contact() {
                     <br />
                     Chennai, Tamil Nadu,
                     <br />
-                    India
+                    India.
                   </p>
                 </div>
               </div>

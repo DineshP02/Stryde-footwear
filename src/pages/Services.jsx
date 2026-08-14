@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   WrenchScrewdriverIcon,
   UserGroupIcon,
@@ -103,7 +105,7 @@ const AUDIENCES = [
   {
     icon: SparklesIcon,
     title: 'Events & Launches',
-    desc: 'Need footwear for a campaign, activation, collaboration, or launch? We can help coordinate the order from start to finish.',
+    desc: 'Need footwear for a campaign, activation, collaboration, or launch? We can coordinate the order from start to finish.',
   },
 ]
 
@@ -139,6 +141,22 @@ const FAQS = [
 ========================================================= */
 
 export default function Services() {
+  const [openFaq, setOpenFaq] = useState(null)
+
+  /* =========================================================
+     FAQ CLICK HANDLER
+  ========================================================= */
+
+  const handleFaqClick = (index) => {
+    setOpenFaq((current) => {
+      if (current === index) {
+        return null
+      }
+
+      return index
+    })
+  }
+
   return (
     <>
       {/* =====================================================
@@ -198,7 +216,9 @@ export default function Services() {
       <section className="section-container pb-20 pt-20 md:pb-24 md:pt-24">
         <div className="mb-12 flex flex-col items-center border-b border-dashed border-gray-300 pb-6 text-center dark:border-border-dark">
           <div className="max-w-3xl">
-            <span className="eyebrow">Our services</span>
+            <span className="eyebrow">
+              Our services
+            </span>
 
             <h2 className="heading-lg mt-2">
               Support at every stage of ownership.
@@ -211,38 +231,112 @@ export default function Services() {
         </div>
 
         <div>
-          {SERVICES.map(({ icon: Icon, tag, title, desc }, i) => (
-            <article
-              key={title}
-              className="group relative grid grid-cols-[auto_1fr] items-start gap-x-6 gap-y-4 border-b border-dashed border-gray-300 py-8 transition-colors first:pt-0 last:border-b-0 dark:border-border-dark sm:grid-cols-[3rem_auto_1fr] sm:items-center sm:gap-x-8"
-            >
-              <span className="hidden font-mono text-xs text-gray-400 dark:text-gray-500 sm:block">
-                {String(i + 1).padStart(2, '0')}
-              </span>
+          {SERVICES.map(
+            ({ icon: Icon, tag, title, desc }, i) => (
+              <article
+                key={title}
+                className="
+                  group
+                  relative
+                  grid
+                  grid-cols-[auto_1fr]
+                  items-start
+                  gap-x-6
+                  gap-y-4
+                  border-b
+                  border-dashed
+                  border-gray-300
+                  py-8
+                  transition-colors
+                  first:pt-0
+                  last:border-b-0
+                  dark:border-border-dark
+                  sm:grid-cols-[3rem_auto_1fr]
+                  sm:items-center
+                  sm:gap-x-8
+                "
+              >
+                <span className="hidden font-mono text-xs text-gray-400 dark:text-gray-500 sm:block">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
 
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber/40 text-amber transition-colors group-hover:border-amber group-hover:bg-amber group-hover:text-navy-dark dark:text-amber-dark dark:group-hover:text-navy-dark">
-                <Icon className="h-5 w-5" />
-              </span>
+                <span
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-amber/40
+                    text-amber
+                    transition-colors
+                    group-hover:border-amber
+                    group-hover:bg-amber
+                    group-hover:text-navy-dark
+                    dark:text-amber-dark
+                    dark:group-hover:text-navy-dark
+                  "
+                >
+                  <Icon className="h-5 w-5" />
+                </span>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="max-w-md">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-amber dark:text-amber-dark">
-                    {tag}
-                  </span>
+                <div
+                  className="
+                    flex
+                    flex-col
+                    gap-3
+                    sm:min-h-[112px]
+                    sm:flex-row
+                    sm:items-center
+                    sm:justify-between
+                  "
+                >
+                  <div className="max-w-md">
+                    <span
+                      className="
+                        font-mono
+                        text-[11px]
+                        uppercase
+                        tracking-widest
+                        text-amber
+                        dark:text-amber-dark
+                      "
+                    >
+                      {tag}
+                    </span>
 
-                  <h3 className="heading-sm mt-1 !text-lg">
-                    {title}
-                  </h3>
+                    <h3 className="heading-sm mt-1 !text-lg">
+                      {title}
+                    </h3>
 
-                  <p className="body-text mt-2 text-sm">
-                    {desc}
-                  </p>
+                    <p className="body-text mt-2 text-sm">
+                      {desc}
+                    </p>
+                  </div>
+
+                  <ArrowUpRightIcon
+                    className="
+                      hidden
+                      h-5
+                      w-5
+                      shrink-0
+                      text-gray-300
+                      transition-all
+                      group-hover:-translate-y-0.5
+                      group-hover:translate-x-0.5
+                      group-hover:text-amber
+                      dark:text-gray-600
+                      dark:group-hover:text-amber-dark
+                      sm:block
+                    "
+                  />
                 </div>
-
-                <ArrowUpRightIcon className="hidden h-5 w-5 shrink-0 text-gray-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-amber dark:text-gray-600 dark:group-hover:text-amber-dark sm:block" />
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          )}
         </div>
       </section>
 
@@ -250,10 +344,22 @@ export default function Services() {
           WHY STRYDE
       ====================================================== */}
 
-      <section className="border-y border-gray-200 bg-cream py-20 dark:border-border-dark dark:bg-white/[0.03] md:py-24">
+      <section
+        className="
+          border-y
+          border-gray-200
+          bg-cream
+          py-20
+          dark:border-border-dark
+          dark:bg-white/[0.03]
+          md:py-24
+        "
+      >
         <div className="section-container">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="eyebrow">Why STRYDE</span>
+            <span className="eyebrow">
+              Why STRYDE
+            </span>
 
             <h2 className="heading-lg mt-2">
               Simple service. Thoughtful footwear.
@@ -267,42 +373,143 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-4 dark:border-border-dark dark:bg-border-dark">
+          {/* =================================================
+              EVEN 4-COLUMN CARDS
+          ================================================== */}
+
+          <div
+            className="
+              mt-12
+              grid
+              grid-cols-1
+              gap-px
+              overflow-hidden
+              border
+              border-gray-200
+              bg-gray-200
+              sm:grid-cols-2
+              lg:grid-cols-4
+              dark:border-border-dark
+              dark:bg-border-dark
+            "
+          >
             {[
               {
                 number: '01',
-                title: 'Clear communication',
-                text: 'One point of contact from enquiry through delivery.',
+                title: (
+                  <>
+                    Clear
+                    <br />
+                    communication
+                  </>
+                ),
+                text: (
+                  <>
+                    One point of contact
+                    <br />
+                    from enquiry through delivery.
+                  </>
+                ),
               },
               {
                 number: '02',
-                title: 'Flexible solutions',
-                text: 'Options built around your quantities, sizing, and requirements.',
+                title: (
+                  <>
+                    Flexible
+                    <br />
+                    solutions
+                  </>
+                ),
+                text: (
+                  <>
+                    Options built around
+                    <br />
+                    your quantities and requirements.
+                  </>
+                ),
               },
               {
                 number: '03',
-                title: 'Built for repeat orders',
-                text: 'Your specifications can be carried forward for future orders.',
+                title: (
+                  <>
+                    Built for repeat
+                    <br />
+                    orders
+                  </>
+                ),
+                text: (
+                  <>
+                    Your specifications can
+                    <br />
+                    be carried forward for future orders.
+                  </>
+                ),
               },
               {
                 number: '04',
-                title: 'Long-term care',
-                text: 'Support does not stop once your shoes arrive.',
+                title: (
+                  <>
+                    Long-term
+                    <br />
+                    care
+                  </>
+                ),
+                text: (
+                  <>
+                    Support does not stop
+                    <br />
+                    once your shoes arrive.
+                  </>
+                ),
               },
             ].map((item) => (
               <div
                 key={item.number}
-                className="bg-white p-7 dark:bg-navy-dark"
+                className="
+                  flex
+                  min-h-[180px]
+                  flex-col
+                  bg-white
+                  p-7
+                  dark:bg-navy-dark
+                "
               >
-                <span className="font-mono text-xs text-amber dark:text-amber-dark">
+                <span
+                  className="
+                    font-mono
+                    text-xs
+                    text-amber
+                    dark:text-amber-dark
+                  "
+                >
                   {item.number}
                 </span>
 
-                <h3 className="mt-5 font-heading text-lg font-semibold text-navy dark:text-white">
+                <h3
+                  className="
+                    mt-5
+                    min-h-[52px]
+                    font-heading
+                    text-lg
+                    font-semibold
+                    leading-6
+                    text-navy
+                    dark:text-white
+                  "
+                >
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                <p
+                  className="
+                    mt-3
+                    min-h-[48px]
+                    text-sm
+                    leading-6
+                    text-gray-500
+                    dark:text-gray-400
+                  "
+                >
                   {item.text}
                 </p>
               </div>
@@ -327,32 +534,106 @@ export default function Services() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {AUDIENCES.map(({ icon: Icon, title, desc }) => (
-            <article
-              key={title}
-              className="group border border-gray-200 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-amber hover:shadow-lg dark:border-border-dark"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy text-white transition-colors group-hover:bg-amber group-hover:text-navy-dark dark:bg-white/10">
-                <Icon className="h-5 w-5" />
-              </span>
-
-              <h3 className="mt-6 font-heading text-xl font-semibold text-navy dark:text-white">
-                {title}
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-gray-500 dark:text-gray-400">
-                {desc}
-              </p>
-
-              <Link
-                to="/contact"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark"
+          {AUDIENCES.map(
+            ({ icon: Icon, title, desc }) => (
+              <article
+                key={title}
+                className="
+                  group
+                  flex
+                  min-h-[390px]
+                  flex-col
+                  border
+                  border-gray-200
+                  p-7
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-amber
+                  hover:shadow-lg
+                  dark:border-border-dark
+                "
               >
-                Talk to us
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </article>
-          ))}
+                <span
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-navy
+                    text-white
+                    transition-colors
+                    group-hover:bg-amber
+                    group-hover:text-navy-dark
+                    dark:bg-white/10
+                  "
+                >
+                  <Icon className="h-5 w-5" />
+                </span>
+
+                {/* =================================================
+                    ALL TITLES = EXACTLY 2 LINES
+                ================================================== */}
+
+                <h3
+                  className="
+                    mt-6
+                    min-h-[56px]
+                    font-heading
+                    text-xl
+                    font-semibold
+                    leading-7
+                    text-navy
+                    dark:text-white
+                  "
+                >
+                  {title}
+                </h3>
+
+                {/* =================================================
+                    ALL DESCRIPTIONS = SAME HEIGHT
+                ================================================== */}
+
+                <p
+                  className="
+                    mt-3
+                    min-h-[140px]
+                    text-sm
+                    leading-7
+                    text-gray-500
+                    dark:text-gray-400
+                  "
+                >
+                  {desc}
+                </p>
+
+                <Link
+                  to="/contact"
+                  className="
+                    mt-auto
+                    inline-flex
+                    items-center
+                    gap-2
+                    pt-6
+                    text-sm
+                    font-semibold
+                    text-navy
+                    transition-colors
+                    hover:text-amber
+                    dark:text-white
+                    dark:hover:text-amber-dark
+                  "
+                >
+                  Talk to us
+
+                  <ArrowRightIcon className="h-4 w-4" />
+                </Link>
+              </article>
+            )
+          )}
         </div>
       </section>
 
@@ -372,11 +653,26 @@ export default function Services() {
             </h2>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            className="
+              mt-12
+              grid
+              grid-cols-1
+              gap-y-10
+              sm:grid-cols-2
+              lg:grid-cols-4
+            "
+          >
             {PROCESS.map((item) => (
               <div
                 key={item.step}
-                className="border-s-2 border-amber ps-5 text-center"
+                className="
+                  min-h-[190px]
+                  border-s-2
+                  border-amber
+                  ps-5
+                  text-center
+                "
               >
                 <span className="font-heading text-3xl font-bold">
                   {item.step}
@@ -386,7 +682,14 @@ export default function Services() {
                   {item.title}
                 </h3>
 
-                <p className="mt-2 text-sm leading-6 text-white/60">
+                <p
+                  className="
+                    mt-2
+                    text-sm
+                    leading-6
+                    text-white/60
+                  "
+                >
                   {item.desc}
                 </p>
               </div>
@@ -400,7 +703,15 @@ export default function Services() {
       ====================================================== */}
 
       <section className="section-container py-20 md:py-24">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-12
+            lg:grid-cols-2
+            lg:items-center
+          "
+        >
           <div>
             <span className="eyebrow">
               Designed around you
@@ -424,7 +735,25 @@ export default function Services() {
 
             <Link
               to="/contact"
-              className="mt-7 inline-flex items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber hover:text-navy-dark dark:bg-white dark:text-navy-dark dark:hover:bg-amber"
+              className="
+                mt-7
+                inline-flex
+                items-center
+                gap-2
+                rounded-lg
+                bg-navy
+                px-6
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                transition
+                hover:bg-amber
+                hover:text-navy-dark
+                dark:bg-white
+                dark:text-navy-dark
+                dark:hover:bg-amber
+              "
             >
               Discuss your requirements
 
@@ -439,14 +768,47 @@ export default function Services() {
               className="h-[420px] w-full object-cover"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-navy/70
+                via-transparent
+                to-transparent
+              "
+            />
 
-            <div className="absolute bottom-0 left-0 p-7 text-white">
-              <span className="font-mono text-xs uppercase tracking-widest text-amber">
+            <div
+              className="
+                absolute
+                bottom-0
+                left-0
+                p-7
+                text-white
+              "
+            >
+              <span
+                className="
+                  font-mono
+                  text-xs
+                  uppercase
+                  tracking-widest
+                  text-amber
+                "
+              >
                 STRYDE SERVICES
               </span>
 
-              <p className="mt-2 max-w-sm font-heading text-xl font-semibold">
+              <p
+                className="
+                  mt-2
+                  max-w-sm
+                  font-heading
+                  text-xl
+                  font-semibold
+                "
+              >
                 Practical support for footwear that works harder.
               </p>
             </div>
@@ -460,10 +822,26 @@ export default function Services() {
 
       <section
         id="enquiry"
-        className="border-y border-gray-200 bg-cream py-20 dark:border-border-dark dark:bg-white/[0.03] md:py-24"
+        className="
+          border-y
+          border-gray-200
+          bg-cream
+          py-20
+          dark:border-border-dark
+          dark:bg-white/[0.03]
+          md:py-24
+        "
       >
         <div className="section-container">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_1fr] md:items-center">
+          <div
+            className="
+              grid
+              grid-cols-1
+              gap-12
+              md:grid-cols-[1fr_1fr]
+              md:items-center
+            "
+          >
             <div>
               <span className="eyebrow">
                 Included with every service order
@@ -484,11 +862,29 @@ export default function Services() {
                     key={point}
                     className="flex items-center gap-3"
                   >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber text-navy-dark">
+                    <span
+                      className="
+                        flex
+                        h-6
+                        w-6
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-amber
+                        text-navy-dark
+                      "
+                    >
                       <CheckIcon className="h-4 w-4" />
                     </span>
 
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                    <span
+                      className="
+                        text-sm
+                        text-gray-600
+                        dark:text-gray-300
+                      "
+                    >
                       {point}
                     </span>
                   </div>
@@ -496,21 +892,67 @@ export default function Services() {
               </div>
             </div>
 
-            <div className="relative border border-navy/15 bg-white px-8 py-10 dark:border-white/10 dark:bg-white/[0.03]">
-              <div className="absolute inset-x-8 top-0 flex -translate-y-1/2 justify-between">
+            <div
+              className="
+                relative
+                border
+                border-navy/15
+                bg-white
+                px-8
+                py-10
+                dark:border-white/10
+                dark:bg-white/[0.03]
+              "
+            >
+              <div
+                className="
+                  absolute
+                  inset-x-8
+                  top-0
+                  flex
+                  -translate-y-1/2
+                  justify-between
+                "
+              >
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span
                     key={i}
-                    className="h-3 w-3 rounded-full border-2 border-amber bg-cream dark:bg-navy-dark"
+                    className="
+                      h-3
+                      w-3
+                      rounded-full
+                      border-2
+                      border-amber
+                      bg-cream
+                      dark:bg-navy-dark
+                    "
                   />
                 ))}
               </div>
 
-              <span className="font-mono text-[11px] uppercase tracking-widest text-amber dark:text-amber-dark">
+              <span
+                className="
+                  font-mono
+                  text-[11px]
+                  uppercase
+                  tracking-widest
+                  text-amber
+                  dark:text-amber-dark
+                "
+              >
                 Next step
               </span>
 
-              <h3 className="mt-2 font-heading text-xl font-semibold text-navy dark:text-white">
+              <h3
+                className="
+                  mt-2
+                  font-heading
+                  text-xl
+                  font-semibold
+                  text-navy
+                  dark:text-white
+                "
+              >
                 Ready to get started?
               </h3>
 
@@ -521,7 +963,19 @@ export default function Services() {
 
               <Link
                 to="/contact"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark"
+                className="
+                  mt-6
+                  inline-flex
+                  items-center
+                  gap-2
+                  text-sm
+                  font-semibold
+                  text-navy
+                  transition-colors
+                  hover:text-amber
+                  dark:text-white
+                  dark:hover:text-amber-dark
+                "
               >
                 Contact our services team
 
@@ -539,8 +993,17 @@ export default function Services() {
       <section className="section-container py-20 md:py-24">
         <div className="mx-auto max-w-4xl">
           <div className="text-center">
-            <span className="eyebrow inline-flex items-center justify-center gap-2">
+            <span
+              className="
+                eyebrow
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+              "
+            >
               <QuestionMarkCircleIcon className="h-4 w-4" />
+
               Questions & Enquiries
             </span>
 
@@ -548,47 +1011,219 @@ export default function Services() {
               Before you enquire.
             </h2>
 
-            <p className="body-text mx-auto mt-5 max-w-2xl">
+            <p
+              className="
+                body-text
+                mx-auto
+                mt-5
+                max-w-2xl
+              "
+            >
               Still unsure which service is right for you? Browse the
               questions below or get in touch with our team.
             </p>
           </div>
 
-          <div className="mt-12 overflow-hidden border-y border-gray-200 dark:border-border-dark">
-            {FAQS.map((faq, index) => (
-              <details
-                key={faq.question}
-                className="group border-b border-gray-200 last:border-b-0 dark:border-border-dark"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-2 py-6 text-left font-heading text-base font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber-dark">
-                  <span className="flex items-center gap-4">
-                    <span className="font-mono text-xs font-normal text-amber dark:text-amber-dark">
-                      {String(index + 1).padStart(2, '0')}
+          <div
+            className="
+              mt-12
+              overflow-hidden
+              border-y
+              border-gray-200
+              dark:border-border-dark
+            "
+          >
+            {FAQS.map((faq, index) => {
+              const isOpen = openFaq === index
+
+              return (
+                <div
+                  key={faq.question}
+                  className="
+                    border-b
+                    border-gray-200
+                    last:border-b-0
+                    dark:border-border-dark
+                  "
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleFaqClick(index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                    className="
+                      flex
+                      w-full
+                      cursor-pointer
+                      list-none
+                      items-center
+                      justify-between
+                      gap-6
+                      px-2
+                      py-6
+                      text-left
+                      font-heading
+                      text-base
+                      font-semibold
+                      text-navy
+                      transition-colors
+                      hover:text-amber
+                      dark:text-white
+                      dark:hover:text-amber-dark
+                    "
+                  >
+                    <span className="flex items-center gap-4">
+                      <span
+                        className="
+                          font-mono
+                          text-xs
+                          font-normal
+                          text-amber
+                          dark:text-amber-dark
+                        "
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+
+                      <span>
+                        {faq.question}
+                      </span>
                     </span>
 
-                    <span>{faq.question}</span>
-                  </span>
+                    <span
+                      className={`
+                        relative
+                        flex
+                        h-8
+                        w-8
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        transition-all
+                        duration-300
 
-                  <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-all duration-300 group-open:border-amber group-open:bg-amber group-open:text-navy-dark dark:border-border-dark dark:text-gray-400 dark:group-open:border-amber-dark dark:group-open:bg-amber-dark dark:group-open:text-navy-dark">
-                    <span className="absolute h-px w-3 bg-current" />
+                        ${
+                          isOpen
+                            ? `
+                              border-amber
+                              bg-amber
+                              text-navy-dark
+                            `
+                            : `
+                              border-gray-300
+                              text-gray-500
+                            `
+                        }
 
-                    <span className="absolute h-3 w-px bg-current transition-transform duration-300 group-open:rotate-90" />
-                  </span>
-                </summary>
+                        dark:border-border-dark
+                        dark:text-gray-400
 
-                <div className="overflow-hidden px-2 pb-6 ps-[3.25rem] sm:px-4 sm:ps-[4.5rem]">
-                  <p className="max-w-2xl text-sm leading-7 text-gray-500 dark:text-gray-400">
-                    {faq.answer}
-                  </p>
+                        ${
+                          isOpen
+                            ? `
+                              dark:border-amber-dark
+                              dark:bg-amber-dark
+                              dark:text-navy-dark
+                            `
+                            : ''
+                        }
+                      `}
+                    >
+                      <span
+                        className="
+                          absolute
+                          h-px
+                          w-3
+                          bg-current
+                        "
+                      />
+
+                      <span
+                        className={`
+                          absolute
+                          h-3
+                          w-px
+                          bg-current
+                          transition-transform
+                          duration-300
+                          ${
+                            isOpen
+                              ? 'rotate-90'
+                              : 'rotate-0'
+                          }
+                        `}
+                      />
+                    </span>
+                  </button>
+
+                  <div
+                    id={`faq-answer-${index}`}
+                    className={`
+                      grid
+                      transition-all
+                      duration-300
+                      ease-in-out
+
+                      ${
+                        isOpen
+                          ? 'grid-rows-[1fr] opacity-100'
+                          : 'grid-rows-[0fr] opacity-0'
+                      }
+                    `}
+                  >
+                    <div className="overflow-hidden">
+                      <div
+                        className="
+                          overflow-hidden
+                          px-2
+                          pb-6
+                          ps-[3.25rem]
+                          sm:px-4
+                          sm:ps-[4.5rem]
+                        "
+                      >
+                        <p
+                          className="
+                            max-w-2xl
+                            text-sm
+                            leading-7
+                            text-gray-500
+                            dark:text-gray-400
+                          "
+                        >
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </details>
-            ))}
+              )
+            })}
           </div>
 
           <div className="mt-10 text-center">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber hover:text-navy-dark dark:bg-white dark:text-navy-dark dark:hover:bg-amber"
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-lg
+                bg-navy
+                px-6
+                py-3
+                text-sm
+                font-semibold
+                text-white
+                transition-colors
+                hover:bg-amber
+                hover:text-navy-dark
+                dark:bg-white
+                dark:text-navy-dark
+                dark:hover:bg-amber
+              "
             >
               Ask our team
 
@@ -613,15 +1248,37 @@ export default function Services() {
               Have a footwear requirement?
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/60">
+            <p
+              className="
+                mx-auto
+                mt-5
+                max-w-2xl
+                text-base
+                leading-7
+                text-white/60
+              "
+            >
               Tell us what you are planning, how many pairs you need, and
               when you need them. We will take it from there.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div
+              className="
+                mt-8
+                flex
+                flex-wrap
+                justify-center
+                gap-3
+              "
+            >
               <Link
                 to="/contact"
-                className="btn-primary !bg-amber !text-navy-dark hover:!bg-amber-dark"
+                className="
+                  btn-primary
+                  !bg-amber
+                  !text-navy-dark
+                  hover:!bg-amber-dark
+                "
               >
                 Start an enquiry
 
@@ -630,7 +1287,13 @@ export default function Services() {
 
               <Link
                 to="/shop"
-                className="btn-secondary !border-white/20 !text-white hover:!bg-white hover:!text-navy-dark"
+                className="
+                  btn-secondary
+                  !border-white/20
+                  !text-white
+                  hover:!bg-white
+                  hover:!text-navy-dark
+                "
               >
                 Explore footwear
               </Link>
