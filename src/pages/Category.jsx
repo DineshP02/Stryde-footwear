@@ -39,6 +39,7 @@ import menSport3 from '../images/men sports 3.jpg'
 
 import womenCasual1 from '../images/women causal 1.jpg'
 import womenCasual3 from '../images/womens causal 3.webp'
+import womenCasual2 from '../images/women causal 2.jpg'
 
 import womenFormal1 from '../images/women formal 1.jpg'
 import womenFormal2 from '../images/women formal 2.webp'
@@ -117,7 +118,7 @@ const PRODUCTS_BY_TYPE = {
     },
     {
       id: 'women-casual-2',
-      img: womenCasual1,
+      img: womenCasual2,
       audience: 'Women',
       brand: 'STRIDER',
       name: 'Canvas Slip',
