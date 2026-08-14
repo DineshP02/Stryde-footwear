@@ -248,6 +248,8 @@ export default function Home1() {
 
         <div className="section-container">
 
+          {/* CENTERED SHOP BY CATEGORY HEADER */}
+
           <div className="mx-auto mb-10 max-w-3xl text-center">
 
             <span className="inline-flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-amber-dark">
@@ -383,13 +385,9 @@ export default function Home1() {
 
       <section className="section-container py-20">
 
-        <div
-          className={`mx-auto flex max-w-3xl flex-col ${
-            isRTL
-              ? 'items-end text-right'
-              : 'items-start text-left'
-          }`}
-        >
+        {/* CENTERED WELCOME TO STRYDE SECTION */}
+
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
 
           <span className="eyebrow">
             Welcome to STRYDE
@@ -399,7 +397,7 @@ export default function Home1() {
             Shoes made for real life.
           </h2>
 
-          <p className="body-text mt-5 max-w-2xl leading-relaxed">
+          <p className="body-text mx-auto mt-5 max-w-2xl leading-relaxed">
             We believe good footwear should look right, feel right, and keep
             up with the way you live. STRYDE brings together dependable
             everyday styles, refined formal footwear, and performance-ready
@@ -408,20 +406,14 @@ export default function Home1() {
 
           <Link
             to="/about"
-            className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber ${
-              isRTL ? 'flex-row-reverse' : 'flex-row'
-            }`}
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-amber dark:text-white dark:hover:text-amber"
           >
 
             <span>
               Learn more about us
             </span>
 
-            <ArrowRightIcon
-              className={`h-4 w-4 ${
-                isRTL ? 'rotate-180' : ''
-              }`}
-            />
+            <ArrowRightIcon className="h-4 w-4" />
 
           </Link>
 
@@ -440,11 +432,9 @@ export default function Home1() {
 
         <div className="section-container">
 
-          <div
-            className={`mx-auto mb-12 max-w-3xl ${
-              isRTL ? 'text-right' : 'text-left'
-            }`}
-          >
+          {/* CENTERED CATEGORY HEADER */}
+
+          <div className="mx-auto mb-12 max-w-3xl text-center">
 
             <span className="eyebrow">
               Shop by category
@@ -454,7 +444,7 @@ export default function Home1() {
               Find the pair that fits your day.
             </h2>
 
-            <p className="body-text mt-4 max-w-xl">
+            <p className="body-text mx-auto mt-4 max-w-xl">
               From relaxed weekends to important meetings, explore footwear
               designed for different moments and different ways of moving.
             </p>
@@ -686,11 +676,9 @@ export default function Home1() {
 
       <section className="section-container py-20">
 
-        <div
-          className={`mx-auto mb-12 max-w-3xl ${
-            isRTL ? 'text-right' : 'text-left'
-          }`}
-        >
+        {/* CENTERED WHY STRYDE HEADER */}
+
+        <div className="mx-auto mb-12 max-w-3xl text-center">
 
           <span className="eyebrow">
             Why STRYDE
@@ -704,13 +692,6 @@ export default function Home1() {
 
         {/* =====================================================
             FOUR COLUMN RESPONSIVE LAYOUT
-
-            768px+  = 4 columns
-            Laptop  = 4 columns
-            Desktop = 4 columns
-
-            The text stays NORMAL text-sm.
-            No tiny 11px text.
         ===================================================== */}
 
         <div className="grid grid-cols-1 divide-y divide-gray-200 dark:divide-border-dark md:grid-cols-4 md:divide-x md:divide-y-0">

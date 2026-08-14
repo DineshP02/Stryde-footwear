@@ -412,9 +412,10 @@ export default function Category() {
   /* =========================================================
      SIZE SELECT
      
-     IMPORTANT:
-     No scroll is performed here.
-     Selecting a size keeps the user in the same position.
+     Clicking a size:
+     1. Selects the size.
+     2. Moves smoothly to the selection section.
+     3. The selection section animates upward.
   ========================================================= */
 
   const handleSizeSelect = (productId, size) => {
@@ -422,6 +423,17 @@ export default function Category() {
       id: productId,
       size,
     })
+
+    setShowOrderPopup(false)
+
+    setTimeout(() => {
+      document
+        .getElementById('selected-shoe-section')
+        ?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+    }, 100)
   }
 
   /* =========================================================
@@ -500,14 +512,7 @@ export default function Category() {
       "
     >
       {/* =====================================================
-          TABLET GRID FIX
-          
-          768px - 1023px:
-          2 columns, but if the last product is alone,
-          center it.
-
-          1024px+:
-          Normal 3-column layout.
+          CUSTOM ANIMATIONS + TABLET GRID FIX
       ===================================================== */}
 
       <style>{`
@@ -516,6 +521,22 @@ export default function Category() {
             grid-column: 1 / -1;
             justify-self: center;
           }
+        }
+
+        @keyframes selectionSlideUp {
+          0% {
+            opacity: 0;
+            transform: translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .selection-slide-up {
+          animation: selectionSlideUp 0.45s ease-out;
         }
       `}</style>
 
@@ -831,16 +852,6 @@ export default function Category() {
 
         {/* =====================================================
             PRODUCT GRID
-
-            MOBILE:
-            1 column
-
-            TABLET:
-            2 columns
-            Last product centered if alone
-
-            LAPTOP/DESKTOP:
-            3 columns
         ===================================================== */}
 
         <div
@@ -866,9 +877,7 @@ export default function Category() {
                   max-w-[285px]
                 "
               >
-                {/* =================================================
-                    PRODUCT IMAGE
-                ================================================= */}
+                {/* PRODUCT IMAGE */}
 
                 <div
                   className={`
@@ -948,9 +957,7 @@ export default function Category() {
                   )}
                 </div>
 
-                {/* =================================================
-                    PRODUCT INFORMATION
-                ================================================= */}
+                {/* PRODUCT INFORMATION */}
 
                 <div className="mt-4">
                   <div className="flex items-start justify-between gap-4">
@@ -977,9 +984,7 @@ export default function Category() {
                     </p>
                   </div>
 
-                  {/* =================================================
-                      SIZE SELECT
-                  ================================================= */}
+                  {/* SIZE SELECT */}
 
                   <div className="mt-5">
                     <div className="flex items-center justify-between">
@@ -1055,11 +1060,16 @@ export default function Category() {
 
         {/* =====================================================
             SELECTED SHOE / ORDER SECTION
+
+            SIZE CLICK NOW SCROLLS HERE + SLIDE ANIMATION
         ===================================================== */}
 
         {selectedProduct && (
           <section
+            id="selected-shoe-section"
+            key={`${selectedProduct.id}-${selected.size}`}
             className="
+              selection-slide-up
               mt-12
               scroll-mt-24
             "

@@ -453,7 +453,10 @@ export default function Contact() {
       ========================================================= */}
 
       <section className="section-container py-20 md:py-24">
-        <div className="max-w-2xl">
+
+        {/* CENTERED REACH OUT HEADER */}
+
+        <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">
             Reach out
           </span>
@@ -462,7 +465,7 @@ export default function Contact() {
             However you prefer to connect.
           </h2>
 
-          <p className="body-text mt-5">
+          <p className="body-text mx-auto mt-5">
             Whether you want to visit us, send an email, make a quick call,
             or find us in person, choose whatever works best for you.
           </p>
@@ -489,8 +492,7 @@ export default function Contact() {
                   {item.title}
                 </h3>
 
-                {/* MAIN CONTACT TEXT
-                    This comes FIRST for Call us and Opening hours */}
+                {/* MAIN CONTACT TEXT */}
 
                 {item.title === 'Email us' ? (
                   <a
@@ -512,8 +514,7 @@ export default function Contact() {
                   </p>
                 )}
 
-                {/* POINT
-                    This comes AFTER the main text */}
+                {/* POINT */}
 
                 {item.point && (
                   <p className="mt-1 text-xs font-medium leading-5 text-gray-500 dark:text-gray-400">
