@@ -122,6 +122,28 @@ export default function Home1() {
     <div dir={isRTL ? 'rtl' : 'ltr'}>
 
       {/* =========================================================
+          TABLET GRID FIX
+      ========================================================= */}
+
+      <style>{`
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .shop-for-tablet-grid > :last-child {
+            grid-column: 1 / -1;
+            width: calc((100% - 0.75rem) / 2);
+            justify-self: center;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .shop-for-tablet-grid > :last-child {
+            grid-column: auto;
+            width: auto;
+            justify-self: stretch;
+          }
+        }
+      `}</style>
+
+      {/* =========================================================
           HERO
       ========================================================= */}
 
@@ -216,19 +238,15 @@ export default function Home1() {
           </div>
 
         </div>
-
       </section>
 
-
       {/* =========================================================
-          SHOP FOR — STATIC THREE CARDS
+          SHOP FOR
       ========================================================= */}
 
       <section className="overflow-hidden bg-[#f7f3ec] py-20 dark:bg-[#111827]">
 
         <div className="section-container">
-
-          {/* CENTERED HEADER */}
 
           <div className="mx-auto mb-10 max-w-3xl text-center">
 
@@ -259,10 +277,16 @@ export default function Home1() {
 
           </div>
 
-
-          {/* THREE STATIC CARDS */}
-
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="
+              shop-for-tablet-grid
+              grid
+              grid-cols-1
+              gap-3
+              md:grid-cols-2
+              lg:grid-cols-3
+            "
+          >
 
             {SHOP_FOR.map((item) => (
 
@@ -271,8 +295,6 @@ export default function Home1() {
                 to={item.to}
                 className="group relative block overflow-hidden rounded-[1.5rem] bg-white dark:bg-white/[0.04]"
               >
-
-                {/* IMAGE */}
 
                 <div className="relative aspect-[4/5] overflow-hidden">
 
@@ -283,23 +305,15 @@ export default function Home1() {
                     loading="lazy"
                   />
 
-                  {/* IMAGE OVERLAY */}
-
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent" />
-
-                  {/* NUMBER */}
 
                   <span className="absolute left-5 top-5 font-heading text-5xl font-black italic leading-none text-white/80">
                     {item.number}
                   </span>
 
-                  {/* COLLECTION LABEL */}
-
                   <span className="absolute right-5 top-5 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-md">
                     Collection
                   </span>
-
-                  {/* TEXT */}
 
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
 
@@ -324,7 +338,6 @@ export default function Home1() {
         </div>
 
       </section>
-
 
       {/* =========================================================
           SPOTLIGHT
@@ -363,7 +376,6 @@ export default function Home1() {
         </div>
 
       </section>
-
 
       {/* =========================================================
           INTRODUCTION
@@ -417,7 +429,6 @@ export default function Home1() {
 
       </section>
 
-
       {/* =========================================================
           CATEGORIES
       ========================================================= */}
@@ -449,12 +460,6 @@ export default function Home1() {
             </p>
 
           </div>
-
-
-          {/* =====================================================
-              CATEGORY CARDS
-              Explore collection -> /category
-          ===================================================== */}
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
 
@@ -512,9 +517,6 @@ export default function Home1() {
                     {category.desc}
                   </p>
 
-
-                  {/* EXPLORE COLLECTION */}
-
                   <span
                     className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${
                       isRTL
@@ -547,7 +549,6 @@ export default function Home1() {
 
       </section>
 
-
       {/* =========================================================
           FEATURE HIGHLIGHT
       ========================================================= */}
@@ -576,7 +577,6 @@ export default function Home1() {
 
             </div>
 
-
             <div className="relative flex justify-center py-6 md:py-0">
 
               {feature?.img && (
@@ -592,7 +592,6 @@ export default function Home1() {
               )}
 
             </div>
-
 
             <div
               className={`${
@@ -610,7 +609,6 @@ export default function Home1() {
             </div>
 
           </div>
-
 
           {FEATURE_HIGHLIGHTS.length > 0 && (
 
@@ -637,7 +635,6 @@ export default function Home1() {
 
               </button>
 
-
               <div
                 className={`flex gap-1.5 ${
                   isRTL ? 'flex-row-reverse' : ''
@@ -658,7 +655,6 @@ export default function Home1() {
                 ))}
 
               </div>
-
 
               <button
                 type="button"
@@ -684,7 +680,6 @@ export default function Home1() {
 
       </section>
 
-
       {/* =========================================================
           WHY STRYDE
       ========================================================= */}
@@ -707,34 +702,54 @@ export default function Home1() {
 
         </div>
 
+        {/* =====================================================
+            FOUR COLUMN RESPONSIVE LAYOUT
 
-        <div className="grid grid-cols-1 divide-y divide-gray-200 dark:divide-border-dark sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+            768px+  = 4 columns
+            Laptop  = 4 columns
+            Desktop = 4 columns
+
+            The text stays NORMAL text-sm.
+            No tiny 11px text.
+        ===================================================== */}
+
+        <div className="grid grid-cols-1 divide-y divide-gray-200 dark:divide-border-dark md:grid-cols-4 md:divide-x md:divide-y-0">
 
           {displayedValueProps.map(
             ({ icon: Icon, title, desc }, index) => (
 
               <div
                 key={title}
-                className={`flex flex-col gap-3 py-6 sm:px-6 sm:py-0 ${
+                className={`flex min-w-0 flex-col gap-3 py-6 md:py-0 ${
                   isRTL
                     ? 'items-end text-right'
                     : 'items-start text-left'
                 } ${
                   index === 0
                     ? isRTL
-                      ? 'sm:pe-0'
-                      : 'sm:ps-0'
+                      ? 'md:pe-0'
+                      : 'md:ps-0'
                     : ''
+                } ${
+                  index > 0
+                    ? 'md:px-3 lg:px-4'
+                    : 'md:pe-3 lg:pe-4'
                 }`}
               >
 
-                <Icon className="h-7 w-7 text-amber dark:text-amber-dark" />
+                {/* ICON */}
 
-                <h3 className="heading-sm !text-base">
+                <Icon className="h-7 w-7 shrink-0 text-amber dark:text-amber-dark" />
+
+                {/* TITLE */}
+
+                <h3 className="heading-sm !text-base whitespace-nowrap">
                   {title}
                 </h3>
 
-                <p className="body-text text-sm">
+                {/* DESCRIPTION */}
+
+                <p className="body-text text-sm leading-5">
                   {desc}
                 </p>
 
@@ -746,7 +761,6 @@ export default function Home1() {
         </div>
 
       </section>
-
 
       {/* =========================================================
           BRAND STRIP
@@ -767,7 +781,6 @@ export default function Home1() {
             </h2>
 
           </div>
-
 
           <div
             className={`mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 ${
@@ -791,7 +804,6 @@ export default function Home1() {
         </div>
 
       </section>
-
 
       {/* =========================================================
           TESTIMONIAL
@@ -827,7 +839,6 @@ export default function Home1() {
 
           </div>
 
-
           {quote && (
 
             <div
@@ -841,7 +852,6 @@ export default function Home1() {
               <p className="font-heading text-2xl leading-snug text-navy dark:text-white sm:text-3xl">
                 “{quote.quote}”
               </p>
-
 
               <div
                 className={`mt-6 flex items-center gap-3 ${
@@ -870,7 +880,6 @@ export default function Home1() {
 
                 )}
 
-
                 <div
                   className={
                     isRTL
@@ -890,7 +899,6 @@ export default function Home1() {
                 </div>
 
               </div>
-
 
               {TESTIMONIALS.length > 0 && (
 
@@ -919,7 +927,6 @@ export default function Home1() {
 
                   </button>
 
-
                   <div
                     className={`flex gap-1.5 ${
                       isRTL ? 'flex-row-reverse' : ''
@@ -940,7 +947,6 @@ export default function Home1() {
                     ))}
 
                   </div>
-
 
                   <button
                     type="button"
@@ -969,7 +975,6 @@ export default function Home1() {
         </div>
 
       </section>
-
 
       {/* =========================================================
           FINAL CTA
@@ -1009,7 +1014,6 @@ export default function Home1() {
               </p>
 
             </div>
-
 
             <Link
               to="/home-2"

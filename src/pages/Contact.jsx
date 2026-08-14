@@ -21,14 +21,15 @@ const CONTACT_INFO = [
   {
     icon: MapPinIcon,
     title: 'Visit us',
-    text: 'STRYDE Footwear Studio',
+    text: 'STRYDE Footwear ',
     detail: 'Your Street Address, Chennai, Tamil Nadu',
   },
   {
     icon: PhoneIcon,
     title: 'Call us',
     text: '+91 98765 43210',
-    detail: 'Mon–Sat, 9:00 AM–6:00 PM',
+    point: 'Speak with our team.',
+    detail: ' 9:00 AM–6:00 PM',
   },
   {
     icon: EnvelopeIcon,
@@ -40,6 +41,7 @@ const CONTACT_INFO = [
     icon: ClockIcon,
     title: 'Opening hours',
     text: 'Monday – Saturday',
+    point: 'We are open six days a week',
     detail: '9:00 AM – 6:00 PM',
   },
 ]
@@ -170,16 +172,12 @@ export default function Contact() {
 
     setReviews((prev) => [newReview, ...prev])
 
-    /* Reset form */
-
     setReviewForm({
       name: '',
       profession: '',
       review: '',
       rating: 1,
     })
-
-    /* Open customer reviews */
 
     setIsReviewsOpen(true)
   }
@@ -302,8 +300,6 @@ export default function Contact() {
                   aria-label="Contact support illustration"
                   role="img"
                 >
-                  {/* Soft background circle */}
-
                   <circle
                     cx="200"
                     cy="150"
@@ -481,13 +477,20 @@ export default function Contact() {
                 key={item.title}
                 className="group rounded-2xl border border-gray-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-amber hover:shadow-lg dark:border-border-dark dark:bg-white/[0.03]"
               >
+                {/* ICON */}
+
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber text-navy">
                   <Icon className="h-5 w-5" />
                 </div>
 
+                {/* TITLE */}
+
                 <h3 className="heading-sm mt-5 !text-lg">
                   {item.title}
                 </h3>
+
+                {/* MAIN CONTACT TEXT
+                    This comes FIRST for Call us and Opening hours */}
 
                 {item.title === 'Email us' ? (
                   <a
@@ -508,6 +511,17 @@ export default function Contact() {
                     {item.text}
                   </p>
                 )}
+
+                {/* POINT
+                    This comes AFTER the main text */}
+
+                {item.point && (
+                  <p className="mt-1 text-xs font-medium leading-5 text-gray-500 dark:text-gray-400">
+                    {item.point}
+                  </p>
+                )}
+
+                {/* DETAIL */}
 
                 <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                   {item.detail}
@@ -543,9 +557,7 @@ export default function Contact() {
             </p>
           </div>
 
-          {/* =================================================
-              REVIEW FORM - ALWAYS OPEN
-          ================================================= */}
+          {/* REVIEW FORM */}
 
           <div className="mx-auto max-w-3xl">
             <div className="border border-gray-200 bg-white p-6 shadow-sm dark:border-border-dark dark:bg-navy-dark md:p-8">
@@ -679,9 +691,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* =================================================
-              REVIEW DROPDOWN
-          ================================================= */}
+          {/* REVIEW DROPDOWN */}
 
           <div className="mx-auto mt-10 max-w-4xl">
             <button

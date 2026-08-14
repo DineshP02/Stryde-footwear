@@ -55,12 +55,12 @@ const PROCESS = [
   {
     step: '01',
     title: 'Tell us what you need',
-    desc: 'Share your quantities, sizing spread, and any custom requirements through the enquiry form.',
+    desc: 'Share your quantities and any custom requirements through the enquiry form.',
   },
   {
     step: '02',
     title: 'Get a tailored quote',
-    desc: 'Our team responds within one business day with pricing, timelines, and material options.',
+    desc: 'Our team responds within one business day with pricing and material options.',
   },
   {
     step: '03',
@@ -94,18 +94,57 @@ const INCLUDED = [
 const AUDIENCES = [
   {
     icon: BuildingOffice2Icon,
-    title: 'Businesses & Teams',
-    desc: 'Create a consistent footwear solution for employees, hospitality teams, retail staff, or corporate events.',
+    title: (
+      <>
+        Businesses &<br />
+        Teams
+      </>
+    ),
+    desc: (
+      <>
+        Create a consistent footwear solution for
+        <br className="hidden lg:block" />
+        employees, hospitality teams, retail staff,
+        <br className="hidden lg:block" />
+        or corporate events.
+      </>
+    ),
   },
   {
     icon: ShoppingBagIcon,
-    title: 'Retail & Resellers',
-    desc: 'Build a footwear assortment around your customers with flexible quantities, selected colourways, and reliable fulfilment.',
+    title: (
+      <>
+        Retail &<br />
+        Resellers
+      </>
+    ),
+    desc: (
+      <>
+        Build a footwear assortment around your
+        <br className="hidden lg:block" />
+        customers with flexible quantities, selected
+        <br className="hidden lg:block" />
+        colourways, and reliable fulfilment.
+      </>
+    ),
   },
   {
     icon: SparklesIcon,
-    title: 'Events & Launches',
-    desc: 'Need footwear for a campaign, activation, collaboration, or launch? We can coordinate the order from start to finish.',
+    title: (
+      <>
+        Events &<br />
+        Launches
+      </>
+    ),
+    desc: (
+      <>
+        Need footwear for a campaign, activation,
+        <br className="hidden lg:block" />
+        collaboration, or launch? We can coordinate
+        <br className="hidden lg:block" />
+        the order from start to finish.
+      </>
+    ),
   },
 ]
 
@@ -142,10 +181,6 @@ const FAQS = [
 
 export default function Services() {
   const [openFaq, setOpenFaq] = useState(null)
-
-  /* =========================================================
-     FAQ CLICK HANDLER
-  ========================================================= */
 
   const handleFaqClick = (index) => {
     setOpenFaq((current) => {
@@ -356,6 +391,9 @@ export default function Services() {
         "
       >
         <div className="section-container">
+
+          {/* HEADING - ALWAYS CENTERED */}
+
           <div className="mx-auto max-w-3xl text-center">
             <span className="eyebrow">
               Why STRYDE
@@ -374,7 +412,7 @@ export default function Services() {
           </div>
 
           {/* =================================================
-              EVEN 4-COLUMN CARDS
+              FIXED 4-COLUMN GRID
           ================================================== */}
 
           <div
@@ -393,127 +431,203 @@ export default function Services() {
               dark:bg-border-dark
             "
           >
-            {[
-              {
-                number: '01',
-                title: (
-                  <>
-                    Clear
-                    <br />
-                    communication
-                  </>
-                ),
-                text: (
-                  <>
-                    One point of contact
-                    <br />
-                    from enquiry through delivery.
-                  </>
-                ),
-              },
-              {
-                number: '02',
-                title: (
-                  <>
-                    Flexible
-                    <br />
-                    solutions
-                  </>
-                ),
-                text: (
-                  <>
-                    Options built around
-                    <br />
-                    your quantities and requirements.
-                  </>
-                ),
-              },
-              {
-                number: '03',
-                title: (
-                  <>
-                    Built for repeat
-                    <br />
-                    orders
-                  </>
-                ),
-                text: (
-                  <>
-                    Your specifications can
-                    <br />
-                    be carried forward for future orders.
-                  </>
-                ),
-              },
-              {
-                number: '04',
-                title: (
-                  <>
-                    Long-term
-                    <br />
-                    care
-                  </>
-                ),
-                text: (
-                  <>
-                    Support does not stop
-                    <br />
-                    once your shoes arrive.
-                  </>
-                ),
-              },
-            ].map((item) => (
-              <div
-                key={item.number}
+
+            {/* 01 */}
+
+            <div
+              className="
+                flex
+                min-h-[190px]
+                flex-col
+                bg-white
+                p-7
+                dark:bg-navy-dark
+              "
+            >
+              <span className="font-mono text-xs text-amber dark:text-amber-dark">
+                01
+              </span>
+
+              <h3
                 className="
-                  flex
-                  min-h-[180px]
-                  flex-col
-                  bg-white
-                  p-7
-                  dark:bg-navy-dark
+                  mt-5
+                  min-h-[48px]
+                  font-heading
+                  text-lg
+                  font-semibold
+                  leading-6
+                  text-navy
+                  dark:text-white
                 "
               >
-                <span
-                  className="
-                    font-mono
-                    text-xs
-                    text-amber
-                    dark:text-amber-dark
-                  "
-                >
-                  {item.number}
-                </span>
+                Clear
+                <br />
+                communication
+              </h3>
 
-                <h3
-                  className="
-                    mt-5
-                    min-h-[52px]
-                    font-heading
-                    text-lg
-                    font-semibold
-                    leading-6
-                    text-navy
-                    dark:text-white
-                  "
-                >
-                  {item.title}
-                </h3>
+              <p
+                className="
+                  mt-3
+                  min-h-[48px]
+                  text-sm
+                  leading-6
+                  text-gray-500
+                  dark:text-gray-400
+                "
+              >
+                One point of contact
+                <br />
+                from enquiry through delivery.
+              </p>
+            </div>
 
-                <p
-                  className="
-                    mt-3
-                    min-h-[48px]
-                    text-sm
-                    leading-6
-                    text-gray-500
-                    dark:text-gray-400
-                  "
-                >
-                  {item.text}
-                </p>
-              </div>
-            ))}
+            {/* 02 */}
+
+            <div
+              className="
+                flex
+                min-h-[190px]
+                flex-col
+                bg-white
+                p-7
+                dark:bg-navy-dark
+              "
+            >
+              <span className="font-mono text-xs text-amber dark:text-amber-dark">
+                02
+              </span>
+
+              <h3
+                className="
+                  mt-5
+                  min-h-[48px]
+                  font-heading
+                  text-lg
+                  font-semibold
+                  leading-6
+                  text-navy
+                  dark:text-white
+                "
+              >
+                Flexible
+                <br />
+                solutions
+              </h3>
+
+              <p
+                className="
+                  mt-3
+                  min-h-[48px]
+                  text-sm
+                  leading-6
+                  text-gray-500
+                  dark:text-gray-400
+                "
+              >
+                Options built around
+                <br />
+                your quantities and requirements.
+              </p>
+            </div>
+
+            {/* 03 */}
+
+            <div
+              className="
+                flex
+                min-h-[190px]
+                flex-col
+                bg-white
+                p-7
+                dark:bg-navy-dark
+              "
+            >
+              <span className="font-mono text-xs text-amber dark:text-amber-dark">
+                03
+              </span>
+
+              <h3
+                className="
+                  mt-5
+                  min-h-[48px]
+                  font-heading
+                  text-lg
+                  font-semibold
+                  leading-6
+                  text-navy
+                  dark:text-white
+                "
+              >
+                Built for repeat
+                <br />
+                orders
+              </h3>
+
+              <p
+                className="
+                  mt-3
+                  min-h-[48px]
+                  text-sm
+                  leading-6
+                  text-gray-500
+                  dark:text-gray-400
+                "
+              >
+                Your specifications can
+                <br />
+                be carried  for future orders.
+              </p>
+            </div>
+
+            {/* 04 */}
+
+            <div
+              className="
+                flex
+                min-h-[190px]
+                flex-col
+                bg-white
+                p-7
+                dark:bg-navy-dark
+              "
+            >
+              <span className="font-mono text-xs text-amber dark:text-amber-dark">
+                04
+              </span>
+
+              <h3
+                className="
+                  mt-5
+                  min-h-[48px]
+                  font-heading
+                  text-lg
+                  font-semibold
+                  leading-6
+                  text-navy
+                  dark:text-white
+                "
+              >
+                Long-term
+                <br />
+                care
+              </h3>
+
+              <p
+                className="
+                  mt-3
+                  min-h-[48px]
+                  text-sm
+                  leading-6
+                  text-gray-500
+                  dark:text-gray-400
+                "
+              >
+                Support does not stop
+                <br />
+                once your shoes arrive.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
@@ -523,17 +637,36 @@ export default function Services() {
       ====================================================== */}
 
       <section className="section-container py-20 md:py-24">
-        <div className="mx-auto max-w-2xl text-center">
+
+        {/* ALWAYS CENTERED */}
+
+        <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">
             Built for different needs
           </span>
 
-          <h2 className="heading-lg mt-2">
-            One service team. Different ways to work together.
+          <h2 className="heading-lg mx-auto mt-2 max-w-2xl">
+            One service team.
+            <br />
+            Different ways to work together.
           </h2>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* MOBILE = 1
+            TABLET/DESKTOP = 3 */}
+
+        <div
+          className="
+            mx-auto
+            mt-12
+            grid
+            w-full
+            max-w-5xl
+            grid-cols-1
+            gap-6
+            md:grid-cols-3
+          "
+        >
           {AUDIENCES.map(
             ({ icon: Icon, title, desc }) => (
               <article
@@ -574,10 +707,6 @@ export default function Services() {
                   <Icon className="h-5 w-5" />
                 </span>
 
-                {/* =================================================
-                    ALL TITLES = EXACTLY 2 LINES
-                ================================================== */}
-
                 <h3
                   className="
                     mt-6
@@ -592,10 +721,6 @@ export default function Services() {
                 >
                   {title}
                 </h3>
-
-                {/* =================================================
-                    ALL DESCRIPTIONS = SAME HEIGHT
-                ================================================== */}
 
                 <p
                   className="
@@ -642,7 +767,9 @@ export default function Services() {
       ====================================================== */}
 
       <section className="bg-navy py-20 text-white dark:bg-black/40 md:py-24">
+
         <div className="section-container">
+
           <div className="mx-auto max-w-3xl text-center">
             <span className="eyebrow !text-amber-dark">
               How it works
@@ -682,14 +809,7 @@ export default function Services() {
                   {item.title}
                 </h3>
 
-                <p
-                  className="
-                    mt-2
-                    text-sm
-                    leading-6
-                    text-white/60
-                  "
-                >
+                <p className="mt-2 text-sm leading-6 text-white/60">
                   {item.desc}
                 </p>
               </div>
@@ -703,6 +823,7 @@ export default function Services() {
       ====================================================== */}
 
       <section className="section-container py-20 md:py-24">
+
         <div
           className="
             grid
@@ -712,6 +833,7 @@ export default function Services() {
             lg:items-center
           "
         >
+
           <div>
             <span className="eyebrow">
               Designed around you
@@ -762,6 +884,7 @@ export default function Services() {
           </div>
 
           <div className="relative overflow-hidden rounded-2xl">
+
             <img
               src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1200&q=80"
               alt="STRYDE footwear"
@@ -813,6 +936,7 @@ export default function Services() {
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -833,6 +957,7 @@ export default function Services() {
         "
       >
         <div className="section-container">
+
           <div
             className="
               grid
@@ -842,7 +967,9 @@ export default function Services() {
               md:items-center
             "
           >
+
             <div>
+
               <span className="eyebrow">
                 Included with every service order
               </span>
@@ -857,6 +984,7 @@ export default function Services() {
               </p>
 
               <div className="mt-7 space-y-3">
+
                 {INCLUDED.map((point) => (
                   <div
                     key={point}
@@ -878,17 +1006,12 @@ export default function Services() {
                       <CheckIcon className="h-4 w-4" />
                     </span>
 
-                    <span
-                      className="
-                        text-sm
-                        text-gray-600
-                        dark:text-gray-300
-                      "
-                    >
+                    <span className="text-sm text-gray-600 dark:text-gray-300">
                       {point}
                     </span>
                   </div>
                 ))}
+
               </div>
             </div>
 
@@ -904,6 +1027,7 @@ export default function Services() {
                 dark:bg-white/[0.03]
               "
             >
+
               <div
                 className="
                   absolute
@@ -982,6 +1106,7 @@ export default function Services() {
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>
+
           </div>
         </div>
       </section>
@@ -991,8 +1116,11 @@ export default function Services() {
       ====================================================== */}
 
       <section className="section-container py-20 md:py-24">
+
         <div className="mx-auto max-w-4xl">
+
           <div className="text-center">
+
             <span
               className="
                 eyebrow
@@ -1003,7 +1131,6 @@ export default function Services() {
               "
             >
               <QuestionMarkCircleIcon className="h-4 w-4" />
-
               Questions & Enquiries
             </span>
 
@@ -1033,7 +1160,9 @@ export default function Services() {
               dark:border-border-dark
             "
           >
+
             {FAQS.map((faq, index) => {
+
               const isOpen = openFaq === index
 
               return (
@@ -1046,6 +1175,7 @@ export default function Services() {
                     dark:border-border-dark
                   "
                 >
+
                   <button
                     type="button"
                     onClick={() => handleFaqClick(index)}
@@ -1072,7 +1202,9 @@ export default function Services() {
                       dark:hover:text-amber-dark
                     "
                   >
+
                     <span className="flex items-center gap-4">
+
                       <span
                         className="
                           font-mono
@@ -1088,6 +1220,7 @@ export default function Services() {
                       <span>
                         {faq.question}
                       </span>
+
                     </span>
 
                     <span
@@ -1131,6 +1264,7 @@ export default function Services() {
                         }
                       `}
                     >
+
                       <span
                         className="
                           absolute
@@ -1155,7 +1289,9 @@ export default function Services() {
                           }
                         `}
                       />
+
                     </span>
+
                   </button>
 
                   <div
@@ -1173,7 +1309,9 @@ export default function Services() {
                       }
                     `}
                   >
+
                     <div className="overflow-hidden">
+
                       <div
                         className="
                           overflow-hidden
@@ -1184,6 +1322,7 @@ export default function Services() {
                           sm:ps-[4.5rem]
                         "
                       >
+
                         <p
                           className="
                             max-w-2xl
@@ -1195,15 +1334,21 @@ export default function Services() {
                         >
                           {faq.answer}
                         </p>
+
                       </div>
+
                     </div>
+
                   </div>
+
                 </div>
               )
             })}
+
           </div>
 
           <div className="mt-10 text-center">
+
             <Link
               to="/contact"
               className="
@@ -1229,7 +1374,9 @@ export default function Services() {
 
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
+
           </div>
+
         </div>
       </section>
 
@@ -1238,8 +1385,11 @@ export default function Services() {
       ====================================================== */}
 
       <section className="bg-navy py-20 text-white md:py-24">
+
         <div className="section-container">
+
           <div className="mx-auto max-w-3xl text-center">
+
             <span className="eyebrow !text-amber-dark">
               Let&apos;s work together
             </span>
@@ -1271,6 +1421,7 @@ export default function Services() {
                 gap-3
               "
             >
+
               <Link
                 to="/contact"
                 className="
@@ -1297,7 +1448,9 @@ export default function Services() {
               >
                 Explore footwear
               </Link>
+
             </div>
+
           </div>
         </div>
       </section>
