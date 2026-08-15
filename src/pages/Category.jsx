@@ -465,7 +465,7 @@ const STANDARD_STEPS = [
 ========================================================= */
 
 const CONTAINER =
-  'mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12'
+  'mx-auto w-full max-w-[1360px] px-4 sm:px-6 md:px-8 lg:px-12'
 
 /* =========================================================
    COMPONENT
@@ -644,6 +644,36 @@ export default function Category() {
         .tray-in {
           animation: trayIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
+
+        /* =====================================================
+           RESPONSIVE SAFETY
+        ===================================================== */
+
+        @media (max-width: 374px) {
+          .category-style-button {
+            padding-left: 0.55rem !important;
+            padding-right: 0.55rem !important;
+            font-size: 9px !important;
+          }
+
+          .category-style-button svg {
+            width: 0.7rem !important;
+            height: 0.7rem !important;
+          }
+
+          .audience-button {
+            padding-left: 0.65rem !important;
+            padding-right: 0.65rem !important;
+            font-size: 8px !important;
+          }
+        }
+
+        @media (min-width: 375px) and (max-width: 639px) {
+          .category-style-button {
+            padding-left: 0.7rem !important;
+            padding-right: 0.7rem !important;
+          }
+        }
       `}</style>
 
       {/* =====================================================
@@ -652,7 +682,7 @@ export default function Category() {
 
       <section className="relative overflow-hidden">
         <div
-          className="relative flex min-h-[560px] w-full items-center bg-cover bg-center md:min-h-[92vh] md:max-h-[820px]"
+          className="relative flex min-h-[500px] w-full items-center bg-cover bg-center sm:min-h-[540px] md:min-h-[72vh] md:max-h-[820px] lg:min-h-[92vh]"
           style={{
             backgroundImage: `url(${menSport1})`,
           }}
@@ -661,29 +691,31 @@ export default function Category() {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10" />
 
-          <div className={`relative z-10 py-24 ${CONTAINER}`}>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#C49A3A]/50 bg-black/30 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.32em] text-[#D6B45A] backdrop-blur-sm">
+          <div
+            className={`relative z-10 py-16 sm:py-20 md:py-24 ${CONTAINER}`}
+          >
+            <p className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-[#C49A3A]/50 bg-black/30 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.24em] text-[#D6B45A] backdrop-blur-sm sm:mb-5 sm:px-4 sm:text-[11px] sm:tracking-[0.32em]">
               New Season Arrivals
             </p>
 
-            <h1 className="font-display max-w-3xl text-6xl font-normal uppercase leading-[0.95] text-white sm:text-7xl md:text-8xl">
+            <h1 className="font-display max-w-3xl text-5xl font-normal uppercase leading-[0.95] text-white sm:text-7xl md:text-8xl">
               Step into
               <span className="block text-[#C49A3A]">
                 Comfort.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-md text-base leading-7 text-white/80 md:text-lg">
+            <p className="mt-5 max-w-md text-sm leading-6 text-white/80 sm:mt-6 sm:text-base sm:leading-7 md:text-lg">
               From street-ready sneakers to boardroom-sharp formals —
               shoes for men, women and kids, tested on real streets
               before they ever reach yours.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 xs:flex-row sm:flex-row">
+            <div className="mt-7 flex w-full flex-col gap-3 sm:mt-9 sm:flex-row">
               <button
                 type="button"
                 onClick={scrollToGrid}
-                className="w-full rounded-full bg-[#C49A3A] px-8 py-3.5 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-all duration-200 hover:bg-[#b48a2e] hover:shadow-xl sm:w-auto"
+                className="w-full rounded-full bg-[#C49A3A] px-7 py-3.5 text-sm font-semibold text-black shadow-lg shadow-black/20 transition-all duration-200 hover:bg-[#b48a2e] hover:shadow-xl sm:w-auto sm:px-8"
               >
                 Shop the Collection
               </button>
@@ -691,20 +723,20 @@ export default function Category() {
               <button
                 type="button"
                 onClick={scrollToNewsletter}
-                className="w-full rounded-full border border-white/40 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/20 sm:w-auto"
+                className="w-full rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:border-white hover:bg-white/20 sm:w-auto sm:px-8"
               >
                 Get 10% Off First Order
               </button>
             </div>
 
-            <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-white/15 pt-6">
+            <div className="mt-10 flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-5 sm:mt-14 sm:gap-x-10 sm:pt-6">
               {HERO_STATS.map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-display text-3xl text-white md:text-4xl">
+                  <p className="font-display text-2xl text-white sm:text-3xl md:text-4xl">
                     {stat.value}
                   </p>
 
-                  <p className="text-xs uppercase tracking-wide text-white/60">
+                  <p className="text-[10px] uppercase tracking-wide text-white/60 sm:text-xs">
                     {stat.label}
                   </p>
                 </div>
@@ -716,21 +748,21 @@ export default function Category() {
 
       {/* =====================================================
           CATEGORY BAR
-          
-          NOT STICKY ON ANY SCREEN SIZE
+          NOT STICKY
       ===================================================== */}
 
       <div className="relative z-30 border-b border-black/5 bg-[#EDE7DA]/90 backdrop-blur-md dark:border-white/5 dark:bg-navy-dark/90">
         <div
-          className={`${CONTAINER} flex flex-col items-center gap-3 py-4`}
+          className={`${CONTAINER} flex flex-col items-center gap-2.5 py-3 sm:gap-3 sm:py-4`}
         >
 
           {/* =================================================
               ROW 1 - CASUAL / FORMAL / SPORTS
+              ALWAYS ONE ROW ON MOBILE
           ================================================= */}
 
           <div
-            className="flex w-full flex-wrap items-center justify-center gap-2"
+            className="flex w-full flex-nowrap items-center justify-center gap-1 sm:gap-2"
             role="tablist"
             aria-label="Shoe style"
           >
@@ -745,11 +777,14 @@ export default function Category() {
                   aria-selected={isActive}
                   onClick={() => handleTypeChange(item.key)}
                   className={`
-                    flex shrink-0 items-center justify-center gap-1.5
+                    category-style-button
+                    flex shrink-0 items-center justify-center gap-1
                     rounded-xl border
-                    px-3 py-2
-                    text-[11px] font-semibold uppercase tracking-wide
+                    px-2 py-1.5
+                    text-[10px] font-semibold uppercase tracking-wide
                     transition-all duration-200
+                    min-[375px]:px-2.5
+                    min-[375px]:text-[10px]
                     sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm
                     ${
                       isActive
@@ -761,12 +796,12 @@ export default function Category() {
                   <svg
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="h-3.5 w-3.5 opacity-80 sm:h-4 sm:w-4"
+                    className="h-3 w-3 shrink-0 opacity-80 sm:h-4 sm:w-4"
                   >
                     {item.icon}
                   </svg>
 
-                  {item.label}
+                  <span>{item.label}</span>
                 </button>
               )
             })}
@@ -774,10 +809,10 @@ export default function Category() {
 
           {/* =================================================
               ROW 2 - MEN / WOMEN / KIDS
-              MOBILE SIZE REDUCED ONLY
+              CENTERED ON ALL SCREEN SIZES
           ================================================= */}
 
-          <div className="flex items-center justify-center">
+          <div className="flex w-full items-center justify-center">
             <div className="flex items-center justify-center gap-0.5 rounded-full border border-black/10 bg-white/70 p-0.5 dark:border-white/10 dark:bg-slate-800/70">
 
               {AUDIENCES.map((a) => {
@@ -789,10 +824,13 @@ export default function Category() {
                     type="button"
                     onClick={() => handleAudienceChange(a)}
                     className={`
+                      audience-button
                       rounded-full
-                      px-2.5 py-1
-                      text-[9px] font-semibold uppercase tracking-wide
+                      px-2 py-1
+                      text-[8px] font-semibold uppercase tracking-wide
                       transition-all duration-200
+                      min-[375px]:px-2.5
+                      min-[375px]:text-[9px]
                       sm:px-4 sm:py-1.5 sm:text-xs
                       ${
                         isActive
@@ -816,24 +854,24 @@ export default function Category() {
           PAGE BODY
       ===================================================== */}
 
-      <div className={`${CONTAINER} py-10 md:py-14`}>
+      <div className={`${CONTAINER} py-8 sm:py-10 md:py-14`}>
 
         <div
           ref={gridRef}
-          className="mb-8 scroll-mt-24 text-center"
+          className="mb-7 scroll-mt-20 text-center sm:mb-8"
         >
           <div className="flex flex-col items-center gap-3">
             <div>
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-[#C49A3A]">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.25em] text-[#C49A3A] sm:text-xs sm:tracking-[0.3em]">
                 STRYDE Collection
               </p>
 
-              <h2 className="font-display text-4xl uppercase text-black md:text-5xl dark:text-white">
+              <h2 className="font-display text-3xl uppercase text-black sm:text-4xl md:text-5xl dark:text-white">
                 {type} · {audience}
               </h2>
             </div>
 
-            <p className="max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-400">
+            <p className="max-w-sm text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6 dark:text-slate-400">
               {products.length}{' '}
               {products.length === 1 ? 'pair' : 'pairs'} in this
               view. Pick a size to add it to your fitting tray.
@@ -842,7 +880,7 @@ export default function Category() {
         </div>
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product) => {
               const productSelected =
                 selected && selected.id === product.id
@@ -866,48 +904,48 @@ export default function Category() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
 
-                    <span className="absolute right-3 top-3 z-10 rounded-full bg-black/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white">
+                    <span className="absolute right-2.5 top-2.5 z-10 rounded-full bg-black/85 px-2 py-1 text-[9px] font-semibold uppercase tracking-wide text-white sm:right-3 sm:top-3 sm:px-2.5 sm:text-[10px]">
                       {product.audience}
                     </span>
 
                     {product.tag && (
-                      <span className="absolute left-3 top-3 z-10 rounded-full bg-[#C49A3A] px-3 py-1.5 text-[11px] font-bold text-black shadow-sm">
+                      <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-[#C49A3A] px-2.5 py-1 text-[10px] font-bold text-black shadow-sm sm:left-3 sm:top-3 sm:px-3 sm:py-1.5 sm:text-[11px]">
                         {product.tag}
                       </span>
                     )}
                   </div>
 
-                  <div className="flex flex-1 flex-col p-4">
+                  <div className="flex flex-1 flex-col p-3.5 sm:p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="truncate text-[11px] uppercase tracking-[0.12em] text-slate-400 dark:text-slate-500">
+                        <p className="truncate text-[10px] uppercase tracking-[0.1em] text-slate-400 sm:text-[11px] sm:tracking-[0.12em] dark:text-slate-500">
                           {product.brand}
                         </p>
 
-                        <h3 className="mt-1 truncate font-semibold text-black dark:text-white">
+                        <h3 className="mt-1 truncate text-sm font-semibold text-black sm:text-base dark:text-white">
                           {product.name}
                         </h3>
                       </div>
 
-                      <p className="whitespace-nowrap font-semibold text-black dark:text-white">
+                      <p className="whitespace-nowrap text-sm font-semibold text-black sm:text-base dark:text-white">
                         ${product.price}
                       </p>
                     </div>
 
                     <div className="mt-4">
-                      <div className="flex items-center justify-between">
-                        <p className="text-[11px] uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[10px] uppercase tracking-wide text-slate-400 sm:text-[11px] dark:text-slate-500">
                           Size
                         </p>
 
                         {productSelected && (
-                          <p className="text-[11px] font-medium text-[#A47D21] dark:text-[#D6B45A]">
+                          <p className="truncate text-[10px] font-medium text-[#A47D21] sm:text-[11px] dark:text-[#D6B45A]">
                             {selected.size} selected
                           </p>
                         )}
                       </div>
 
-                      <div className="mt-2 grid grid-cols-3 gap-2">
+                      <div className="mt-2 grid grid-cols-3 gap-1.5 sm:gap-2">
                         {sizes.map((size) => {
                           const isActive =
                             productSelected &&
@@ -921,7 +959,7 @@ export default function Category() {
                                 handleSizeSelect(product.id, size)
                               }
                               className={`
-                                h-10 rounded-lg border text-sm font-medium transition-all duration-200
+                                h-9 rounded-lg border text-xs font-medium transition-all duration-200 sm:h-10 sm:text-sm
                                 ${
                                   isActive
                                     ? 'border-black bg-black text-white shadow-md dark:border-white dark:bg-white dark:text-black'
@@ -941,7 +979,7 @@ export default function Category() {
             })}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-black/15 py-20 text-center dark:border-white/15">
+          <div className="rounded-2xl border border-dashed border-black/15 py-16 text-center sm:py-20 dark:border-white/15">
             <p className="text-lg font-semibold text-black dark:text-white">
               No products found
             </p>
@@ -957,19 +995,19 @@ export default function Category() {
           OUR CRAFT
       ===================================================== */}
 
-      <section className={`${CONTAINER} mt-16`}>
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+      <section className={`${CONTAINER} mt-12 sm:mt-16`}>
+        <div className="grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-2">
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C49A3A]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#C49A3A] sm:text-xs sm:tracking-[0.3em]">
               Since 2014
             </p>
 
-            <h2 className="font-display mt-3 text-4xl uppercase leading-[0.95] text-black dark:text-white md:text-5xl">
+            <h2 className="font-display mt-3 text-3xl uppercase leading-[0.95] text-black sm:text-4xl md:text-5xl dark:text-white">
               Built by people who actually walk to work
             </h2>
 
-            <p className="mt-5 text-base leading-7 text-slate-600 dark:text-slate-400">
+            <p className="mt-5 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7 dark:text-slate-400">
               STRYDE started in a two-person workshop testing soles on
               the same cracked pavement every single day. That habit
               never left us — every prototype still does a month on
@@ -978,7 +1016,7 @@ export default function Category() {
               mile 20, not just mile one.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+            <div className="mt-7 flex flex-wrap gap-x-8 gap-y-5 sm:mt-8 sm:gap-x-10">
               {[
                 {
                   value: '180+',
@@ -994,11 +1032,11 @@ export default function Category() {
                 },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="font-display text-3xl text-black dark:text-white">
+                  <p className="font-display text-2xl text-black sm:text-3xl dark:text-white">
                     {stat.value}
                   </p>
 
-                  <p className="max-w-[9rem] text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  <p className="max-w-[9rem] text-[10px] uppercase tracking-wide text-slate-500 sm:text-xs dark:text-slate-400">
                     {stat.label}
                   </p>
                 </div>
@@ -1010,15 +1048,15 @@ export default function Category() {
             <img
               src={menSport1}
               alt="A pair of STRYDE shoes being tested outdoors"
-              className="h-72 w-full object-cover opacity-90 transition-transform duration-700 hover:scale-105 md:h-96"
+              className="h-64 w-full object-cover opacity-90 transition-transform duration-700 hover:scale-105 sm:h-72 md:h-96"
             />
 
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 sm:p-6">
               <p className="text-sm font-medium text-white/90">
                 "We don't ship a shoe until it's failed on our own feet first."
               </p>
 
-              <p className="mt-1 text-xs uppercase tracking-wide text-white/60">
+              <p className="mt-1 text-[10px] uppercase tracking-wide text-white/60 sm:text-xs">
                 — STRYDE Design Team
               </p>
             </div>
@@ -1031,10 +1069,10 @@ export default function Category() {
           THE FINER DETAILS
       ===================================================== */}
 
-      <section className={`${CONTAINER} mt-16`}>
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+      <section className={`${CONTAINER} mt-12 sm:mt-16`}>
+        <div className="grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-2">
 
-          <div className="mx-auto flex h-72 w-72 items-center justify-center rounded-full border-4 border-[#C49A3A] p-2 shadow-lg shadow-black/10 sm:h-80 sm:w-80 md:h-96 md:w-96">
+          <div className="mx-auto flex h-64 w-64 items-center justify-center rounded-full border-4 border-[#C49A3A] p-2 shadow-lg shadow-black/10 sm:h-80 sm:w-80 md:h-96 md:w-96">
             <img
               src={menFormal3}
               alt="Close-up of hand-finished STRYDE stitching and sole detail"
@@ -1043,15 +1081,15 @@ export default function Category() {
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C49A3A]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#C49A3A] sm:text-xs sm:tracking-[0.3em]">
               The Finer Details
             </p>
 
-            <h2 className="font-display mt-3 text-4xl uppercase leading-[0.95] text-black dark:text-white md:text-5xl">
+            <h2 className="font-display mt-3 text-3xl uppercase leading-[0.95] text-black sm:text-4xl md:text-5xl dark:text-white">
               Craft you can feel in every stitch
             </h2>
 
-            <p className="mt-5 text-base leading-7 text-slate-600 dark:text-slate-400">
+            <p className="mt-5 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7 dark:text-slate-400">
               We believe a shoe should be as considered on the inside
               as it is on the outside. Every seam is hand-checked,
               every sole is heat-pressed for even flex, and every
@@ -1059,7 +1097,7 @@ export default function Category() {
               wear, not just one season.
             </p>
 
-            <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-400">
+            <p className="mt-4 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7 dark:text-slate-400">
               From the first cut of leather to the final polish, our
               finishing team inspects each pair by hand before it ever
               reaches a box. That's the difference between a shoe that
@@ -1070,7 +1108,7 @@ export default function Category() {
             <button
               type="button"
               onClick={scrollToGrid}
-              className="mt-7 inline-flex items-center gap-3 rounded-full border border-[#A47D21] px-6 py-3 text-sm font-semibold text-[#7C5C16] transition-all duration-200 hover:bg-[#A47D21] hover:text-white dark:border-[#D6B45A] dark:text-[#D6B45A] dark:hover:bg-[#D6B45A] dark:hover:text-black"
+              className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#A47D21] px-5 py-2.5 text-sm font-semibold text-[#7C5C16] transition-all duration-200 hover:bg-[#A47D21] hover:text-white sm:mt-7 sm:px-6 sm:py-3 dark:border-[#D6B45A] dark:text-[#D6B45A] dark:hover:bg-[#D6B45A] dark:hover:text-black"
             >
               See the collection
               <span className="text-lg">→</span>
@@ -1084,24 +1122,24 @@ export default function Category() {
           THE STRYDE STANDARD
       ===================================================== */}
 
-      <section className={`${CONTAINER} mt-20`}>
-        <div className="overflow-hidden rounded-[32px] border border-[#C49A3A]/30 bg-[#F5EAD2] px-6 py-12 dark:border-[#C49A3A]/20 dark:bg-[#252B2A] md:px-14 md:py-14">
+      <section className={`${CONTAINER} mt-16 sm:mt-20`}>
+        <div className="overflow-hidden rounded-[28px] border border-[#C49A3A]/30 bg-[#F5EAD2] px-5 py-10 sm:rounded-[32px] sm:px-6 sm:py-12 md:px-14 md:py-14 dark:border-[#C49A3A]/20 dark:bg-[#252B2A]">
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.5fr] lg:items-center">
+          <div className="grid grid-cols-1 gap-9 sm:gap-12 lg:grid-cols-[0.9fr_1.5fr] lg:items-center">
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#A47D21] dark:text-[#D6B45A]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#A47D21] sm:text-xs sm:tracking-[0.3em] dark:text-[#D6B45A]">
                 The STRYDE Standard
               </p>
 
-              <h2 className="font-display mt-4 text-5xl uppercase leading-[0.95] text-[#252525] dark:text-white">
+              <h2 className="font-display mt-4 text-4xl uppercase leading-[0.95] text-[#252525] sm:text-5xl dark:text-white">
                 Designed around
                 <span className="block text-[#A47D21] dark:text-[#D6B45A]">
                   real life.
                 </span>
               </h2>
 
-              <p className="mt-5 max-w-lg text-sm leading-7 text-slate-600 dark:text-slate-300">
+              <p className="mt-5 max-w-lg text-sm leading-6 text-slate-600 sm:leading-7 dark:text-slate-300">
                 We believe a great shoe should disappear into your day.
                 No unnecessary details. No complicated choices. Just
                 comfort, confidence and thoughtful design from the
@@ -1111,7 +1149,7 @@ export default function Category() {
               <button
                 type="button"
                 onClick={scrollToGrid}
-                className="mt-7 inline-flex items-center gap-3 rounded-full border border-[#A47D21] px-6 py-3 text-sm font-semibold text-[#7C5C16] transition-all duration-200 hover:bg-[#A47D21] hover:text-white dark:border-[#D6B45A] dark:text-[#D6B45A] dark:hover:bg-[#D6B45A] dark:hover:text-black"
+                className="mt-6 inline-flex items-center gap-3 rounded-full border border-[#A47D21] px-5 py-2.5 text-sm font-semibold text-[#7C5C16] transition-all duration-200 hover:bg-[#A47D21] hover:text-white sm:mt-7 sm:px-6 sm:py-3 dark:border-[#D6B45A] dark:text-[#D6B45A] dark:hover:bg-[#D6B45A] dark:hover:text-black"
               >
                 Explore the collection
                 <span className="text-lg">→</span>
@@ -1123,11 +1161,11 @@ export default function Category() {
               {STANDARD_STEPS.map((step) => (
                 <div
                   key={step.title}
-                  className="rounded-2xl border border-[#A47D21]/25 bg-white/40 p-5 dark:border-white/15 dark:bg-white/5"
+                  className="rounded-2xl border border-[#A47D21]/25 bg-white/40 p-4 sm:p-5 dark:border-white/15 dark:bg-white/5"
                 >
                   <h3
                     className="
-                      text-lg font-bold text-[#252525] dark:text-white
+                      text-base font-bold text-[#252525] sm:text-lg dark:text-white
                       sm:min-h-[56px]
                       sm:flex sm:items-start
                       lg:min-h-0
@@ -1152,30 +1190,30 @@ export default function Category() {
           TESTIMONIAL
       ===================================================== */}
 
-      <section className={`${CONTAINER} mt-16`}>
-        <div className="relative overflow-hidden rounded-3xl bg-[#28312F] px-6 py-14 text-center md:px-16 md:py-20">
+      <section className={`${CONTAINER} mt-12 sm:mt-16`}>
+        <div className="relative overflow-hidden rounded-3xl bg-[#28312F] px-5 py-12 text-center sm:px-6 sm:py-14 md:px-16 md:py-20">
 
           <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-[#C49A3A]/20 blur-3xl" />
 
           <div className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-[#C49A3A]/10 blur-3xl" />
 
           <svg
-            className="mx-auto mb-6 h-10 w-10 text-[#C49A3A]"
+            className="mx-auto mb-5 h-9 w-9 text-[#C49A3A] sm:mb-6 sm:h-10 sm:w-10"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
             <path d="M7.17 6C4.87 8.1 3.5 10.85 3.5 14.2c0 3.15 1.9 5.3 4.35 5.3 2.15 0 3.7-1.65 3.7-3.7 0-1.9-1.3-3.35-3.05-3.6-.2-.03-.35-.03-.5-.03.35-1.9 1.95-3.5 3.85-4.35L10.4 6c-1.1.4-2.3 1-3.23 0zm10.1 0c-2.3 2.1-3.67 4.85-3.67 8.2 0 3.15 1.9 5.3 4.35 5.3 2.15 0 3.7-1.65 3.7-3.7 0-1.9-1.3-3.35-3.05-3.6-.2-.03-.35-.03-.5-.03.35-1.9 1.95-3.5 3.85-4.35L20.5 6c-1.1.4-2.3 1-3.23 0z" />
           </svg>
 
-          <p className="mx-auto max-w-2xl text-lg font-medium leading-8 text-white md:text-2xl">
+          <p className="mx-auto max-w-2xl text-base font-medium leading-7 text-white sm:text-lg sm:leading-8 md:text-2xl">
             {TESTIMONIAL.quote}
           </p>
 
-          <p className="mt-6 text-sm font-semibold text-white">
+          <p className="mt-5 text-sm font-semibold text-white sm:mt-6">
             {TESTIMONIAL.name}
           </p>
 
-          <p className="text-xs uppercase tracking-wide text-white/50">
+          <p className="text-[10px] uppercase tracking-wide text-white/50 sm:text-xs">
             {TESTIMONIAL.role}
           </p>
         </div>
@@ -1187,23 +1225,23 @@ export default function Category() {
 
       <section
         ref={newsletterRef}
-        className={`${CONTAINER} mt-16 scroll-mt-24 pb-24`}
+        className={`${CONTAINER} mt-12 scroll-mt-20 pb-20 sm:mt-16 sm:pb-24`}
       >
-        <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-[#C49A3A]/40 bg-[#F7F0DF] px-6 py-10 dark:border-[#C49A3A]/20 dark:bg-slate-800 md:flex-row md:px-12">
+        <div className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-[#C49A3A]/40 bg-[#F7F0DF] px-5 py-8 sm:px-6 sm:py-10 md:flex-row md:px-12 dark:border-[#C49A3A]/20 dark:bg-slate-800">
 
-          <div className="text-center md:text-left">
-            <h2 className="font-display text-3xl uppercase text-black dark:text-white">
+          <div className="w-full text-center md:text-left">
+            <h2 className="font-display text-2xl uppercase text-black sm:text-3xl dark:text-white">
               Get first pick of new drops
             </h2>
 
-            <p className="mt-2 max-w-md text-sm text-slate-600 dark:text-slate-400">
+            <p className="mt-2 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-400">
               Join the list and we'll email you 48 hours before a new
               colorway goes live — plus a 10% code the day you sign up.
             </p>
           </div>
 
           {subscribed ? (
-            <p className="rounded-full bg-[#28312F] px-6 py-3 text-sm font-semibold text-white">
+            <p className="w-full rounded-full bg-[#28312F] px-6 py-3 text-center text-sm font-semibold text-white md:w-auto">
               You're on the list. Watch your inbox.
             </p>
           ) : (
@@ -1217,7 +1255,7 @@ export default function Category() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@email.com"
-                className="w-full rounded-full border border-slate-300 bg-white px-5 py-3 text-sm text-black outline-none transition-all duration-200 focus:border-[#C49A3A] dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                className="w-full min-w-0 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm text-black outline-none transition-all duration-200 focus:border-[#C49A3A] dark:border-slate-600 dark:bg-slate-900 dark:text-white"
               />
 
               <button
@@ -1244,11 +1282,11 @@ export default function Category() {
           }`}
         >
           <div
-            className={`${CONTAINER} flex flex-col gap-4 py-3.5 sm:flex-row sm:items-center sm:justify-between`}
+            className={`${CONTAINER} flex flex-col gap-3 py-3 sm:gap-4 sm:py-3.5`}
           >
 
-            <div className="flex items-center gap-4">
-              <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-[#F5F5F5] dark:bg-slate-700">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+              <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-[#F5F5F5] sm:h-14 sm:w-14 dark:bg-slate-700">
                 <img
                   src={selectedProduct.img}
                   alt={selectedProduct.name}
@@ -1256,15 +1294,15 @@ export default function Category() {
                 />
               </div>
 
-              <div className="min-w-0">
-                <p className="truncate text-[11px] uppercase tracking-[0.12em] text-slate-400">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[10px] uppercase tracking-[0.1em] text-slate-400 sm:text-[11px] sm:tracking-[0.12em]">
                   {selectedProduct.brand}
                 </p>
 
-                <p className="truncate text-sm font-bold text-black dark:text-white">
+                <p className="truncate text-xs font-bold text-black sm:text-sm dark:text-white">
                   {selectedProduct.name}
 
-                  <span className="ml-2 font-normal text-slate-500 dark:text-slate-400">
+                  <span className="ml-1 font-normal text-slate-500 sm:ml-2 dark:text-slate-400">
                     {selectedProduct.audience} · Size {selected.size} · $
                     {selectedProduct.price}
                   </span>
@@ -1272,11 +1310,11 @@ export default function Category() {
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex w-full gap-2 sm:w-auto sm:flex-row sm:items-center">
               <button
                 type="button"
                 onClick={handleChangeShoe}
-                className="flex-1 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:border-[#C49A3A] hover:bg-[#F7F0DF] dark:border-slate-600 dark:bg-slate-800 dark:text-white sm:flex-none"
+                className="flex-1 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-black transition-all duration-200 hover:border-[#C49A3A] hover:bg-[#F7F0DF] sm:flex-none sm:px-5 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
               >
                 Change
               </button>
@@ -1284,7 +1322,7 @@ export default function Category() {
               <button
                 type="button"
                 onClick={handleOrder}
-                className="flex-1 rounded-full bg-[#C49A3A] px-6 py-2.5 text-sm font-bold text-black shadow-md transition-all duration-200 hover:bg-[#b48a2e] sm:flex-none"
+                className="flex-1 rounded-full bg-[#C49A3A] px-5 py-2.5 text-sm font-bold text-black shadow-md transition-all duration-200 hover:bg-[#b48a2e] sm:flex-none sm:px-6"
               >
                 Order Now
               </button>
@@ -1307,7 +1345,7 @@ export default function Category() {
             }
           }}
         >
-          <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl dark:bg-slate-800">
+          <div className="relative w-full max-w-sm rounded-2xl bg-white p-5 text-center shadow-2xl sm:p-6 dark:bg-slate-800">
 
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#C49A3A]/15 text-[#C49A3A]">
               <svg
@@ -1328,7 +1366,7 @@ export default function Category() {
               Your order is selected
             </h3>
 
-            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-2 break-words text-sm text-slate-500 dark:text-slate-400">
               {selectedProduct.audience} • {selectedProduct.brand}{' '}
               {selectedProduct.name}
             </p>
