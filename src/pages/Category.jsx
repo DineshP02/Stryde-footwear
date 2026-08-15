@@ -36,7 +36,6 @@ import menFormal4 from '../images/men formal 4.webp'
 
 import menSport1 from '../images/men sport 1.jpg'
 import menSport2 from '../images/men sports 2.webp'
-import menSport3 from '../images/men sports 3.jpg'
 import menSport4 from '../images/men sport 4.jpeg'
 
 /* =========================================================
@@ -338,7 +337,7 @@ const PRODUCTS_BY_TYPE = {
     },
     {
       id: 'men-sport-3',
-      img: menSport3,
+      img: menSport1,
       audience: 'Men',
       brand: 'SURGE',
       name: 'Sprint Knit',
@@ -446,15 +445,18 @@ const HERO_STATS = [
 const STANDARD_STEPS = [
   {
     title: 'Comfort first',
-    copy: 'Cushioning and fit are tested for everyday movement, not just the first five minutes in a showroom.',
+    copy:
+      'Cushioning and fit are tested for everyday movement, not just the first five minutes in a showroom.',
   },
   {
     title: 'Style that lasts',
-    copy: 'Clean silhouettes and versatile colours make each pair easy to wear across different parts of your day.',
+    copy:
+      'Clean silhouettes and versatile colours make each pair easy to wear across different parts of your day.',
   },
   {
     title: 'Daily Comfort',
-    copy: 'From morning commutes to weekend plans, It is built to keep pace with whatever your day brings.',
+    copy:
+      'From morning commutes to weekend plans, It is built to keep pace with whatever your day brings.',
   },
 ]
 
@@ -599,7 +601,7 @@ export default function Category() {
   }
 
   return (
-    <div className="min-h-screen bg-[#EDE7DA] font-[Inter,ui-sans-serif,system-ui] text-[#1B1B18] transition-colors duration-300 dark:bg-navy-dark dark:text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#EDE7DA] font-[Inter,ui-sans-serif,system-ui] text-[#1B1B18] transition-colors duration-300 dark:bg-navy-dark dark:text-white">
 
       {/* =====================================================
           FONTS + ANIMATIONS
@@ -652,7 +654,7 @@ export default function Category() {
         <div
           className="relative flex min-h-[560px] w-full items-center bg-cover bg-center md:min-h-[92vh] md:max-h-[820px]"
           style={{
-            backgroundImage: `url(${menSport3})`,
+            backgroundImage: `url(${menSport1})`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/15" />
@@ -714,15 +716,21 @@ export default function Category() {
 
       {/* =====================================================
           CATEGORY BAR
+          
+          NOT STICKY ON ANY SCREEN SIZE
       ===================================================== */}
 
-      <div className="relative z-30 border-b border-black/5 bg-[#EDE7DA]/90 backdrop-blur-md dark:border-white/5 dark:bg-navy-dark/90 md:sticky md:top-0">
+      <div className="relative z-30 border-b border-black/5 bg-[#EDE7DA]/90 backdrop-blur-md dark:border-white/5 dark:bg-navy-dark/90">
         <div
-          className={`${CONTAINER} flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between`}
+          className={`${CONTAINER} flex flex-col items-center gap-3 py-4`}
         >
 
+          {/* =================================================
+              ROW 1 - CASUAL / FORMAL / SPORTS
+          ================================================= */}
+
           <div
-            className="flex gap-2 overflow-x-auto pb-1 md:overflow-visible md:pb-0"
+            className="flex w-full flex-wrap items-center justify-center gap-2"
             role="tablist"
             aria-label="Shoe style"
           >
@@ -737,7 +745,12 @@ export default function Category() {
                   aria-selected={isActive}
                   onClick={() => handleTypeChange(item.key)}
                   className={`
-                    flex shrink-0 items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold uppercase tracking-wide transition-all duration-200
+                    flex shrink-0 items-center justify-center gap-1.5
+                    rounded-xl border
+                    px-3 py-2
+                    text-[11px] font-semibold uppercase tracking-wide
+                    transition-all duration-200
+                    sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm
                     ${
                       isActive
                         ? 'border-black bg-black text-white shadow-md dark:border-white dark:bg-white dark:text-black'
@@ -748,7 +761,7 @@ export default function Category() {
                   <svg
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="h-4 w-4 opacity-80"
+                    className="h-3.5 w-3.5 opacity-80 sm:h-4 sm:w-4"
                   >
                     {item.icon}
                   </svg>
@@ -759,29 +772,43 @@ export default function Category() {
             })}
           </div>
 
-          <div className="flex w-full items-center gap-1 rounded-full border border-black/10 bg-white/70 p-1 dark:border-white/10 dark:bg-slate-800/70 md:w-auto">
-            {AUDIENCES.map((a) => {
-              const isActive = audience === a
+          {/* =================================================
+              ROW 2 - MEN / WOMEN / KIDS
+              MOBILE SIZE REDUCED ONLY
+          ================================================= */}
 
-              return (
-                <button
-                  key={a}
-                  type="button"
-                  onClick={() => handleAudienceChange(a)}
-                  className={`
-                    flex-1 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition-all duration-200 md:flex-none
-                    ${
-                      isActive
-                        ? 'bg-[#C49A3A] text-black shadow-sm'
-                        : 'text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
-                    }
-                  `}
-                >
-                  {a}
-                </button>
-              )
-            })}
+          <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center gap-0.5 rounded-full border border-black/10 bg-white/70 p-0.5 dark:border-white/10 dark:bg-slate-800/70">
+
+              {AUDIENCES.map((a) => {
+                const isActive = audience === a
+
+                return (
+                  <button
+                    key={a}
+                    type="button"
+                    onClick={() => handleAudienceChange(a)}
+                    className={`
+                      rounded-full
+                      px-2.5 py-1
+                      text-[9px] font-semibold uppercase tracking-wide
+                      transition-all duration-200
+                      sm:px-4 sm:py-1.5 sm:text-xs
+                      ${
+                        isActive
+                          ? 'bg-[#C49A3A] text-black shadow-sm'
+                          : 'text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                      }
+                    `}
+                  >
+                    {a}
+                  </button>
+                )
+              })}
+
+            </div>
           </div>
+
         </div>
       </div>
 
@@ -832,7 +859,6 @@ export default function Category() {
                     }
                   `}
                 >
-
                   <div className="relative aspect-square overflow-hidden bg-[#F5F1E6] dark:bg-slate-700">
                     <img
                       src={product.img}
@@ -933,6 +959,7 @@ export default function Category() {
 
       <section className={`${CONTAINER} mt-16`}>
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C49A3A]">
               Since 2014
@@ -996,6 +1023,7 @@ export default function Category() {
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -1005,6 +1033,7 @@ export default function Category() {
 
       <section className={`${CONTAINER} mt-16`}>
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+
           <div className="mx-auto flex h-72 w-72 items-center justify-center rounded-full border-4 border-[#C49A3A] p-2 shadow-lg shadow-black/10 sm:h-80 sm:w-80 md:h-96 md:w-96">
             <img
               src={menFormal3}
@@ -1047,6 +1076,7 @@ export default function Category() {
               <span className="text-lg">→</span>
             </button>
           </div>
+
         </div>
       </section>
 
@@ -1056,6 +1086,7 @@ export default function Category() {
 
       <section className={`${CONTAINER} mt-20`}>
         <div className="overflow-hidden rounded-[32px] border border-[#C49A3A]/30 bg-[#F5EAD2] px-6 py-12 dark:border-[#C49A3A]/20 dark:bg-[#252B2A] md:px-14 md:py-14">
+
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.5fr] lg:items-center">
 
             <div>
@@ -1152,8 +1183,6 @@ export default function Category() {
 
       {/* =====================================================
           NEWSLETTER
-          FIX: pb-24 keeps the spacing inside the beige
-          Category background instead of creating white space.
       ===================================================== */}
 
       <section
@@ -1260,6 +1289,7 @@ export default function Category() {
                 Order Now
               </button>
             </div>
+
           </div>
         </div>
       )}
@@ -1329,6 +1359,7 @@ export default function Category() {
           </div>
         </div>
       )}
+
     </div>
   )
 }
