@@ -22,9 +22,6 @@ export default function Home2() {
     CATEGORIES[0]?.name || '',
   )
 
-  const [selectedSizes, setSelectedSizes] = useState({})
-  const [selectedProductId, setSelectedProductId] = useState(null)
-
   /* =========================================================
      FAQ ACCORDION STATE
 
@@ -42,30 +39,8 @@ export default function Home2() {
     (product) => product.category === activeCategory,
   )
 
-  const visibleProducts = selectedProductId
-    ? categoryProducts.filter(
-        (product) => product.id === selectedProductId,
-      )
-    : categoryProducts
-
-  const handleSizeSelect = (productId, size) => {
-    setSelectedSizes((previous) => ({
-      ...previous,
-      [productId]: size,
-    }))
-
-    setSelectedProductId(productId)
-  }
-
-  const handleChangeShoe = () => {
-    setSelectedProductId(null)
-    setSelectedSizes({})
-  }
-
   const handleCategoryChange = (categoryName) => {
     setActiveCategory(categoryName)
-    setSelectedProductId(null)
-    setSelectedSizes({})
   }
 
   /* =========================================================
@@ -95,6 +70,7 @@ export default function Home2() {
       ========================================================= */}
 
       <section className="relative overflow-hidden bg-cream dark:bg-white/[0.02]">
+
         <div className="section-container grid min-h-[720px] grid-cols-1 items-center gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
 
           <div className="relative z-10">
@@ -177,6 +153,7 @@ export default function Home2() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -358,6 +335,10 @@ export default function Home2() {
           </div>
 
 
+          {/* =====================================================
+              CATEGORY BUTTONS
+          ===================================================== */}
+
           <div className="mt-10 flex flex-wrap gap-2">
 
             {CATEGORIES.map((category) => {
@@ -366,6 +347,7 @@ export default function Home2() {
                 activeCategory === category.name
 
               return (
+
                 <button
                   key={category.name}
                   type="button"
@@ -380,6 +362,7 @@ export default function Home2() {
                 >
                   {category.name}
                 </button>
+
               )
 
             })}
@@ -387,159 +370,69 @@ export default function Home2() {
           </div>
 
 
-          {selectedProductId && (
+          {/* =====================================================
+              PRODUCTS
 
-            <div className="mt-8 flex flex-col gap-3 rounded-xl border border-amber/30 bg-amber/10 p-4 sm:flex-row sm:items-center sm:justify-between">
-
-              <div>
-
-                <p className="text-sm font-semibold text-navy dark:text-white">
-                  Shoe selected
-                </p>
-
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  Other shoes are hidden while you choose your size.
-                </p>
-
-              </div>
-
-              <button
-                type="button"
-                onClick={handleChangeShoe}
-                className="rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy/90 dark:bg-amber dark:text-navy-dark dark:hover:bg-amber/90"
-              >
-                Change shoe
-              </button>
-
-            </div>
-
-          )}
-
+              SIZE SELECTION HAS BEEN COMPLETELY REMOVED.
+          ===================================================== */}
 
           <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 
-            {visibleProducts.length > 0 ? (
+            {categoryProducts.length > 0 ? (
 
-              visibleProducts.map((product) => {
+              categoryProducts.map((product) => (
 
-                const selectedSize =
-                  selectedProductId === product.id
-                    ? selectedSizes[product.id]
-                    : null
+                <article
+                  key={product.id}
+                  className="group min-w-0"
+                >
 
-                return (
+                  <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
 
-                  <article
-                    key={product.id}
-                    className="group min-w-0"
-                  >
+                    <img
+                      src={product.img}
+                      alt={product.name}
+                      className="h-80 w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
 
-                    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-surface-dark">
+                    {product.tag && (
 
-                      <img
-                        src={product.img}
-                        alt={product.name}
-                        className="h-80 w-full object-cover transition duration-700 group-hover:scale-105"
-                      />
+                      <span className="absolute start-4 top-4 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-navy dark:bg-navy-dark dark:text-white">
+                        {product.tag}
+                      </span>
 
-                      {product.tag && (
+                    )}
 
-                        <span className="absolute start-4 top-4 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-navy dark:bg-navy-dark dark:text-white">
-                          {product.tag}
-                        </span>
-
-                      )}
-
-                    </div>
+                  </div>
 
 
-                    <div className="mt-5">
+                  <div className="mt-5">
 
-                      <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start justify-between gap-4">
 
-                        <div className="min-w-0">
+                      <div className="min-w-0">
 
-                          <p className="text-xs uppercase tracking-wider text-gray-400">
-                            {product.brand}
-                          </p>
+                        <p className="text-xs uppercase tracking-wider text-gray-400">
+                          {product.brand}
+                        </p>
 
-                          <h3 className="heading-sm mt-1 !text-lg">
-                            {product.name}
-                          </h3>
-
-                        </div>
-
-                        <span className="shrink-0 font-heading font-semibold text-navy dark:text-white">
-                          {product.price}
-                        </span>
+                        <h3 className="heading-sm mt-1 !text-lg">
+                          {product.name}
+                        </h3>
 
                       </div>
 
-
-                      <div className="mt-5">
-
-                        <div className="mb-3 flex items-center justify-between gap-3">
-
-                          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400">
-                            Select a size
-                          </p>
-
-                          {selectedSize && (
-
-                            <span className="text-xs font-medium text-amber">
-                              Size {selectedSize} selected
-                            </span>
-
-                          )}
-
-                        </div>
-
-
-                        <div className="flex flex-wrap gap-2">
-
-                          {product.sizes.map((size) => {
-
-                            const isSelected =
-                              selectedProductId === product.id &&
-                              selectedSizes[product.id] === size
-
-                            return (
-
-                              <button
-                                key={size}
-                                type="button"
-                                onClick={() =>
-                                  handleSizeSelect(
-                                    product.id,
-                                    size,
-                                  )
-                                }
-                                aria-label={`Select size ${size}`}
-                                aria-pressed={isSelected}
-                                className={
-                                  isSelected
-                                    ? 'flex h-10 min-w-10 items-center justify-center rounded-lg border border-navy bg-navy px-3 text-sm font-medium text-white shadow-sm transition-all duration-200 dark:border-amber dark:bg-amber dark:text-navy-dark'
-                                    : 'flex h-10 min-w-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-3 text-sm font-medium text-gray-600 transition-all duration-200 hover:border-navy hover:text-navy dark:border-border-dark dark:bg-white/5 dark:text-gray-300 dark:hover:border-amber dark:hover:text-amber'
-                                }
-                              >
-                                {size}
-                              </button>
-
-                            )
-
-                          })}
-
-                        </div>
-
-                      </div>
+                      <span className="shrink-0 font-heading font-semibold text-navy dark:text-white">
+                        {product.price}
+                      </span>
 
                     </div>
 
-                  </article>
+                  </div>
 
-                )
+                </article>
 
-              })
+              ))
 
             ) : (
 
@@ -564,6 +457,7 @@ export default function Home2() {
           </div>
 
         </div>
+
       </section>
 
 
@@ -795,11 +689,6 @@ export default function Home2() {
 
       {/* =========================================================
           8. QUESTIONS & ENQUIRIES + FAQ
-
-          IMPORTANT:
-          SAME DESIGN AS YOUR ORIGINAL HOME2 PAGE.
-
-          ONLY THE ACCORDION LOGIC HAS BEEN CHANGED.
       ========================================================= */}
 
       <section
@@ -827,7 +716,9 @@ export default function Home2() {
               </p>
 
 
-              {/* BULK ORDER POINTS */}
+              {/* =====================================================
+                  BULK ORDER POINTS
+              ===================================================== */}
 
               <div className="mt-8 space-y-3">
 
@@ -857,12 +748,6 @@ export default function Home2() {
 
               {/* =====================================================
                   FAQ
-
-                  OLD DESIGN IS KEPT.
-
-                  NO HEADLESS UI DISCLOSURE IS USED HERE.
-
-                  REACT CONTROLS WHICH FAQ IS OPEN.
               ===================================================== */}
 
               <div className="mt-10">
@@ -889,11 +774,7 @@ export default function Home2() {
                         }`}
                       >
 
-                        {/* =================================================
-                            QUESTION BUTTON
-
-                            Same design as before.
-                        ================================================== */}
+                        {/* QUESTION BUTTON */}
 
                         <button
                           type="button"
@@ -914,15 +795,7 @@ export default function Home2() {
                           </span>
 
 
-                          {/* =================================================
-                              SAME PLUS ICON
-
-                              Closed = +
-
-                              Open = + rotated 45deg = ×
-
-                              No visual design change.
-                          ================================================== */}
+                          {/* PLUS ICON */}
 
                           <span
                             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
@@ -945,13 +818,7 @@ export default function Home2() {
                         </button>
 
 
-                        {/* =================================================
-                            ANSWER
-
-                            Same content styling.
-
-                            Only visibility is controlled by React.
-                        ================================================== */}
+                        {/* ANSWER */}
 
                         <div
                           id={`home2-faq-${index}`}
